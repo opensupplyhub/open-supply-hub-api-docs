@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "This schema represents a country",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for a country"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the country"
+    }
+  },
+  "required": ["id", "name"]
+}
