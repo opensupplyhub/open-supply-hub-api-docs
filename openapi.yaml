@@ -1,8 +1,14 @@
 openapi: 3.1.0
 info:
-  title: OS Hub Target API Design
+  title: OS Hub API Design
+  summary: This is Target API Design for OS Hub, at this point in time it is a proposal and not a final design.
   description: This specification outlines proposed API design for OS Hub to facilitate discussions and gather feedback before development begins.
   version: 1.0.0
+tags:
+  - name: countries
+    description: Operations related to countries
+  - name: facilities
+    description: Operations related to facilities
 paths:
   /v1/countries:
     get:
@@ -20,17 +26,11 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/country"
-                example: >
-                  [
-                    {
-                      "id": "GB",
-                      "name": "United Kingdom"
-                    },
-                    {
-                      "id": "US",
-                      "name": "United States"
-                    }
-                  ]
+                example:
+                  - id: "GB"
+                    name: "United Kingdom"
+                  - id: "US"
+                    name: "United States"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
@@ -51,17 +51,7 @@ paths:
 components:
   schemas:
     country:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ISO 3166-1 alpha-2 code of the country
-        name:
-          type: string
-          description: The name of the country
-      required:
-        - id
-        - name
+      $ref: "schemas/country.json"
 
     facility:
       $ref: "schemas/facility.json"
