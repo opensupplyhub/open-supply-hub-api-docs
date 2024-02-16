@@ -6,7 +6,7 @@ info:
 paths:
   /v1/countries:
     get:
-      summary: Get list of countries supported by the OS Hub platform
+      summary: Get list of countries supported by the OS Hub platform.
       description: >
         Returns an array of countries with name and id, where id is the ISO 3166-1 alpha-2 code of the country.
       tags:
@@ -31,6 +31,25 @@ paths:
                       "name": "United States"
                     }
                   ]
+  /v1/facilities:
+    get:
+      summary: Get list of facilities exposed by the OS Hub platform.
+      description: >
+        Returns an array of facilities with name and id and other properties, where id is the unique identifier of the facility.
+      tags:
+        - facilities
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/facility"
+                example: >
+                  [
+                  ]
 components:
   schemas:
     country:
@@ -42,6 +61,19 @@ components:
         name:
           type: string
           description: The name of the country
+      required:
+        - id
+        - name
+
+    facility:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the facility
+        name:
+          type: string
+          description: The name of the facility
       required:
         - id
         - name
