@@ -47,9 +47,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility"
-                example: >
-                  [
-                  ]
+
 components:
   schemas:
     country:
@@ -66,14 +64,4 @@ components:
         - name
 
     facility:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the facility
-        name:
-          type: string
-          description: The name of the facility
-      required:
-        - id
-        - name
+      $ref: "schemas/facility.json"
