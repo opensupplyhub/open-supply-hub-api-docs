@@ -14,9 +14,9 @@ This repository uses [Docker](https://www.docker.com/) for local development, so
 
 2. Then run the following command in your `terminal`:
 
-```bash
-docker compose up -d
-```
+  ```bash
+  docker compose up -d
+  ```
 
 3. After running the command, you'll be able to access the rendered specification on [http://localhost:8090/](http://localhost:8090/).
 
