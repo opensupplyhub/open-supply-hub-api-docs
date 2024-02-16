@@ -2,10 +2,8 @@ version: "3.9"
 
 services:
   swagger-ui:
-    image: swaggerapi/swagger-ui:v5.11.7
-    volumes:
-      - ./openapi.yaml:/var/www/app/openapi.yaml
+    image: nginx:latest
     ports:
-      - 8090:8080
-    environment:
-      SWAGGER_JSON: /var/www/app/openapi.yaml
+      - 8090:80
+    volumes:
+      - ./:/usr/share/nginx/html

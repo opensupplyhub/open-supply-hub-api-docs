@@ -1,4 +1,4 @@
-openapi: 3.0.9
+openapi: 3.1.0
 info:
   title: OS Hub Target API Design
   description: This specification outlines proposed API design for OS Hub to facilitate discussions and gather feedback before development begins.

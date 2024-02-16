@@ -14,16 +14,27 @@
 
 <body>
   <div class="disclaimer">
-    This is only a draft version of the documentation. Those APIs are not available for use as yet.
+    This is only a draft version of the documentation. Those APIs are not available for use as of yet.
   </div>
   <div id="swagger-ui"></div>
   <script src="https://unpkg.com/swagger-ui-dist@5.11.7/swagger-ui-bundle.js" crossorigin></script>
   <script>
     window.onload = () => {
-      window.ui = SwaggerUIBundle({
-        url: './openapi.yaml',
-        dom_id: '#swagger-ui',
-      });
+      let hasConfirmed = localStorage.getItem("hasConfirmed");
+
+      if (!hasConfirmed) {
+        hasConfirmed = confirm("This is only a draft version of the documentation. Those APIs are not available for use as of yet.");
+        localStorage.setItem("hasConfirmed", true);
+      }
+
+      if (hasConfirmed) {
+        window.ui = SwaggerUIBundle({
+          url: './openapi.yaml',
+          dom_id: '#swagger-ui',
+        });
+      } else {
+        window.location.href = "https://opensupplyhub.org";
+      }
     };
   </script>
 </body>
