@@ -1,0 +1,8 @@
+.disclaimer {
+  animation: scaleUp .5s;
+  background: rgba(249, 62, 62, .1);
+  border: 2px solid #f93e3e;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 10px 20px;
+}
