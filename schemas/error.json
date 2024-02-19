@@ -13,7 +13,24 @@
     },
     "errors": {
       "type": "array",
-      "description": "An array of errors"
+      "description": "An array of errors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The field that the error is associated with"
+          },
+          "code": {
+            "type": "number",
+            "description": "A code identifying the error"
+          },
+          "message": {
+            "type": "string",
+            "description": "A message describing the error"
+          }
+        }
+      }
     }
   },
   "required": ["message"]

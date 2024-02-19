@@ -17,6 +17,56 @@ paths:
         Returns an array of countries with name and id, where id is the ISO 3166-1 alpha-2 code of the country.
       tags:
         - countries
+      parameters:
+        - name: next
+          in: query
+          description: The next identifier for pagination.
+          required: false
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: prev
+          in: query
+          description: The previous identifier for pagination.
+          required: false
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: name
+          in: query
+          description: The name of the country.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: code
+          in: query
+          description: The ISO 3166-1 alpha-2 code of the country.
+          required: false
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+        - name: numeric_code
+          in: query
+          description: The ISO 3166-1 numeric code of the country.
+          required: false
+          schema:
+            type: string
+            minLength: 3
+            maxLength: 3
+        - name: fields
+          in: query
+          description: The fields to include in the response.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [id, name, code, numeric_code]
       responses:
         200:
           description: OK
@@ -43,6 +93,17 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "next"
+                    message: "The value of next must be a valid id."
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
