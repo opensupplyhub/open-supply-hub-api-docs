@@ -28,9 +28,21 @@ paths:
                   $ref: "#/components/schemas/country"
                 example:
                   - id: "GB"
-                    name: "United Kingdom"
+                    name: "United Kingdom of Great Britain and Northern Ireland"
+                    code: "GBR"
+                    numeric_code: "826"
                   - id: "US"
-                    name: "United States"
+                    name: "United States of America"
+                    code: "USA"
+                    numeric_code: "840"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
@@ -55,3 +67,6 @@ components:
 
     facility:
       $ref: "schemas/facility.json"
+
+    error:
+      $ref: "schemas/error.json"
