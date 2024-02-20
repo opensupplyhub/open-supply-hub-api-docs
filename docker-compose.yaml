@@ -7,3 +7,10 @@ services:
       - 8090:80
     volumes:
       - ./spec:/usr/share/nginx/html
+
+  app:
+    build: ./app
+    ports:
+      - 8095:80
+    volumes:
+      - ./app:/code/app
