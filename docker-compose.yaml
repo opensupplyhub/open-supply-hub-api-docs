@@ -6,11 +6,22 @@ services:
     ports:
       - 8090:80
     volumes:
-      - ./spec:/usr/share/nginx/html
+      - ./docs:/usr/share/nginx/html
 
   app:
     build: ./app
     ports:
       - 8095:80
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
     volumes:
       - ./app:/code/app
+
+  elasticsearch:
+    image: elasticsearch:8.12.1
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9200:9200
+      - 9300:9300
