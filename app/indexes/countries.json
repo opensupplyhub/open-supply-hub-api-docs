@@ -1,0 +1,128 @@
+[
+  {
+    "id": "AF",
+    "name": "Afghanistan",
+    "code": "AFG",
+    "numeric_code": "004"
+  },
+  {
+    "id": "AL",
+    "name": "Albania",
+    "code": "ALB",
+    "numeric_code": "008"
+  },
+  {
+    "id": "DZ",
+    "name": "Algeria",
+    "code": "DZA",
+    "numeric_code": "012"
+  },
+  {
+    "id": "AD",
+    "name": "Andorra",
+    "code": "AND",
+    "numeric_code": "020"
+  },
+  {
+    "id": "AO",
+    "name": "Angola",
+    "code": "AGO",
+    "numeric_code": "024"
+  },
+  {
+    "id": "AR",
+    "name": "Argentina",
+    "code": "ARG",
+    "numeric_code": "032"
+  },
+  {
+    "id": "AM",
+    "name": "Armenia",
+    "code": "ARM",
+    "numeric_code": "051"
+  },
+  {
+    "id": "AU",
+    "name": "Australia",
+    "code": "AUS",
+    "numeric_code": "036"
+  },
+  {
+    "id": "AT",
+    "name": "Austria",
+    "code": "AUT",
+    "numeric_code": "040"
+  },
+  {
+    "id": "AZ",
+    "name": "Azerbaijan",
+    "code": "AZE",
+    "numeric_code": "031"
+  },
+  {
+    "id": "BS",
+    "name": "Bahamas",
+    "code": "BHS",
+    "numeric_code": "044"
+  },
+  {
+    "id": "BH",
+    "name": "Bahrain",
+    "code": "BHR",
+    "numeric_code": "048"
+  },
+  {
+    "id": "BD",
+    "name": "Bangladesh",
+    "code": "BGD",
+    "numeric_code": "050"
+  },
+  {
+    "id": "BB",
+    "name": "Barbados",
+    "code": "BRB",
+    "numeric_code": "052"
+  },
+  {
+    "id": "BY",
+    "name": "Belarus",
+    "code": "BLR",
+    "numeric_code": "112"
+  },
+  {
+    "id": "BE",
+    "name": "Belgium",
+    "code": "BEL",
+    "numeric_code": "064"
+  },
+  {
+    "id": "BZ",
+    "name": "Belize",
+    "code": "BLZ",
+    "numeric_code": "084"
+  },
+  {
+    "id": "BJ",
+    "name": "Benin",
+    "code": "BEN",
+    "numeric_code": "204"
+  },
+  {
+    "id": "BT",
+    "name": "Bhutan",
+    "code": "BTN",
+    "numeric_code": "064"
+  },
+  {
+    "id": "BO",
+    "name": "Bolivia (Plurinational State of)",
+    "code": "BOL",
+    "numeric_code": "068"
+  },
+  {
+    "id": "BA",
+    "name": "Bosnia and Herzegovina",
+    "code": "BIH",
+    "numeric_code": "070"
+  }
+]

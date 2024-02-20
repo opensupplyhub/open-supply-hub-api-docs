@@ -4,6 +4,9 @@ info:
   summary: This is Target API Design for OS Hub, at this point in time it is a proposal and not a final design.
   description: This specification outlines proposed API design for OS Hub to facilitate discussions and gather feedback before development begins.
   version: 1.0.0
+servers:
+  - url: http://localhost:8095
+    description: Local development server
 tags:
   - name: countries
     description: Operations related to countries
@@ -18,17 +21,18 @@ paths:
       tags:
         - countries
       parameters:
-        - name: next
+        - name: limit
           in: query
-          description: The next identifier for pagination.
+          description: The maximum number of countries to return.
           required: false
           schema:
-            type: string
-            minLength: 2
-            maxLength: 2
-        - name: prev
+            default: 10
+            type: integer
+            minimum: 1
+            maximum: 101
+        - name: after
           in: query
-          description: The previous identifier for pagination.
+          description: The next identifier for pagination.
           required: false
           schema:
             type: string
