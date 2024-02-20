@@ -20,6 +20,6 @@ docker compose up -d
 
 3. After running the command, you'll be able to access the rendered specification on [http://localhost:8090/](http://localhost:8090/).
 
-4. Edit the [openapi.yaml](/openapi.yaml) file to add new API endpoints and see them immediately reflected in the browser interface.
+4. Edit the [/docs/openapi.yaml](/docs/openapi.yaml) file to add new API endpoints and see them immediately reflected in the browser interface.
 
-5. All of the `schemas` are located inside the [/schemas](/schemas/) directory and referenced inside the [openapi.yaml](/openapi.yaml) file.
+5. All of the `schemas` are located inside the [/docs/schemas](/docs/schemas/) directory and referenced inside the [/docs/openapi.yaml](/docs/openapi.yaml) file.
