@@ -26,18 +26,19 @@ async def add_process_time_header(request: Request, call_next):
     if request.url.path.count("/") != 2:
         return await call_next(request)
 
-    index = request.url.path.strip("/v1?")
+    request.state.index = request.url.path.strip("/v1?")
 
-    if len(index) == 0:
+    if len(request.state.index) == 0:
         return await call_next(request)
 
-    index_exists = search.indices.exists(index=index)
+    index_exists = search.indices.exists(index=request.state.index)
 
     if index_exists:
         return await call_next(request)
 
+    # TODO: Move this to a configuration file that will be automatically read
     search.indices.create(
-        index=index,
+        index=request.state.index,
         body={
             "mappings": {
                 "properties": {
@@ -49,11 +50,15 @@ async def add_process_time_header(request: Request, call_next):
         },
     )
 
-    with open(f"/code/app/indexes/{index}.json") as file:
+    with open(f"/code/app/indexes/{request.state.index}.json") as file:
         docs = load(file)
 
         for doc in docs:
-            search.index(index=index, body=doc, id=doc["id"])
+            search.index(
+                index=request.state.index,
+                body=doc,
+                id=doc["id"],
+            )
 
         file.close()
 
@@ -72,7 +77,10 @@ def read_root(request: Request):
     if "after" in request.query_params:
         body["search_after"] = [request.query_params["after"]]
 
-    documents = search.search(index="countries", body=body)
+    documents = search.search(
+        index=request.state.index,
+        body=body,
+    )
     countries = []
 
     for document in documents["hits"]["hits"]:
