@@ -31,23 +31,17 @@ async def add_process_time_header(request: Request, call_next):
     if len(request.state.index) == 0:
         return await call_next(request)
 
+    with open(f"/code/app/indexes/{request.state.index}_config.json") as file:
+        request.state.index_config = load(file)
+
     index_exists = search.indices.exists(index=request.state.index)
 
     if index_exists:
         return await call_next(request)
 
-    # TODO: Move this to a configuration file that will be automatically read
     search.indices.create(
         index=request.state.index,
-        body={
-            "mappings": {
-                "properties": {
-                    "id": {
-                        "type": "keyword",
-                    }
-                }
-            }
-        },
+        body=request.state.index_config,
     )
 
     with open(f"/code/app/indexes/{request.state.index}.json") as file:
@@ -68,14 +62,34 @@ async def add_process_time_header(request: Request, call_next):
 @app.get("/v1/countries")
 def read_root(request: Request):
     body = {
-        "size": request.query_params["limit"],
+        "size": 10,
+        "fields": [],
         "sort": [
             {"id": "asc"},
         ],
     }
 
-    if "after" in request.query_params:
-        body["search_after"] = [request.query_params["after"]]
+    if "limit" in request.query_params:
+        body["size"] = request.query_params["limit"]
+
+    if "start_after" in request.query_params:
+        body["search_after"] = [request.query_params["start_after"]]
+
+    fields = []
+
+    if "fields" in request.query_params and len(request.query_params["fields"]) > 0:
+        fields = request.query_params["fields"].split(",")
+
+    for field in request.state.index_config["mappings"]["properties"]:
+        match = {
+            "match": {},
+        }
+
+        if field in request.query_params:
+            match["match"][field] = request.query_params[field]
+
+        if len(match["match"]) > 0:
+            body["query"] = match
 
     documents = search.search(
         index=request.state.index,
@@ -84,6 +98,14 @@ def read_root(request: Request):
     countries = []
 
     for document in documents["hits"]["hits"]:
-        countries.append(document["_source"])
+        if len(fields) > 0:
+            country = {}
+
+            for field in fields:
+                country[field] = document["_source"][field]
+
+            countries.append(country)
+        else:
+            countries.append(document["_source"])
 
     return countries
