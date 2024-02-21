@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents an error returned for the API",
+  "description": "This schema represents an error returned from the API",
   "properties": {
     "message": {
       "type": "string",
@@ -27,7 +27,7 @@
           },
           "message": {
             "type": "string",
-            "description": "A message describing the error"
+            "description": "A message describing the error code"
           }
         }
       }

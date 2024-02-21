@@ -20,5 +20,5 @@
       "description": "The ISO 3166-1 numeric code of the country"
     }
   },
-  "required": ["id", "name"]
+  "required": ["id", "name", "code", "numeric_code"]
 }
