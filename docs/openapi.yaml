@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: OS Hub API Design
+  title: OS Hub API Design - V1
   summary: This is Target API Design for OS Hub, at this point in time it is a proposal and not a final design.
   description: This specification outlines proposed API design for OS Hub to facilitate discussions and gather feedback before development begins.
   version: 1.0.0
