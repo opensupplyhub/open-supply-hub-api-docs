@@ -1,16 +1,16 @@
 {
   "mappings": {
     "properties": {
-      "id": {
-        "type": "keyword"
-      },
       "name": {
         "type": "text"
       },
-      "code": {
+      "alpha_2": {
         "type": "keyword"
       },
-      "numeric_code": {
+      "alpha_3": {
+        "type": "keyword"
+      },
+      "numeric": {
         "type": "keyword"
       }
     }

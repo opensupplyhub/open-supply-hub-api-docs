@@ -24,7 +24,7 @@ paths:
         - $ref: "#/components/parameters/limit"
         - name: start_after
           in: query
-          description: The next identifier for pagination.
+          description: The next alpha-2 code (cursor) for pagination.
           required: false
           schema:
             type: string
@@ -38,15 +38,23 @@ paths:
             type: string
             minLength: 1
             maxLength: 255
-        - name: code
+        - name: alpha_2
           in: query
           description: The ISO 3166-1 alpha-2 code of the country.
           required: false
           schema:
             type: string
+            minLength: 2
+            maxLength: 2
+        - name: alpha_3
+          in: query
+          description: The ISO 3166-1 alpha-3 code of the country.
+          required: false
+          schema:
+            type: string
             minLength: 3
             maxLength: 3
-        - name: numeric_code
+        - name: numeric
           in: query
           description: The ISO 3166-1 numeric code of the country.
           required: false
@@ -63,7 +71,7 @@ paths:
             type: array
             items:
               type: string
-              enum: [id, name, code, numeric_code]
+              enum: [name, alpha_2, alpha_3, numeric]
       responses:
         200:
           description: OK
@@ -74,14 +82,14 @@ paths:
                 items:
                   $ref: "#/components/schemas/country"
                 example:
-                  - id: "GB"
-                    name: "United Kingdom of Great Britain and Northern Ireland"
-                    code: "GBR"
-                    numeric_code: "826"
-                  - id: "US"
-                    name: "United States of America"
-                    code: "USA"
-                    numeric_code: "840"
+                  - name: "United Kingdom of Great Britain and Northern Ireland"
+                    alpha_2: "GB"
+                    alpha_3: "GBR"
+                    numeric: "826"
+                  - name: "United States of America"
+                    alpha_2: "US"
+                    alpha_3: "USA"
+                    numeric: "840"
         500:
           description: Internal Server Error
           content:
@@ -131,12 +139,12 @@ components:
 
   parameters:
     limit:
-      name: limit
+      name: size
       in: query
       description: The maximum number of entries to return.
       required: false
       schema:
-        default: 10
         type: integer
+        default: 10
         minimum: 1
-        maximum: 101
+        maximum: 251
