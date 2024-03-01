@@ -1,128 +1,128 @@
 [
   {
-    "id": "AF",
     "name": "Afghanistan",
-    "code": "AFG",
-    "numeric_code": "004"
+    "alpha_2": "AF",
+    "alpha_3": "AFG",
+    "numeric": "004"
   },
   {
-    "id": "AL",
     "name": "Albania",
-    "code": "ALB",
-    "numeric_code": "008"
+    "alpha_2": "AL",
+    "alpha_3": "ALB",
+    "numeric": "008"
   },
   {
-    "id": "DZ",
     "name": "Algeria",
-    "code": "DZA",
-    "numeric_code": "012"
+    "alpha_2": "DZ",
+    "alpha_3": "DZA",
+    "numeric": "012"
   },
   {
-    "id": "AD",
     "name": "Andorra",
-    "code": "AND",
-    "numeric_code": "020"
+    "alpha_2": "AD",
+    "alpha_3": "AND",
+    "numeric": "020"
   },
   {
-    "id": "AO",
     "name": "Angola",
-    "code": "AGO",
-    "numeric_code": "024"
+    "alpha_2": "AO",
+    "alpha_3": "AGO",
+    "numeric": "024"
   },
   {
-    "id": "AR",
     "name": "Argentina",
-    "code": "ARG",
-    "numeric_code": "032"
+    "alpha_2": "AR",
+    "alpha_3": "ARG",
+    "numeric": "032"
   },
   {
-    "id": "AM",
     "name": "Armenia",
-    "code": "ARM",
-    "numeric_code": "051"
+    "alpha_2": "AM",
+    "alpha_3": "ARM",
+    "numeric": "051"
   },
   {
-    "id": "AU",
     "name": "Australia",
-    "code": "AUS",
-    "numeric_code": "036"
+    "alpha_2": "AU",
+    "alpha_3": "AUS",
+    "numeric": "036"
   },
   {
-    "id": "AT",
     "name": "Austria",
-    "code": "AUT",
-    "numeric_code": "040"
+    "alpha_2": "AT",
+    "alpha_3": "AUT",
+    "numeric": "040"
   },
   {
-    "id": "AZ",
     "name": "Azerbaijan",
-    "code": "AZE",
-    "numeric_code": "031"
+    "alpha_2": "AZ",
+    "alpha_3": "AZE",
+    "numeric": "031"
   },
   {
-    "id": "BS",
     "name": "Bahamas",
-    "code": "BHS",
-    "numeric_code": "044"
+    "alpha_2": "BS",
+    "alpha_3": "BHS",
+    "numeric": "044"
   },
   {
-    "id": "BH",
     "name": "Bahrain",
-    "code": "BHR",
-    "numeric_code": "048"
+    "alpha_2": "BH",
+    "alpha_3": "BHR",
+    "numeric": "048"
   },
   {
-    "id": "BD",
     "name": "Bangladesh",
-    "code": "BGD",
-    "numeric_code": "050"
+    "alpha_2": "BD",
+    "alpha_3": "BGD",
+    "numeric": "050"
   },
   {
-    "id": "BB",
     "name": "Barbados",
-    "code": "BRB",
-    "numeric_code": "052"
+    "alpha_2": "BB",
+    "alpha_3": "BRB",
+    "numeric": "052"
   },
   {
-    "id": "BY",
     "name": "Belarus",
-    "code": "BLR",
-    "numeric_code": "112"
+    "alpha_2": "BY",
+    "alpha_3": "BLR",
+    "numeric": "112"
   },
   {
-    "id": "BE",
     "name": "Belgium",
-    "code": "BEL",
-    "numeric_code": "064"
+    "alpha_2": "BE",
+    "alpha_3": "BEL",
+    "numeric": "064"
   },
   {
-    "id": "BZ",
     "name": "Belize",
-    "code": "BLZ",
-    "numeric_code": "084"
+    "alpha_2": "BZ",
+    "alpha_3": "BLZ",
+    "numeric": "084"
   },
   {
-    "id": "BJ",
     "name": "Benin",
-    "code": "BEN",
-    "numeric_code": "204"
+    "alpha_2": "BJ",
+    "alpha_3": "BEN",
+    "numeric": "204"
   },
   {
-    "id": "BT",
     "name": "Bhutan",
-    "code": "BTN",
-    "numeric_code": "064"
+    "alpha_2": "BT",
+    "alpha_3": "BTN",
+    "numeric": "064"
   },
   {
-    "id": "BO",
     "name": "Bolivia (Plurinational State of)",
-    "code": "BOL",
-    "numeric_code": "068"
+    "alpha_2": "BO",
+    "alpha_3": "BOL",
+    "numeric": "068"
   },
   {
-    "id": "BA",
     "name": "Bosnia and Herzegovina",
-    "code": "BIH",
-    "numeric_code": "070"
+    "alpha_2": "BA",
+    "alpha_3": "BIH",
+    "numeric": "070"
   }
 ]

@@ -34,6 +34,14 @@ async def add_process_time_header(request: Request, call_next):
     with open(f"/code/app/indexes/{request.state.index}_config.json") as file:
         request.state.index_config = load(file)
 
+        for field in request.state.index_config["mappings"]["properties"]:
+            if (
+                request.state.index_config["mappings"]["properties"][field]["type"]
+                == "keyword"
+            ):
+                request.state.index_id_field = field
+                break
+
     index_exists = search.indices.exists(index=request.state.index)
 
     if index_exists:
@@ -51,7 +59,7 @@ async def add_process_time_header(request: Request, call_next):
             search.index(
                 index=request.state.index,
                 body=doc,
-                id=doc["id"],
+                id=doc[request.state.index_id_field],
             )
 
         file.close()
@@ -63,14 +71,13 @@ async def add_process_time_header(request: Request, call_next):
 def read_root(request: Request):
     body = {
         "size": 10,
-        "fields": [],
         "sort": [
-            {"id": "asc"},
+            {request.state.index_id_field: "asc"},
         ],
     }
 
-    if "limit" in request.query_params:
-        body["size"] = request.query_params["limit"]
+    if "size" in request.query_params:
+        body["size"] = request.query_params["size"]
 
     if "start_after" in request.query_params:
         body["search_after"] = [request.query_params["start_after"]]
