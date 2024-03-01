@@ -141,6 +141,32 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility"
+    post:
+      summary: Create a new facility.
+      description: >
+        Creates a new facility with the provided details.
+      tags:
+        - facilities
+
+  /v1/facilities/{os_id}:
+    get:
+      summary: Get details of a facility by its unique identifier.
+      description: >
+        Returns details of a facility with name and id and other properties, where id is the unique identifier of the facility.
+      tags:
+        - facilities
+    put:
+      summary: Update an existing facility.
+      description: >
+        Updates an existing facility with the provided details.
+      tags:
+        - facilities
+    patch:
+      summary: Partially update an existing facility.
+      description: >
+        Partially updates an existing facility with the provided details.
+      tags:
+        - facilities
 
 components:
   schemas:

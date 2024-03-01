@@ -15,10 +15,6 @@
       "type": "string",
       "description": "The address of the facility"
     },
-    "country_id": {
-      "type": "string",
-      "description": "The unique identifier for the country of the facility (can be only a country code)"
-    },
     "country": {
       "type": "string",
       "description": "The country of the facility (can be a country code or name see https://www.iban.com/country-codes)"
@@ -59,5 +55,5 @@
       "required": ["latitude", "longitude"]
     }
   },
-  "required": ["name", "address", "country"]
+  "required": ["os_id", "name", "address", "country"]
 }
