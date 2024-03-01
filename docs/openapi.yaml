@@ -24,7 +24,7 @@ paths:
         - $ref: "#/components/parameters/limit"
         - name: start_after
           in: query
-          description: The next alpha-2 code (cursor) for pagination.
+          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
           schema:
             type: string
@@ -32,7 +32,7 @@ paths:
             maxLength: 2
         - name: name
           in: query
-          description: The name of the country.
+          description: Filter using the name of the country.
           required: false
           schema:
             type: string
@@ -40,7 +40,7 @@ paths:
             maxLength: 255
         - name: alpha_2
           in: query
-          description: The ISO 3166-1 alpha-2 code of the country.
+          description: Filter using the ISO 3166-1 alpha-2 code of the country.
           required: false
           schema:
             type: string
@@ -48,7 +48,7 @@ paths:
             maxLength: 2
         - name: alpha_3
           in: query
-          description: The ISO 3166-1 alpha-3 code of the country.
+          description: Filter using the ISO 3166-1 alpha-3 code of the country.
           required: false
           schema:
             type: string
@@ -56,12 +56,28 @@ paths:
             maxLength: 3
         - name: numeric
           in: query
-          description: The ISO 3166-1 numeric code of the country.
+          description: Filter using the ISO 3166-1 numeric code of the country.
           required: false
           schema:
             type: string
             minLength: 3
             maxLength: 3
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: alpha_2
+          schema:
+            type: string
+            enum: [name, alpha_2, alpha_3, numeric]
+        - name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          default: asc
+          schema:
+            type: string
+            enum: [asc, desc]
         - name: fields
           in: query
           description: The fields to include in the response.
