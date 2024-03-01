@@ -76,6 +76,16 @@ def read_root(request: Request):
         ],
     }
 
+    order_by = "asc"
+
+    if "order_by" in request.query_params:
+        order_by = request.query_params["order_by"]
+
+    if "sort_by" in request.query_params:
+        body["sort"] = [
+            {request.query_params["sort_by"]: order_by},
+        ]
+
     if "size" in request.query_params:
         body["size"] = request.query_params["size"]
 

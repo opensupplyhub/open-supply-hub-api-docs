@@ -62,15 +62,6 @@ paths:
             type: string
             minLength: 3
             maxLength: 3
-        - in: query
-          name: filter
-          schema:
-            type: object
-          style: deepObject
-          x-deepObject-style: qs
-          explode: true
-          description: Options for filtering the results
-          required: false
         - name: sort_by
           in: query
           description: The field to sort the results by.

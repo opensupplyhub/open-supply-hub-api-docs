@@ -2,7 +2,8 @@
   "mappings": {
     "properties": {
       "name": {
-        "type": "text"
+        "type": "text",
+        "fielddata": true
       },
       "alpha_2": {
         "type": "keyword"
