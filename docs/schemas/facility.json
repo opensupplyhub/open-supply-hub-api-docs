@@ -15,10 +15,6 @@
       "type": "string",
       "description": "The address of the facility"
     },
-    "country_id": {
-      "type": "string",
-      "description": "The unique identifier for the country of the facility (can be only a country code)"
-    },
     "country": {
       "type": "string",
       "description": "The country of the facility (can be a country code or name see https://www.iban.com/country-codes)"
@@ -43,7 +39,6 @@
       "type": "number",
       "description": "The number of workers that are employed at a facility"
     },
-    }
     "location": {
       "type": "object",
       "description": "The location of the facility",
@@ -58,73 +53,63 @@
         }
       },
       "required": ["latitude", "longitude"]
+    },
+    "claim_status": {
+      "type": "string",
+      "description": "Indicates whether a facility has been claimed by an owner or manager"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the facility provided by the claimant"
+    },
+    "local_language_name": {
+      "type": "string",
+      "description": "Facility name in the language local to where the facility is located, provided by the claimant"
+    },
+    "website": {
+      "type": "string",
+      "description": "The facilty website, provided by the claimant"
+    },
+    "minimum_order_quantity": {
+      "type": "number",
+      "description": "Indicates the minimum order quantity accepted by the facility"
+    },
+    "average_lead_time": {
+      "type": "string",
+      "description": "The minimum time that a facility needs to produce an order"
+    },
+    "percent_female_workers": {
+      "type": "number",
+      "description": "The percentage of female employees at the facility"
+    },
+    "affiliations": {
+      "type": "string",
+      "description": "Indicates if the facility is affiliated with any industry initatives"
+    },
+    "certifications_standards_regulations": {
+      "type": "string",
+      "description": "Indicates if the facility is compliant with any certification, standards, or regulations"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "The name for the point of contact (or claimant) for the facility"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "The email address for the point of contact"
+    },
+    "office_name": {
+      "type": "string",
+      "description": "The name of the office associated with the point of contact"
+    },
+    "office_address": {
+      "type": "string",
+      "description": "The address for the point of contact"
+    },
+    "office_phone_number": {
+      "type": "string",
+      "description": "The phone number associated with the point of contact"
     }
   },
   "required": ["name", "address", "country"]
-  
-  # these fields are only relevant for a claimed facility 
-  "claim_status": {
-    "type": "string", 
-    "description": "Indicates whether a facility has been claimed by an owner or manager"
-  }
-  "description":{
-    "type": "string", 
-    "description": "Description of the facility provided by the claimant"
-  }
-  # this has been called native_language previously - change to local? 
-  "local_language_name": {
-    "type": "string", 
-    "description": "Facility name in the language local to where the facility is located, provided by the claimant"
-  }
-  "website": {
-    "type": "string", 
-    "description": "The facilty website, provided by the claimant" 
-  }
-  "minimum_order_quantity": {
-    "type": "number", 
-    "description": "Indicates the minimum order quantity accepted by the facility"
-  }
-  # keep this?
-  "average_lead_time": {
-    "type": "string", 
-    "description": "The minimum time that a facility needs to produce an order"
-  }
-  "percent_female_workers":{
-    "type": "number", 
-    "description": "The percentage of female employees at the facility"
-  }
-  # affiliations and certifications schemes have overlap --> one field?
-  "affiliations":{
-    "type": "string", 
-    "description": "Indicates if the facility is affiliated with any industry initatives"
-  }
-  "certifications_standards_regulations":{
-    "type": "string", 
-    "description": "Indicates if the facility is compliant with any certification, standards, or regulations"
-  }
-  "contact_name": {
-    "type": "string", 
-    "description": "The name for the point of contact (or claimant) for the facility"
-  }
-  "contact_email": {
-    "type": "string", 
-    "description": "The email address for the point of contact"
-  }
-  # it doesnt seem like we need office name, just address 
-  "office_name": {
-    "type": "string", 
-    "description": "The name of the office associated with the point of contact"
-  }
-"office_address": {
-  "type": "string", 
-  "description": "The address for the point of contact"
 }
-# do we want phone numbers? there is also one for the facility but i left it out 
-"office_phone_number": {
-  "type": "string", 
-  "description": "The phone number associated with the point of contact"
-}
-}
-
-
-
