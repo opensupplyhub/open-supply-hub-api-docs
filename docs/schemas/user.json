@@ -40,11 +40,10 @@
             "type": "string", 
             "description": "The account id"
         }, 
-        "password": {
-            "type": "string",
-            "description": "The password used to access the account"
+        "is_contributor": {
+            "type": "boolean", 
+            "description": "Whether the user has contributed data"
         }
-    
     },
     "required": ["organization_name", "organization_type", "organization_country", "account_email", "password"]
 }

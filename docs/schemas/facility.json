@@ -9,7 +9,15 @@
     },
     "name": {
       "type": "string",
-      "description": "The name of the facility"
+      "description": "The name of the facility (preferably in English)"
+    },
+    "name_in_local_language": {
+      "type": "string",
+      "description": "Facility name in the language local to where the facility is located, provided by the claimant"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the facility provided by the claimant"
     },
     "address": {
       "type": "string",
@@ -19,20 +27,24 @@
       "type": "string",
       "description": "The country of the facility (can be a country code or name see https://www.iban.com/country-codes)"
     },
-    "sector": {
+    "website_url": {
       "type": "string",
+      "description": "The facilty website url, provided by the claimant"
+    },
+    "sector": {
+      "type": "array",
       "description": "The sector that the facility operates in"
     },
     "product_type": {
-      "type": "string",
+      "type": "array",
       "description": "The product types that the facility produces"
     },
     "facility_type": {
-      "type": "string",
+      "type": "array",
       "description": "The type of facility this facility represents"
     },
     "processing_type": {
-      "type": "string",
+      "type": "array",
       "description": "The type of processing activity that takes place at this facility"
     },
     "number_of_workers": {
@@ -58,18 +70,6 @@
       "type": "string",
       "description": "Indicates whether a facility has been claimed by an owner or manager"
     },
-    "description": {
-      "type": "string",
-      "description": "Description of the facility provided by the claimant"
-    },
-    "local_language_name": {
-      "type": "string",
-      "description": "Facility name in the language local to where the facility is located, provided by the claimant"
-    },
-    "website": {
-      "type": "string",
-      "description": "The facilty website, provided by the claimant"
-    },
     "minimum_order_quantity": {
       "type": "number",
       "description": "Indicates the minimum order quantity accepted by the facility"
@@ -83,11 +83,11 @@
       "description": "The percentage of female employees at the facility"
     },
     "affiliations": {
-      "type": "string",
+      "type": "array",
       "description": "Indicates if the facility is affiliated with any industry initatives"
     },
     "certifications_standards_regulations": {
-      "type": "string",
+      "type": "array",
       "description": "Indicates if the facility is compliant with any certification, standards, or regulations"
     },
     "contact_name": {
