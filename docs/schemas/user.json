@@ -14,17 +14,17 @@
         "account_type": {
             "type": "string",
             "description": "Indicates whether the account is part of an organization or for an individual"
-        }
+        },
         "individual_role": {
             "type": "string",
             "description": "Indicates the area the individual represents (e.g. student, researcher, industry)"
-        }
+        },
         "organization_type": {
             "type": "string", 
             "description": "The type of organization that an account represents"
         },
         #new
-        "organization_country": {
+        "account_country": {
             "type": "string", 
             "description": "The country where the organization is based"
         },
@@ -36,7 +36,10 @@
             "type": "string", 
             "description": "The organization's website"
         },
-        
+        "account_id":{
+            "type": "string", 
+            "description": "The account id"
+        }, 
         "password": {
             "type": "string",
             "description": "The password used to access the account"
