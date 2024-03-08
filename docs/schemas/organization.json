@@ -2,17 +2,28 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "description": "This schema represents an organization or account",
-    # these should probably be called account rather than contributor
+    # should these be called account rather than contributor
+    # these fields are required to create an account 
     # eventually we need to have account management where there would be roles/permissions for an organization and individuals of the organization
     "properties": {
-        "organization_name": {
+        "account_name": {
             "type": "string", 
             "description": "this is the name of the organization an account is affiliated with"
         },
+        #new
+        "account_type": {
+            "type": "string",
+            "description": "Indicates whether the account is part of an organization or for an individual"
+        }
+        "individual_role": {
+            "type": "string",
+            "description": "Indicates the area the individual represents (e.g. student, researcher, industry)"
+        }
         "organization_type": {
             "type": "string", 
             "description": "The type of organization that an account represents"
         },
+        #new
         "organization_country": {
             "type": "string", 
             "description": "The country where the organization is based"
@@ -25,11 +36,12 @@
             "type": "string", 
             "description": "The organization's website"
         },
+        
         "password": {
             "type": "string",
             "description": "The password used to access the account"
         }
     
     },
-    "required": ["organization_name", "organization_type", "organization_country", "account_email", "organization_website", "password"]
+    "required": ["organization_name", "organization_type", "organization_country", "account_email", "password"]
 }
