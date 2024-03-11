@@ -141,20 +141,60 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility"
+    post:
+      summary: Create a new facility.
+      description: >
+        Creates a new facility with the given details.
+      tags:
+        - facilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/facility_base"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/facility_base"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "name"
+                    message: "The value must be a non-empty string."
+                  - field: "country"
+                    message: "The value must be a valid country code or name."
   /v1/facilities/{os_id}:
+    parameters:
+      - name: os_id
+        in: path
+        description: The unique identifier of the facility.
+        required: true
+        schema:
+          type: string
     get:
       summary: Get details of a facility by its unique identifier.
       description: >
         Returns details of a facility with name and id and other properties, where id is the unique identifier of the facility.
       tags:
         - facilities
-      parameters:
-        - name: os_id
-          in: path
-          description: The unique identifier of the facility.
-          required: true
-          schema:
-            type: string
       responses:
         200:
           description: OK
@@ -189,11 +229,135 @@ paths:
                 errors:
                   - field: "os_id"
                     message: "The value must be a valid id."
+    put:
+      summary: Update an existing facility.
+      description: >
+        Updates an existing facility with the given details.
+      tags:
+        - facilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/facility_base"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/facility_base"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "name"
+                    message: "The value must be a non-empty string."
+                  - field: "country"
+                    message: "The value must be a valid country code or name."
+    patch:
+      summary: Partially update an existing facility.
+      description: >
+        Partially updates an existing facility with the given details.
+      tags:
+        - facilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/facility_base"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/facility_base"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "name"
+                    message: "The value must be a non-empty string."
+                  - field: "country"
+                    message: "The value must be a valid country code or name."
+    delete:
+      summary: Delete an existing facility.
+      description: >
+        Deletes an existing facility with the given id.
+      tags:
+        - facilities
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
 
 components:
   schemas:
     country:
       $ref: "schemas/country.json"
+
+    facility_base:
+      $ref: "schemas/facility_base.json"
 
     facility:
       $ref: "schemas/facility.json"
