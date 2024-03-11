@@ -141,6 +141,54 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility"
+  /v1/facilities/{os_id}:
+    get:
+      summary: Get details of a facility by its unique identifier.
+      description: >
+        Returns details of a facility with name and id and other properties, where id is the unique identifier of the facility.
+      tags:
+        - facilities
+      parameters:
+        - name: os_id
+          in: path
+          description: The unique identifier of the facility.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/facility"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "os_id"
+                    message: "The value must be a valid id."
 
 components:
   schemas:
