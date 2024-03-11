@@ -11,7 +11,7 @@
       "type": "string",
       "description": "The name of the facility (preferably in English)"
     },
-    "name_in_local_language": {
+    "name_local": {
       "type": "string",
       "description": "Facility name in the language local to where the facility is located, provided by the claimant"
     },
@@ -27,25 +27,37 @@
       "type": "string",
       "description": "The country of the facility (can be a country code or name see https://www.iban.com/country-codes)"
     },
-    "website_url": {
+    "url": {
       "type": "string",
-      "description": "The facilty website url, provided by the claimant"
+      "description": "The facility website url, provided by the claimant"
     },
     "sector": {
       "type": "array",
-      "description": "The sector that the facility operates in"
+      "description": "The sector that the facility operates in",
+      "items": {
+        "type": "string"
+      }
     },
     "product_type": {
       "type": "array",
-      "description": "The product types that the facility produces"
+      "description": "The product types that the facility produces",
+      "items": {
+        "type": "string"
+      }
     },
     "facility_type": {
       "type": "array",
-      "description": "The type of facility this facility represents"
+      "description": "The type of facility this facility represents",
+      "items": {
+        "type": "string"
+      }
     },
     "processing_type": {
       "type": "array",
-      "description": "The type of processing activity that takes place at this facility"
+      "description": "The type of processing activity that takes place at this facility",
+      "items": {
+        "type": "string"
+      }
     },
     "number_of_workers": {
       "type": "number",
@@ -68,7 +80,8 @@
     },
     "claim_status": {
       "type": "string",
-      "description": "Indicates whether a facility has been claimed by an owner or manager"
+      "description": "Indicates whether a facility has been claimed by an owner or manager",
+      "enum": ["claimed", "unclaimed", "pending"]
     },
     "minimum_order_quantity": {
       "type": "number",
@@ -84,31 +97,17 @@
     },
     "affiliations": {
       "type": "array",
-      "description": "Indicates if the facility is affiliated with any industry initatives"
+      "description": "Indicates if the facility is affiliated with any industry initiatives",
+      "items": {
+        "type": "string"
+      }
     },
     "certifications_standards_regulations": {
       "type": "array",
-      "description": "Indicates if the facility is compliant with any certification, standards, or regulations"
-    },
-    "contact_name": {
-      "type": "string",
-      "description": "The name for the point of contact (or claimant) for the facility"
-    },
-    "contact_email": {
-      "type": "string",
-      "description": "The email address for the point of contact"
-    },
-    "office_name": {
-      "type": "string",
-      "description": "The name of the office associated with the point of contact"
-    },
-    "office_address": {
-      "type": "string",
-      "description": "The address for the point of contact"
-    },
-    "office_phone_number": {
-      "type": "string",
-      "description": "The phone number associated with the point of contact"
+      "description": "Indicates if the facility is compliant with any certification, standards, or regulations",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": ["name", "address", "country"]
