@@ -355,13 +355,10 @@ components:
   schemas:
     country:
       $ref: "schemas/country.json"
-
     facility_base:
       $ref: "schemas/facility_base.json"
-
     facility:
       $ref: "schemas/facility.json"
-
     error:
       $ref: "schemas/error.json"
 
