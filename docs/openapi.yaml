@@ -12,6 +12,10 @@ tags:
     description: Operations related to countries
   - name: facilities
     description: Operations related to facilities
+  - name: sectors
+    description: Operations related to sectors
+  - name: product-types
+    description: Operations related to product types
 paths:
   /v1/countries:
     get:
@@ -132,6 +136,26 @@ paths:
         Returns an array of sectors with that is aggregated from the facilities dataset.
       tags:
         - sectors
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/sector"
+                example:
+                  - name: "Agriculture"
+                  - name: "Apparel"
+                  - name: "Information"
+  /v1/product-types:
+    get:
+      summary: Get list of product types that are present in the OS Hub platform.
+      description: >
+        Returns an array of product types that are aggregated from the facilities dataset.
+      tags:
+        - product-types
       responses:
         200:
           description: OK
