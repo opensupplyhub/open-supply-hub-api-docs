@@ -16,6 +16,8 @@ tags:
     description: Operations related to sectors
   - name: product-types
     description: Operations related to product types
+  - name: facility-types
+    description: Operations related to facility types
 paths:
   /v1/countries:
     get:
@@ -164,11 +166,31 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/sector"
+                  $ref: "#/components/schemas/product_type"
                 example:
                   - name: "Accessories"
                   - name: "Belts"
                   - name: "Caps"
+  /v1/facility-types:
+    get:
+      summary: Get list of facility types that are supported by the OS Hub platform.
+      description: >
+        Returns an array of facility types that are supported by the platform.
+      tags:
+        - facility-types
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/facility_type"
+                example:
+                  - name: "Final Product Assembly"
+                  - name: "Office / HQ"
+                  - name: "Printing, Product Dyeing and Laundering"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
@@ -401,6 +423,10 @@ components:
       $ref: "schemas/country.json"
     sector:
       $ref: "schemas/sector.json"
+    product_type:
+      $ref: "schemas/product_type.json"
+    facility_type:
+      $ref: "schemas/facility_type.json"
     facility_base:
       $ref: "schemas/facility_base.json"
     facility:
