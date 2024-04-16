@@ -189,8 +189,20 @@ paths:
                   $ref: "#/components/schemas/facility_type"
                 example:
                   - name: "Final Product Assembly"
+                    processing_types:
+                      - name: "Cutting"
+                      - name: "Sewing"
+                      - name: "Finishing"
                   - name: "Office / HQ"
+                    processing_types:
+                      - name: "Administration"
+                      - name: "Management"
+                      - name: "Sales"
                   - name: "Printing, Product Dyeing and Laundering"
+                    processing_types:
+                      - name: "Printing"
+                      - name: "Dyeing"
+                      - name: "Laundering"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.

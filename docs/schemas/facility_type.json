@@ -6,6 +6,13 @@
     "name": {
       "type": "string",
       "description": "The name of the facility type"
+    },
+    "processing_types": {
+      "type": "array",
+      "description": "The processing types that are supported by this facility type",
+      "items": {
+        "$ref": "processing_type.json"
+      }
     }
   },
   "required": ["name"]
