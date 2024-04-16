@@ -203,6 +203,34 @@ paths:
                       - name: "Printing"
                       - name: "Dyeing"
                       - name: "Laundering"
+  /v1/facility-types/{name}/processing-types:
+    parameters:
+      - name: name
+        in: path
+        description: The name of the facility type.
+        required: true
+        example: "Final Product Assembly"
+        schema:
+          type: string
+    get:
+      summary: Get list of processing types for a facility type.
+      description: >
+        Returns an array of processing types for a facility type.
+      tags:
+        - facility-types
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/processing_type"
+                example:
+                  - name: "Cutting"
+                  - name: "Sewing"
+                  - name: "Finishing"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
@@ -439,6 +467,8 @@ components:
       $ref: "schemas/product_type.json"
     facility_type:
       $ref: "schemas/facility_type.json"
+    processing_type:
+      $ref: "schemas/processing_type.json"
     facility_base:
       $ref: "schemas/facility_base.json"
     facility:
