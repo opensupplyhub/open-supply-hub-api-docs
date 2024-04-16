@@ -125,6 +125,26 @@ paths:
                 errors:
                   - field: "start_after"
                     message: "The value must be a valid id."
+  /v1/sectors:
+    get:
+      summary: Get list of sectors that are present in the OS Hub platform.
+      description: >
+        Returns an array of sectors with that is aggregated from the facilities dataset.
+      tags:
+        - sectors
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/sector"
+                example:
+                  - name: "Accessories"
+                  - name: "Belts"
+                  - name: "Caps"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
@@ -355,6 +375,8 @@ components:
   schemas:
     country:
       $ref: "schemas/country.json"
+    sector:
+      $ref: "schemas/sector.json"
     facility_base:
       $ref: "schemas/facility_base.json"
     facility:
