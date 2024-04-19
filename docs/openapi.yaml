@@ -19,6 +19,109 @@ tags:
   - name: facility-types
     description: Operations related to facility types
 paths:
+  /v1/contributors:
+    get:
+      summary: Get list of contributors to the OS Hub platform.
+      description: >
+        Returns an array of contributors with name and id, where id is the unique identifier of the contributor.
+      tags:
+        - contributors
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/contributor"
+    post:
+      summary: Create a new contributor.
+      description: >
+        Creates a new contributor with the given details.
+      tags:
+        - contributors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/contributor"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contributor"
+  /v1/contributors/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: The unique identifier of the contributor.
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get details of a contributor by its unique identifier.
+      description: >
+        Returns details of a contributor with name and id and other properties, where id is the unique identifier of the contributor.
+      tags:
+        - contributors
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contributor"
+    put:
+      summary: Update an existing contributor.
+      description: >
+        Updates an existing contributor with the given details.
+      tags:
+        - contributors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/contributor"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contributor"
+    patch:
+      summary: Partially update an existing contributor.
+      description: >
+        Partially updates an existing contributor with the given details.
+      tags:
+        - contributors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/contributor"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/contributor"
+    delete:
+      summary: Delete an existing contributor.
+      description: >
+        Deletes an existing contributor with the given id.
+      tags:
+        - contributors
+      responses:
+        204:
+          description: No Content
   /v1/countries:
     get:
       summary: Get list of countries supported by the OS Hub platform.
@@ -459,6 +562,8 @@ paths:
 
 components:
   schemas:
+    contributor:
+      $ref: "schemas/contributor.json"
     country:
       $ref: "schemas/country.json"
     sector:

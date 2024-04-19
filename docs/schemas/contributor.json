@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "This schema represents an organization or account",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the account"
+    },
+    "email": {
+      "type": "string",
+      "description": "The email address of the account"
+    },
+    "has_contributed": {
+      "type": "boolean",
+      "description": "Whether the user has contributed data"
+    },
+    "account_type": {
+      "type": "string",
+      "description": "Indicates whether the account is part of an organization or for an individual",
+      "enum": ["individual", "organization"]
+    },
+    "individual_role": {
+      "type": "string",
+      "description": "Indicates the area the individual represents (e.g. student, researcher, industry)"
+    },
+    "organization": {
+      "type": "object",
+      "description": "The organization that an account is affiliated with",
+      "properties": {
+        "organization_type": {
+          "type": "string",
+          "description": "The type of organization that an account represents"
+        },
+        "website_url": {
+          "type": "string",
+          "description": "The website of the organization"
+        },
+        "name": {
+          "type": "string",
+          "description": "this is the name of the organization an account is affiliated with"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the organization"
+        },
+        "country": {
+          "$ref": "country.json"
+        }
+      },
+      "required": ["organization_type", "name", "country"]
+    }
+  },
+  "required": ["id", "email", "is_contributor", "account_type"]
+}
