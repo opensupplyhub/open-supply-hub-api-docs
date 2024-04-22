@@ -450,23 +450,42 @@ paths:
           description: Filter using the minimum order quantity of the facility.
           required: false
           schema:
-            type: number
-            minimum: 0
+            type: object
+            properties:
+              min:
+                type: integer
+                minimum: 0
+              max:
+                type: integer
+                minimum: 0
         - name: average_lead_time
           in: query
           description: Filter using the average lead time of the facility.
           required: false
           schema:
-            type: number
-            minimum: 0
+            type: object
+            properties:
+              min:
+                type: integer
+                minimum: 0
+              max:
+                type: integer
+                minimum: 0
         - name: percent_female_workers
           in: query
           description: Filter using the percentage
           required: false
           schema:
-            type: number
-            minimum: 0
-            maximum: 100
+            type: object
+            properties:
+              min:
+                type: integer
+                minimum: 0
+                maximum: 100
+              max:
+                type: integer
+                minimum: 0
+                maximum: 100
         - name: affiliations
           in: query
           description: Filter using the affiliations of the facility.
