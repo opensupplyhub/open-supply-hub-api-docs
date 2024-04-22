@@ -63,16 +63,16 @@
       "type": "object",
       "description": "The location of the facility",
       "properties": {
-        "latitude": {
+        "lat": {
           "type": "number",
           "description": "The latitude of the facility"
         },
-        "longitude": {
+        "lon": {
           "type": "number",
           "description": "The longitude of the facility"
         }
       },
-      "required": ["latitude", "longitude"]
+      "required": ["lat", "lon"]
     },
     "minimum_order_quantity": {
       "type": "number",

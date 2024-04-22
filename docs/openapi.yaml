@@ -337,6 +337,179 @@ paths:
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - name: start_after
+          in: query
+          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Filter using the name of the facility.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: name_local
+          in: query
+          description: Filter using the local name of the facility.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: description
+          in: query
+          description: Filter using the description of the facility.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: address
+          in: query
+          description: Filter using the address of the facility.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: sector
+          in: query
+          description: Filter using the sector of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: product_type
+          in: query
+          description: Filter using the product type of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: facility_type
+          in: query
+          description: Filter using the facility type of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: processing_type
+          in: query
+          description: Filter using the processing type of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: number_of_workers
+          in: query
+          description: Filter using the number of employees of the facility.
+          required: false
+          schema:
+            type: object
+            properties:
+              min:
+                type: integer
+                minimum: 0
+              max:
+                type: integer
+                minimum: 0
+        - name: location
+          in: query
+          description: Filter using the location of the facility.
+          required: false
+          schema:
+            type: object
+            properties:
+              lat:
+                type: number
+                minimum: -90
+                maximum: 90
+              lon:
+                type: number
+                minimum: -180
+                maximum: 180
+        - name: minimum_order_quantity
+          in: query
+          description: Filter using the minimum order quantity of the facility.
+          required: false
+          schema:
+            type: number
+            minimum: 0
+        - name: average_lead_time
+          in: query
+          description: Filter using the average lead time of the facility.
+          required: false
+          schema:
+            type: number
+            minimum: 0
+        - name: percent_female_workers
+          in: query
+          description: Filter using the percentage
+          required: false
+          schema:
+            type: number
+            minimum: 0
+            maximum: 100
+        - name: affiliations
+          in: query
+          description: Filter using the affiliations of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: certifications_standards_regulations
+          in: query
+          description: Filter using the certifications, standards, and regulations of the facility.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - name: country
+          in: query
+          description: Filter using the alpha-2, alpha-3 or numeric country code of the facility.
+          required: false
+          schema:
+            type: string
+            minLength: 0
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: name
+          schema:
+            type: string
+            enum: [name, address]
+        - name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          default: asc
+          schema:
+            type: string
+            enum: [asc, desc]
       description: >
         Returns an array of facilities with name and id and other properties, where id is the unique identifier of the facility.
       tags:
