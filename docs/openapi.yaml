@@ -542,6 +542,25 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "number_of_workers"
+                    message: "The value must be a valid object with `min` and `max` properties."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     post:
       summary: Create a new facility.
       description: >
@@ -555,20 +574,20 @@ paths:
             schema:
               $ref: "#/components/schemas/facility_base"
       responses:
-        201:
-          description: Created
+        202:
+          description: Accepted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facility_base"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
+                type: object
+                properties:
+                  os_id:
+                    type: string
+                    example: "CN2021250D1DTN7"
+                  status:
+                    type: string
+                    example: "pending"
+                    enum: ["pending", "approved", "rejected"]
         422:
           description: Unprocessable Entity
           content:
@@ -582,6 +601,14 @@ paths:
                     message: "The value must be a non-empty string."
                   - field: "country"
                     message: "The value must be a valid country code or name."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
   /v1/facilities/{os_id}:
     parameters:
       - name: os_id
