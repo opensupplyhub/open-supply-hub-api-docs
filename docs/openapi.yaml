@@ -1171,6 +1171,8 @@ paths:
                 message: "An unexpected error occurred while processing the request."
 components:
   schemas:
+    parent_company:
+      $ref: "schemas/parent_company.json"
     contributor:
       $ref: "schemas/contributor.json"
     country:
