@@ -559,6 +559,14 @@ paths:
           required: false
           schema:
             type: string
+        - name: query
+          in: query
+          description: Filter using the query string (searches across multiple fields).
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
         - name: name
           in: query
           description: Filter using the name of the facility.
