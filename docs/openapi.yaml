@@ -630,6 +630,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/facility"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "os_id"
+                    message: "The value must be a valid id."
         404:
           description: Not Found
           content:
@@ -646,17 +657,6 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "The request query is invalid."
-                errors:
-                  - field: "os_id"
-                    message: "The value must be a valid id."
     put:
       summary: Update an existing facility.
       description: >
@@ -684,14 +684,6 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The facility with the given id was not found."
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
         422:
           description: Unprocessable Entity
           content:
@@ -705,6 +697,14 @@ paths:
                     message: "The value must be a non-empty string."
                   - field: "country"
                     message: "The value must be a valid country code or name."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing facility.
       description: >
@@ -732,14 +732,6 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The facility with the given id was not found."
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
         422:
           description: Unprocessable Entity
           content:
@@ -753,6 +745,14 @@ paths:
                     message: "The value must be a non-empty string."
                   - field: "country"
                     message: "The value must be a valid country code or name."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     delete:
       summary: Delete an existing facility.
       description: >
@@ -762,6 +762,10 @@ paths:
       responses:
         204:
           description: No Content
+          content:
+            application/json:
+              schema:
+                example: null
         404:
           description: Not Found
           content:
@@ -801,6 +805,22 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/facility_contribution"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
 components:
   schemas:
     contributor:
