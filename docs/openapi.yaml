@@ -450,6 +450,31 @@ paths:
                     message: "The value must be a valid id."
   /v1/sectors:
     get:
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - name: start_after
+          in: query
+          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Filter using the name of the sector.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: name
+          schema:
+            type: string
+            enum: [name]
+        - $ref: "#/components/parameters/order_by"
       summary: Get list of sectors that are present in the OS Hub platform.
       description: >
         Returns an array of sectors with that is aggregated from the facilities dataset.
@@ -470,6 +495,31 @@ paths:
                   - name: "Information"
   /v1/product-types:
     get:
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - name: start_after
+          in: query
+          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Filter using the name of the product type.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: name
+          schema:
+            type: string
+            enum: [name]
+        - $ref: "#/components/parameters/order_by"
       summary: Get list of product types that are present in the OS Hub platform.
       description: >
         Returns an array of product types that are aggregated from the facilities dataset.
@@ -490,9 +540,52 @@ paths:
                   - name: "Caps"
   /v1/facility-types:
     get:
-      summary: Get list of facility types that are supported by the OS Hub platform.
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - name: start_after
+          in: query
+          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Filter using the name of the facility type.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: processing_types.name
+          in: query
+          description: Filter using the processing type of the facility type.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: name
+          schema:
+            type: string
+            enum: [name]
+        - $ref: "#/components/parameters/order_by"
+        - name: fields
+          in: query
+          description: The fields to include in the response.
+          style: explode
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [name, processing_types]
+      summary: Get list of facility types and related processing types that are supported by the OS Hub platform.
       description: >
-        Returns an array of facility types that are supported by the platform.
+        Returns an array of facility types and related processing types that are supported by the platform.
       tags:
         - facility-types
       responses:
@@ -520,34 +613,6 @@ paths:
                       - name: "Printing"
                       - name: "Dyeing"
                       - name: "Laundering"
-  /v1/facility-types/{name}/processing-types:
-    parameters:
-      - name: name
-        in: path
-        description: The name of the facility type.
-        required: true
-        example: "Final Product Assembly"
-        schema:
-          type: string
-    get:
-      summary: Get list of processing types for a facility type.
-      description: >
-        Returns an array of processing types for a facility type.
-      tags:
-        - facility-types
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/processing_type"
-                example:
-                  - name: "Cutting"
-                  - name: "Sewing"
-                  - name: "Finishing"
   /v1/facilities:
     get:
       summary: Get list of facilities exposed by the OS Hub platform.
