@@ -54,9 +54,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
-  /v1/contributors/{id}:
+  /v1/contributors/{user_id}:
     parameters:
-      - name: id
+      - name: user_id
         in: path
         description: The unique identifier of the contributor.
         required: true
@@ -751,7 +751,29 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-
+  /v1/facilities/{os_id}/contributions:
+    parameters:
+      - name: os_id
+        in: path
+        description: The unique identifier of the facility.
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get list of contributions history to a facility.
+      description: >
+        Returns an array of contributions to a facility with name and id and other properties, where id is the unique identifier of the contribution.
+      tags:
+        - facilities
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/facility_contribution"
 components:
   schemas:
     contributor:
@@ -768,6 +790,8 @@ components:
       $ref: "schemas/processing_type.json"
     facility_base:
       $ref: "schemas/facility_base.json"
+    facility_contribution:
+      $ref: "schemas/facility_contribution.json"
     facility:
       $ref: "schemas/facility.json"
     error:

@@ -3,7 +3,7 @@
   "type": "object",
   "description": "This schema represents an organization or account",
   "properties": {
-    "id": {
+    "user_id": {
       "type": "string",
       "description": "The unique identifier of the account"
     },
@@ -51,5 +51,5 @@
       "required": ["organization_type", "name", "country"]
     }
   },
-  "required": ["id", "email", "is_contributor", "account_type"]
+  "required": ["user_id", "email", "account_type"]
 }
