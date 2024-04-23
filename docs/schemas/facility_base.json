@@ -34,6 +34,10 @@
         "type": "string"
       }
     },
+    "parent_company": {
+      "type": "string",
+      "description": "The name of the parent company of the facility"
+    },
     "product_type": {
       "type": "array",
       "description": "The product types that the facility produces",
