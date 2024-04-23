@@ -132,6 +132,25 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/contributor"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "email"
+                    message: "The value must be a valid email."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     post:
       summary: Create a new contributor.
       description: >
@@ -151,6 +170,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "email"
+                    message: "The value must be a valid email."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
   /v1/contributors/{user_id}:
     parameters:
       - name: user_id
@@ -172,6 +210,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The contributor with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     put:
       summary: Update an existing contributor.
       description: >
@@ -191,6 +245,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The contributor with the given id was not found."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "email"
+                    message: "The value must be a valid email."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing contributor.
       description: >
@@ -210,6 +291,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The contributor with the given id was not found."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "email"
+                    message: "The value must be a valid email."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     delete:
       summary: Delete an existing contributor.
       description: >
@@ -219,6 +327,22 @@ paths:
       responses:
         204:
           description: No Content
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The contributor with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
   /v1/countries:
     get:
       summary: Get list of countries supported by the OS Hub platform.
