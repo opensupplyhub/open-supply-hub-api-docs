@@ -121,7 +121,14 @@ paths:
             type: array
             items:
               type: string
-              enum: [email, has_contributed, account_type, individual_role, organization]
+              enum:
+                [
+                  email,
+                  has_contributed,
+                  account_type,
+                  individual_role,
+                  organization,
+                ]
       summary: Get list of contributors to the OS Hub platform.
       description: >
         Returns an array of contributors with name and id, where id is the unique identifier of the contributor.
@@ -670,7 +677,7 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The request query is invalid."
-                errors: 
+                errors:
                   - field: "name"
                     message: "The value must be a non-empty string."
         500:
@@ -1169,8 +1176,100 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
+  /v1/facilities/{os_id}/claims:
+    parameters:
+      - name: os_id
+        in: path
+        description: The unique identifier of the facility.
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get list of facility claims.
+      description: >
+        Returns an array of claims to a facility with name and id and other properties, where id is the unique identifier of the claim.
+      tags:
+        - facilities
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/claim"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+    post:
+      summary: Claim a facility.
+      description: >
+        Claims a facility with the given id.
+      tags:
+        - facilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/claim"
+      responses:
+        202:
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "pending"
+                    enum: ["pending", "approved", "rejected"]
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The facility with the given id was not found."
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request body is invalid."
+                errors:
+                  - field: "job_title"
+                    message: "The job title is required."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
 components:
   schemas:
+    claim:
+      $ref: "schemas/claim.json"
     parent_company:
       $ref: "schemas/parent_company.json"
     contributor:
