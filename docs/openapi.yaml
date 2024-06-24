@@ -1226,7 +1226,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/claim"
+              $ref: "#/components/schemas/claim_base"
       responses:
         202:
           description: Accepted
@@ -1270,6 +1270,8 @@ components:
   schemas:
     claim:
       $ref: "schemas/claim.json"
+    claim_base:
+      $ref: "schemas/claim_base.json"
     parent_company:
       $ref: "schemas/parent_company.json"
     contributor:
