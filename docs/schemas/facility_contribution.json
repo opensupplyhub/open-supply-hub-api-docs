@@ -9,6 +9,10 @@
           "type": "string",
           "description": "The unique identifier for a facility"
         },
+        "contribution_id": {
+          "type": "string",
+          "description": "The unique identifier for a contribution"
+        },
         "contribution_type": {
           "type": "string",
           "description": "The type of contribution was made to the facility",
@@ -19,7 +23,7 @@
           "description": "The unique identifier for a user"
         }
       },
-      "required": ["os_id", "contribution_type", "user_id"]
+      "required": ["os_id", "contribution_type", "user_id", "contribution_id"]
     },
     {
       "$ref": "facility_base.json"
