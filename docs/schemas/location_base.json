@@ -76,9 +76,9 @@
       },
       "required": ["min", "max"]
     },
-    "location": {
+    "coordinates": {
       "type": "object",
-      "description": "The location of the location",
+      "description": "The coordinates of the location",
       "properties": {
         "lat": {
           "type": "number",
