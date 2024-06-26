@@ -14,14 +14,14 @@ tags:
     description: Operations related to sectors
   - name: product-types
     description: Operations related to product types
-  - name: facility-types
-    description: Operations related to facility types
+  - name: location-types
+    description: Operations related to location types
   - name: parent-companies
     description: Operations related to parent companies
   - name: contributors
     description: Operations related to contributors
-  - name: facilities
-    description: Operations related to facilities
+  - name: production-locations
+    description: Operations related to production locations
 paths:
   /v1/contributors:
     get:
@@ -488,7 +488,7 @@ paths:
         - $ref: "#/components/parameters/order_by"
       summary: Get list of sectors that are present in the OS Hub platform.
       description: >
-        Returns an array of sectors with that is aggregated from the facilities dataset.
+        Returns an array of sectors with that is aggregated from the production locations dataset.
       tags:
         - sectors
       responses:
@@ -533,7 +533,7 @@ paths:
         - $ref: "#/components/parameters/order_by"
       summary: Get list of product types that are present in the OS Hub platform.
       description: >
-        Returns an array of product types that are aggregated from the facilities dataset.
+        Returns an array of product types that are aggregated from the production locations dataset.
       tags:
         - product-types
       responses:
@@ -549,7 +549,7 @@ paths:
                   - name: "Accessories"
                   - name: "Belts"
                   - name: "Caps"
-  /v1/facility-types:
+  /v1/location-types:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -561,7 +561,7 @@ paths:
             type: string
         - name: name
           in: query
-          description: Filter using the name of the facility type.
+          description: Filter using the name of the location type.
           required: false
           schema:
             type: string
@@ -569,7 +569,7 @@ paths:
             maxLength: 255
         - name: processing_types.name
           in: query
-          description: Filter using the processing type of the facility type.
+          description: Filter using the processing type of the location type.
           required: false
           schema:
             type: string
@@ -594,11 +594,11 @@ paths:
             items:
               type: string
               enum: [name, processing_types]
-      summary: Get list of facility types and related processing types that are supported by the OS Hub platform.
+      summary: Get list of location types and related processing types that are supported by the OS Hub platform.
       description: >
-        Returns an array of facility types and related processing types that are supported by the platform.
+        Returns an array of location types and related processing types that are supported by the platform.
       tags:
-        - facility-types
+        - location-types
       responses:
         200:
           description: OK
@@ -607,7 +607,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/facility_type"
+                  $ref: "#/components/schemas/location_type"
                 example:
                   - name: "Final Product Assembly"
                     processing_types:
@@ -653,7 +653,7 @@ paths:
         - $ref: "#/components/parameters/order_by"
       summary: Get list of parent companies that are present in the OS Hub platform.
       description: >
-        Returns an array of parent companies that are aggregated from the facilities dataset.
+        Returns an array of parent companies that are aggregated from the production locations dataset.
       tags:
         - parent-companies
       responses:
@@ -688,9 +688,9 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-  /v1/facilities:
+  /v1/production-locations:
     get:
-      summary: Get list of facilities exposed by the OS Hub platform.
+      summary: Get list of production locations exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
         - name: start_after
@@ -709,7 +709,7 @@ paths:
             maxLength: 255
         - name: name
           in: query
-          description: Filter using the name of the facility.
+          description: Filter using the name of the location.
           required: false
           schema:
             type: string
@@ -717,7 +717,7 @@ paths:
             maxLength: 255
         - name: name_local
           in: query
-          description: Filter using the local name of the facility.
+          description: Filter using the local name of the location.
           required: false
           schema:
             type: string
@@ -725,7 +725,7 @@ paths:
             maxLength: 255
         - name: description
           in: query
-          description: Filter using the description of the facility.
+          description: Filter using the description of the location.
           required: false
           schema:
             type: string
@@ -733,7 +733,7 @@ paths:
             maxLength: 255
         - name: address
           in: query
-          description: Filter using the address of the facility.
+          description: Filter using the address of the location.
           required: false
           schema:
             type: string
@@ -741,7 +741,7 @@ paths:
             maxLength: 255
         - name: sector
           in: query
-          description: Filter using the sector of the facility.
+          description: Filter using the sector of the location.
           required: false
           schema:
             type: array
@@ -751,7 +751,7 @@ paths:
               maxLength: 255
         - name: product_type
           in: query
-          description: Filter using the product type of the facility.
+          description: Filter using the product type of the location.
           required: false
           schema:
             type: array
@@ -759,9 +759,9 @@ paths:
               type: string
               minLength: 1
               maxLength: 255
-        - name: facility_type
+        - name: location_type
           in: query
-          description: Filter using the facility type of the facility.
+          description: Filter using the location type of the location.
           required: false
           schema:
             type: array
@@ -771,7 +771,7 @@ paths:
               maxLength: 255
         - name: processing_type
           in: query
-          description: Filter using the processing type of the facility.
+          description: Filter using the processing type of the location.
           required: false
           schema:
             type: array
@@ -781,7 +781,7 @@ paths:
               maxLength: 255
         - name: number_of_workers
           in: query
-          description: Filter using the number of employees of the facility.
+          description: Filter using the number of employees of the location.
           required: false
           schema:
             type: object
@@ -794,7 +794,7 @@ paths:
                 minimum: 0
         - name: location
           in: query
-          description: Filter using the location of the facility.
+          description: Filter using the location of the location.
           required: false
           schema:
             type: object
@@ -809,30 +809,20 @@ paths:
                 maximum: 180
         - name: minimum_order_quantity
           in: query
-          description: Filter using the minimum order quantity of the facility.
+          description: Filter using the minimum order quantity of the location.
           required: false
           schema:
-            type: object
-            properties:
-              min:
-                type: integer
-                minimum: 0
-              max:
-                type: integer
-                minimum: 0
+            type: string
+            minLength: 1
+            maxLength: 200
         - name: average_lead_time
           in: query
-          description: Filter using the average lead time of the facility.
+          description: Filter using the average lead time of the location.
           required: false
           schema:
-            type: object
-            properties:
-              min:
-                type: integer
-                minimum: 0
-              max:
-                type: integer
-                minimum: 0
+            type: string
+            minLength: 1
+            maxLength: 200
         - name: percent_female_workers
           in: query
           description: Filter using the percentage
@@ -850,7 +840,7 @@ paths:
                 maximum: 100
         - name: affiliations
           in: query
-          description: Filter using the affiliations of the facility.
+          description: Filter using the affiliations of the location.
           required: false
           schema:
             type: array
@@ -860,7 +850,7 @@ paths:
               maxLength: 255
         - name: certifications_standards_regulations
           in: query
-          description: Filter using the certifications, standards, and regulations of the facility.
+          description: Filter using the certifications, standards, and regulations of the location.
           required: false
           schema:
             type: array
@@ -870,7 +860,7 @@ paths:
               maxLength: 255
         - name: country
           in: query
-          description: Filter using the alpha-2, alpha-3 or numeric country code of the facility.
+          description: Filter using the alpha-2 code of the location.
           required: false
           schema:
             type: string
@@ -885,9 +875,10 @@ paths:
             enum: [name, address]
         - $ref: "#/components/parameters/order_by"
       description: >
-        Returns an array of facilities with name and id and other properties, where id is the unique identifier of the facility.
+        Returns an array of production locations with name and id and other properties, where id is the unique identifier of the location.
+        Production location data for the search becomes available 15 minutes after upload to the system.
       tags:
-        - facilities
+        - production-locations
       responses:
         200:
           description: OK
@@ -896,7 +887,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/facility"
+                  $ref: "#/components/schemas/location"
         400:
           description: Bad Request
           content:
@@ -917,17 +908,17 @@ paths:
               example:
                 message: "An unexpected error occurred while processing the request."
     post:
-      summary: Create a new facility.
+      summary: Create a new location.
       description: >
-        Creates a new facility with the given details.
+        Creates a new location with the given details.
       tags:
-        - facilities
+        - production-locations
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/facility_base"
+              $ref: "#/components/schemas/location_base"
       responses:
         202:
           description: Accepted
@@ -964,27 +955,27 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-  /v1/facilities/{os_id}:
+  /v1/production-locations/{os_id}:
     parameters:
       - name: os_id
         in: path
-        description: The unique identifier of the facility.
+        description: The unique identifier of the location.
         required: true
         schema:
           type: string
     get:
-      summary: Get details of a facility by its unique identifier.
+      summary: Get details of a location by its unique identifier.
       description: >
-        Returns details of a facility with name and id and other properties, where id is the unique identifier of the facility.
+        Returns details of a location with name and id and other properties, where id is the unique identifier of the location.
       tags:
-        - facilities
+        - production-locations
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facility"
+                $ref: "#/components/schemas/location"
         400:
           description: Bad Request
           content:
@@ -1003,7 +994,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1013,24 +1004,24 @@ paths:
               example:
                 message: "An unexpected error occurred while processing the request."
     put:
-      summary: Update an existing facility.
+      summary: Update an existing location.
       description: >
-        Updates an existing facility with the given details.
+        Updates an existing location with the given details.
       tags:
-        - facilities
+        - production-locations
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/facility_base"
+              $ref: "#/components/schemas/location_base"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facility_base"
+                $ref: "#/components/schemas/location_base"
         404:
           description: Not Found
           content:
@@ -1038,7 +1029,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -1061,24 +1052,24 @@ paths:
               example:
                 message: "An unexpected error occurred while processing the request."
     patch:
-      summary: Partially update an existing facility.
+      summary: Partially update an existing location.
       description: >
-        Partially updates an existing facility with the given details.
+        Partially updates an existing location with the given details.
       tags:
-        - facilities
+        - production-locations
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/facility_base"
+              $ref: "#/components/schemas/location_base"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facility_base"
+                $ref: "#/components/schemas/location_base"
         404:
           description: Not Found
           content:
@@ -1086,7 +1077,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -1109,11 +1100,11 @@ paths:
               example:
                 message: "An unexpected error occurred while processing the request."
     delete:
-      summary: Delete an existing facility.
+      summary: Delete an existing location.
       description: >
-        Deletes an existing facility with the given id.
+        Deletes an existing location with the given id.
       tags:
-        - facilities
+        - production-locations
       responses:
         204:
           description: No Content
@@ -1128,7 +1119,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1137,20 +1128,20 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-  /v1/facilities/{os_id}/contributions:
+  /v1/production-locations/{os_id}/contributions:
     parameters:
       - name: os_id
         in: path
-        description: The unique identifier of the facility.
+        description: The unique identifier of the location.
         required: true
         schema:
           type: string
     get:
-      summary: Get list of contributions history to a facility.
+      summary: Get list of contributions history to a location.
       description: >
-        Returns an array of contributions to a facility with name and id and other properties, where id is the unique identifier of the contribution.
+        Returns an array of contributions to a location with name and id and other properties, where id is the unique identifier of the contribution.
       tags:
-        - facilities
+        - production-locations
       responses:
         200:
           description: OK
@@ -1159,7 +1150,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/facility_contribution"
+                  $ref: "#/components/schemas/location_contribution"
         404:
           description: Not Found
           content:
@@ -1167,7 +1158,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1176,20 +1167,20 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-  /v1/facilities/{os_id}/claims:
+  /v1/production-locations/{os_id}/claims:
     parameters:
       - name: os_id
         in: path
-        description: The unique identifier of the facility.
+        description: The unique identifier of the location.
         required: true
         schema:
           type: string
     get:
-      summary: Get list of facility claims.
+      summary: Get list of location claims.
       description: >
-        Returns an array of claims to a facility with name and id and other properties, where id is the unique identifier of the claim.
+        Returns an array of claims to a location with name and id and other properties, where id is the unique identifier of the claim.
       tags:
-        - facilities
+        - production-locations
       responses:
         200:
           description: OK
@@ -1206,7 +1197,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1216,11 +1207,11 @@ paths:
               example:
                 message: "An unexpected error occurred while processing the request."
     post:
-      summary: Claim a facility.
+      summary: Claim a location.
       description: >
-        Claims a facility with the given id.
+        Claims a location with the given id.
       tags:
-        - facilities
+        - production-locations
       requestBody:
         required: true
         content:
@@ -1246,7 +1237,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The facility with the given id was not found."
+                message: "The location with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -1282,16 +1273,16 @@ components:
       $ref: "schemas/sector.json"
     product_type:
       $ref: "schemas/product_type.json"
-    facility_type:
-      $ref: "schemas/facility_type.json"
+    location_type:
+      $ref: "schemas/location_type.json"
     processing_type:
       $ref: "schemas/processing_type.json"
-    facility_base:
-      $ref: "schemas/facility_base.json"
-    facility_contribution:
-      $ref: "schemas/facility_contribution.json"
-    facility:
-      $ref: "schemas/facility.json"
+    location_base:
+      $ref: "schemas/location_base.json"
+    location_contribution:
+      $ref: "schemas/location_contribution.json"
+    location:
+      $ref: "schemas/location.json"
     error:
       $ref: "schemas/error.json"
 

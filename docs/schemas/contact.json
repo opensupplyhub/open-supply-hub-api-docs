@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema a contact fo the facility",
+  "description": "This schema a contact fo the location",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name for the point of contact (or claimant) for the facility"
+      "description": "The name for the point of contact (or claimant) for the location"
     },
     "email": {
       "type": "string",
