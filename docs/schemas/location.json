@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a facility",
+  "description": "This schema represents a location",
   "allOf": [
     {
       "properties": {
         "os_id": {
           "type": "string",
-          "description": "The unique identifier for a facility"
+          "description": "The unique identifier for a location"
         }
       },
       "required": ["os_id"]
     },
     {
-      "$ref": "facility_base.json"
+      "$ref": "location_base.json"
     },
     {
       "properties": {
@@ -22,7 +22,7 @@
         },
         "claim_status": {
           "type": "string",
-          "description": "Indicates whether a facility has been claimed by an owner or manager",
+          "description": "Indicates whether a location has been claimed by an owner or manager",
           "enum": ["claimed", "unclaimed", "pending"]
         }
       }

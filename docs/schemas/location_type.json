@@ -1,15 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a facility type",
+  "description": "This schema represents a location type",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of the facility type"
+      "description": "The name of the location type"
     },
     "processing_types": {
       "type": "array",
-      "description": "The processing types that are supported by this facility type",
+      "description": "The processing types that are supported by this location type",
       "items": {
         "$ref": "processing_type.json"
       }

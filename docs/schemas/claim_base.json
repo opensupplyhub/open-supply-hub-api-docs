@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This a base schema represents a facility claim request",
+  "description": "This a base schema represents a location claim request",
   "properties": {
     "full_name": {
       "type": "string",
@@ -33,7 +33,7 @@
     },
     "description": {
       "type": "string",
-      "description": "Facility bio/description"
+      "description": "Location bio/description"
     },
     "preferred_contact_method": {
       "type": "string",
@@ -46,14 +46,14 @@
     },
     "additional_info": {
       "type": "string",
-      "description": "Additional information about the facility"
+      "description": "Additional information about the location"
     },
-    "facility": {
+    "location": {
       "type": "object",
-      "description": "The facility details",
+      "description": "The location details",
       "allOf": [
         {
-          "$ref": "facility_base.json"
+          "$ref": "location_base.json"
         }
       ]
     }
@@ -65,6 +65,6 @@
     "phone",
     "company_name",
     "description",
-    "facility"
+    "location"
   ]
 }
