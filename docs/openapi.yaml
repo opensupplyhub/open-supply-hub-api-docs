@@ -792,6 +792,8 @@ paths:
               max:
                 type: integer
                 minimum: 0
+          style: deepObject
+          explode: true
         - name: coordinates
           in: query
           description: Filter using the coordinates of the location.
@@ -807,6 +809,8 @@ paths:
                 type: number
                 minimum: -180
                 maximum: 180
+          style: deepObject
+          explode: true
         - name: minimum_order_quantity
           in: query
           description: Filter using the minimum order quantity of the location.
@@ -838,6 +842,8 @@ paths:
                 type: integer
                 minimum: 0
                 maximum: 100
+          style: deepObject
+          explode: true
         - name: affiliations
           in: query
           description: Filter using the affiliations of the location.
