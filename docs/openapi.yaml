@@ -869,8 +869,10 @@ paths:
           description: Filter using the alpha-2 code of the location.
           required: false
           schema:
-            type: string
-            minLength: 0
+            type: array
+            items:
+              type: string
+              minLength: 2
         - name: sort_by
           in: query
           description: The field to sort the results by.
