@@ -27,7 +27,7 @@ paths:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -363,7 +363,7 @@ paths:
         - countries
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -457,13 +457,13 @@ paths:
               example:
                 message: "The request query is invalid."
                 errors:
-                  - field: "start_after"
+                  - field: "search_after"
                     message: "The value must be a valid id."
   /v1/sectors:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -508,7 +508,7 @@ paths:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -553,7 +553,7 @@ paths:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -628,7 +628,7 @@ paths:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
@@ -693,7 +693,7 @@ paths:
       summary: Get list of production locations exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: start_after
+        - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
