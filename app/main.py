@@ -89,8 +89,8 @@ def read_root(request: Request):
     if "size" in request.query_params:
         body["size"] = request.query_params["size"]
 
-    if "start_after" in request.query_params:
-        body["search_after"] = [request.query_params["start_after"]]
+    if "search_after" in request.query_params:
+        body["search_after"] = [request.query_params["search_after"]]
 
     fields = []
 
