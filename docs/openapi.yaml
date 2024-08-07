@@ -707,6 +707,12 @@ paths:
             type: string
             minLength: 1
             maxLength: 255
+        - name: os_id
+          in: query
+          description: Filter using the unique identifier of the location.
+          required: false
+          schema:
+            type: string
         - name: name
           in: query
           description: Filter using the name of the location.
