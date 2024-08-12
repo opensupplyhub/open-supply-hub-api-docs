@@ -721,7 +721,7 @@ paths:
             type: string
             minLength: 1
             maxLength: 255
-        - name: name_local
+        - name: local_name
           in: query
           description: Filter using the local name of the location.
           required: false
@@ -811,7 +811,7 @@ paths:
                 type: number
                 minimum: -90
                 maximum: 90
-              lon:
+              lng:
                 type: number
                 minimum: -180
                 maximum: 180

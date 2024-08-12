@@ -7,7 +7,7 @@
       "type": "string",
       "description": "The name of the location (preferably in English)"
     },
-    "name_local": {
+    "local_name": {
       "type": "string",
       "description": "Location name in the language local to where the location is located, provided by the claimant"
     },
@@ -23,7 +23,7 @@
       "type": "string",
       "description": "The country of the location (can be a country code or name see https://www.iban.com/country-codes)"
     },
-    "url": {
+    "business_url": {
       "type": "string",
       "description": "The location website url, provided by the claimant"
     },
@@ -84,12 +84,12 @@
           "type": "number",
           "description": "The latitude of the location"
         },
-        "lon": {
+        "lng": {
           "type": "number",
           "description": "The longitude of the location"
         }
       },
-      "required": ["lat", "lon"]
+      "required": ["lat", "lng"]
     },
     "minimum_order_quantity": {
       "type": "string",
