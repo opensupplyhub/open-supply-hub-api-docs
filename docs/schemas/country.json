@@ -3,10 +3,22 @@
   "type": "object",
   "description": "This schema represents a country",
   "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the country according to ISO 3166-1"
+    },
     "alpha_2": {
       "type": "string",
       "description": "The ISO 3166-1 alpha-2 code of the country"
+    },
+    "alpha_3": {
+      "type": "string",
+      "description": "The ISO 3166-1 alpha-3 code of the country"
+    },
+    "numeric": {
+      "type": "string",
+      "description": "The ISO 3166-1 numeric code of the country"
     }
   },
-  "required": ["alpha_2"]
+  "required": ["name", "alpha_2", "alpha_3", "numeric"]
 }
