@@ -1326,7 +1326,81 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/moderation_events"
+                type: array
+                items:
+                  $ref: "#/components/schemas/moderation_event"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "date_start"
+                    message: "The value must be a valid date string"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{os_id}:
+    get:
+      summary: Get moderation event by os id.
+      parameters:
+        - name: os_id
+          in: path
+          description: The unique identifier of os id.
+          required: true
+          schema:
+            type: number
+        - name: record_type
+          in: query
+          description: Record type of production location.
+          required: false
+          schema:
+            type: string
+            enum: [SINGLE, API_POST, CLAIM]
+        - name: match_status
+          in: query
+          description: Match status of production location.
+          required: false
+          schema:
+            type: string
+            enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
+        - name: moderation_status
+          in: query
+          description: Moderation status of production location.
+          required: false
+          schema:
+            type: string
+            default: PENDING
+            enum: [PENDING, APPROVED, REJECTED, REVOKED]
+        - name: country
+          in: query
+          description: Filter using the alpha-2 code of the location.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              minLength: 2
+      description: >
+        Returns moderation event associated with specific os id.
+        Moderation events data for the search becomes available 15 minutes after upload to the system.
+      tags:
+        - moderation-events
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/moderation_event"
         400:
           description: Bad Request
           content:
@@ -1355,7 +1429,7 @@ paths:
           description: The unique identifier of the moderation event.
           required: true
           schema:
-          type: number
+            type: number
         - name: moderation_status
           in: query
           description: Moderation status of production location.
@@ -1375,7 +1449,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/moderation_events"
+                $ref: "#/components/schemas/moderation_event"
         400:
           description: Bad Request
           content:
@@ -1421,8 +1495,8 @@ components:
       $ref: "schemas/location_contribution.json"
     location:
       $ref: "schemas/location.json"
-    moderation_events:
-      $ref: "schemas/moderation_events.json"
+    moderation_event:
+      $ref: "schemas/moderation_event.json"
     error:
       $ref: "schemas/error.json"
 
