@@ -1346,6 +1346,55 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{event_id}:
+    patch:
+      summary: Change moderation event.
+      parameters:
+        - name: event_id
+          in: path
+          description: The unique identifier of the moderation event.
+          required: true
+          schema:
+          type: number
+        - name: moderation_status
+          in: query
+          description: Moderation status of production location.
+          required: false
+          schema:
+            type: string
+            default: PENDING
+            enum: [PENDING, APPROVED, REJECTED, REVOKED]
+      description: >
+        Returns updated moderation event.
+        Moderation events data for the search becomes available 15 minutes after upload to the system.
+      tags:
+        - moderation-events
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/moderation_events"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request query is invalid."
+                errors:
+                  - field: "moderation_status"
+                    message: "The value must be a one of PENDING, APPROVED, REJECTED or REVOKED"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
 components:
   schemas:
     claim:
