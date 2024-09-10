@@ -1289,8 +1289,9 @@ paths:
           description: Record type of production location.
           required: false
           schema:
-            type: string
-            enum: [SINGLE, API_POST, CLAIM]
+            type: array
+            items:
+              type: string
         - name: match_status
           in: query
           description: Match status of production location.
