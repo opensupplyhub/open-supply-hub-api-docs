@@ -1359,37 +1359,6 @@ paths:
           required: true
           schema:
             type: number
-        - name: record_type
-          in: query
-          description: Record type of production location.
-          required: false
-          schema:
-            type: string
-            enum: [SINGLE, API_POST, CLAIM]
-        - name: match_status
-          in: query
-          description: Match status of production location.
-          required: false
-          schema:
-            type: string
-            enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
-        - name: moderation_status
-          in: query
-          description: Moderation status of production location.
-          required: false
-          schema:
-            type: string
-            default: PENDING
-            enum: [PENDING, APPROVED, REJECTED, REVOKED]
-        - name: country
-          in: query
-          description: Filter using the alpha-2 code of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 2
       description: >
         Returns moderation event associated with specific os id.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
