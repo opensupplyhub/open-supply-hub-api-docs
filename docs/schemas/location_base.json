@@ -116,6 +116,13 @@
       "items": {
         "type": "string"
       }
+    },
+    "historical_os_id": {
+      "type": "array",
+      "description": "The historical unique identifiers for a location",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": ["name", "address", "country"]
