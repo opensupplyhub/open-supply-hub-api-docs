@@ -34,10 +34,16 @@
             "format": "date-time"
           },
           "claims": {
-            "type": "array"
+            "type": "array",
+            "items": {
+              "$ref": "claim.json"
+            }
           },
           "matches": {
-            "type": "array"
+            "type": "array",
+            "items": {
+              "$ref": "match.json"
+            }
           }
         }
       }
