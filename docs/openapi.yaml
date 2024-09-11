@@ -1316,6 +1316,7 @@ paths:
             items:
               type: string
               minLength: 2
+              maxLength: 2
       description: >
         Returns an array of moderation events.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
@@ -1406,7 +1407,6 @@ paths:
           required: false
           schema:
             type: string
-            default: PENDING
             enum: [PENDING, APPROVED, REJECTED, REVOKED]
       description: >
         Returns updated moderation event.
