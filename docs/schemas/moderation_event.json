@@ -1,0 +1,51 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents a moderation event",
+    "allOf": [
+      {
+        "$ref": "moderation_events_base.json"
+      },
+      {
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "os_id": {
+            "type": "string",
+            "description": "The unique identifier for a location"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "$ref": "country.json"
+          },
+          "contributor": {
+            "type": "string"
+          },
+          "moderation_status": {
+            "type": "string",
+            "emun": ["PENDING", "APPROVED", "REJECTED", "REVOKED"]
+          },
+          "moderation_decision_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "$ref": "claim.json"
+            }
+          },
+          "matches": {
+            "type": "array",
+            "items": {
+              "$ref": "match.json"
+            }
+          }
+        }
+      }
+    ]
+}
