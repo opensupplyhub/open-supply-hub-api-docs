@@ -8,6 +8,10 @@
       },
       {
         "properties": {
+          "moderation_id": {
+            "type": "number",
+            "description": "The unique identifier of moderation event"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
