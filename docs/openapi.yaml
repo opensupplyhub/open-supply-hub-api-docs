@@ -1286,12 +1286,12 @@ paths:
             type: string
         - name: contributor
           in: query
-          description: Filter using contributor name.
+          description: Filter using contributor id.
           required: false
           schema:
             type: array
             items:
-              type: string
+              type: number
         - name: os_id
           in: query
           description: Filter using the unique identifiers of the location.
@@ -1346,14 +1346,14 @@ paths:
               maxLength: 2
         - name: date_gte
           in: query
-          description: Filter by started date
+          description: Set starting date to filter by production location creation timestamp
           required: false
           schema:
             type: string
             format: date-time
         - name: date_lt
           in: query
-          description: Filter by end date
+          description: Set end date to filter by production location creation timestamp
           required: false
           schema:
             type: string
