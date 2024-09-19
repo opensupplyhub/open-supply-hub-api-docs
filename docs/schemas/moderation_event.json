@@ -8,6 +8,10 @@
       },
       {
         "properties": {
+          "moderation_id": {
+            "type": "number",
+            "description": "The unique identifier of moderation event"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time"
@@ -17,17 +21,25 @@
             "description": "The unique identifier for a location"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Returns location name"
           },
           "country": {
             "$ref": "country.json"
           },
           "contributor": {
-            "type": "string"
+            "type": "number",
+            "description": "Returns contributor id"
+          },
+          "record_type": {
+            "type": "array",
+            "enum": ["CLAIM", "SINGLE", "API_POST"],
+            "description": "Record type response can contain any combination of 'CLAIM', 'SINGLE', and 'API_POST' but 'SINGLE' and 'API_POST' cannot be present together."
           },
           "moderation_status": {
             "type": "string",
-            "emun": ["PENDING", "APPROVED", "REJECTED", "REVOKED"]
+            "enum": ["PENDING", "APPROVED", "REJECTED", "REVOKED"],
+            "description": "Only one of this moderation statuses can be present in the response"
           },
           "moderation_decision_date": {
             "type": "string",
