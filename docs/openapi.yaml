@@ -1346,14 +1346,14 @@ paths:
               maxLength: 2
         - name: date_gte
           in: query
-          description: Set starting date to filter by production location creation timestamp
+          description: Set starting date to filter by production location creation timestamp.
           required: false
           schema:
             type: string
             format: date-time
         - name: date_lt
           in: query
-          description: Set end date to filter by production location creation timestamp
+          description: Set end date to filter by production location creation timestamp.
           required: false
           schema:
             type: string
