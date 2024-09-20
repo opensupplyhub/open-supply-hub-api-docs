@@ -1358,6 +1358,24 @@ paths:
           schema:
             type: string
             format: date-time
+        - name: sort_by
+          in: query
+          description: The field to sort the results by.
+          required: false
+          default: created_at
+          schema:
+            type: string
+            enum: [
+              created_at,
+              moderation_decision_date,
+              updated_at,
+              name,
+              country,
+              contributor,
+              match_status,
+              moderation_status,
+            ]
+        - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
