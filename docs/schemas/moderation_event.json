@@ -16,6 +16,10 @@
             "type": "string",
             "format": "date-time"
           },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
           "os_id": {
             "type": "string",
             "description": "The unique identifier for a location"
