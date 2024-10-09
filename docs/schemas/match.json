@@ -18,27 +18,34 @@
           "description": "Confidence score value of a potential match"
         },
         "results": {
-            "match_type": {
-                "type": "string"
-            },
-            "code_version": {
-                "type": "string"
-            },
-            "recall_weight": {
-                "type": "number",
-                "format": "float"
-            },
-            "automatic_threshold": {
-                "type": "number",
-                "format": "float"
-            },
-            "gazetteer_threshold": {
-                "type": "number",
-                "format": "float"
-            },
-            "no_gazetteer_matches": {
-                "type": "boolean"
+          "type": "object",
+          "allOf": [
+            {
+              "properties": {
+                "match_type": {
+                  "type": "string"
+                },
+                "code_version": {
+                  "type": "string"
+                },
+                "recall_weight": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "automatic_threshold": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "gazetteer_threshold": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "no_gazetteer_matches": {
+                  "type": "boolean"
+                }
+              }
             }
+          ]
         },
         "os_id": {
           "type": "string",

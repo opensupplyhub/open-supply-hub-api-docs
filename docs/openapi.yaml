@@ -1317,7 +1317,7 @@ paths:
             type: array
             items:
               type: string
-            enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
+              enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
         - name: moderation_status
           in: query
           description: Filter using moderation status of production location.
