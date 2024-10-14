@@ -1019,54 +1019,6 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-    put:
-      summary: Update an existing location.
-      description: >
-        Updates an existing location with the given details.
-      tags:
-        - production-locations
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/location_base"
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/location_base"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "The location with the given id was not found."
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "The request body is invalid."
-                errors:
-                  - field: "name"
-                    message: "The value must be a non-empty string."
-                  - field: "country"
-                    message: "The value must be a valid country code or name."
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing location.
       description: >
