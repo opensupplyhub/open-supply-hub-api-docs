@@ -978,9 +978,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/match"
-                  data:
-                    type: object
-                    $ref: "#/components/schemas/location_base"
         422:
           description: Unprocessable Entity
           content:
@@ -1063,12 +1060,39 @@ paths:
             schema:
               $ref: "#/components/schemas/location_base"
       responses:
-        200:
-          description: OK
+        202:
+          description: Accepted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/location_base"
+                type: object
+                properties:
+                  os_id:
+                    type: string
+                    example: "CN2021250D1DTN7"
+                  moderation_id:
+                    type: number
+                    example: 0
+                  moderation_status:
+                    type: string
+                    example: "PENDING"
+                    enum: ["PENDING", "APPROVED", "REJECTED", "REVOKED"]
+                  geocoded_address:
+                    type: string
+                    example: "5900 S Santa Fe Dr, Littleton, CO 80120, USA"
+                  geocoded_geometry:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: "Point"
+                      coordinates:
+                        type: array
+                        items:
+                          type: number
+                          example:
+                            - -105.0187252
+                            - 39.6080824
         404:
           description: Not Found
           content:
