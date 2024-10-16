@@ -934,7 +934,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
         202:
           description: Accepted
@@ -943,9 +943,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  os_id:
-                    type: string
-                    example: "CN2021250D1DTN7"
                   moderation_id:
                     type: number
                     example: 0
@@ -969,15 +966,6 @@ paths:
                           example:
                             - -105.0187252
                             - 39.6080824
-
-                  match_status:
-                    type: string
-                    example: "NEW_LOCATION"
-                    enum: ["MATCHED", "NEW_LOCATION", "POTENTIAL_MATCH"]
-                  matches:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/match"
         422:
           description: Unprocessable Entity
           content:
@@ -1058,7 +1046,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
         202:
           description: Accepted
@@ -1592,6 +1580,8 @@ components:
       $ref: "schemas/location_contribution.json"
     location:
       $ref: "schemas/location.json"
+    location_source:
+      $ref: "schemas/location_source.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     match:
