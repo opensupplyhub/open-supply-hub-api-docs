@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents base moderation field",
+    "properties": {
+        "moderation_id": {
+            "type": "number",
+            "example": 0,
+            "description": "The unique identifier of the moderation event"
+        },
+        "moderation_status": {
+            "type": "string",
+            "example": "PENDING",
+            "description": "Only one of this moderation statuses can be present in the response",
+            "enum": [
+                "PENDING",
+                "APPROVED",
+                "REJECTED",
+                "REVOKED"
+            ]
+        }
+    }
+}

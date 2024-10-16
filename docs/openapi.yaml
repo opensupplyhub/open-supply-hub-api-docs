@@ -941,31 +941,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  moderation_id:
-                    type: number
-                    example: 0
-                  moderation_status:
-                    type: string
-                    example: "PENDING"
-                    enum: ["PENDING", "APPROVED", "REJECTED", "REVOKED"]
-                  geocoded_address:
-                    type: string
-                    example: "5900 S Santa Fe Dr, Littleton, CO 80120, USA"
-                  geocoded_geometry:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                        example: "Point"
-                      coordinates:
-                        type: array
-                        items:
-                          type: number
-                          example:
-                            - -105.0187252
-                            - 39.6080824
+                $ref: "#/components/schemas/location_new"
         422:
           description: Unprocessable Entity
           content:
@@ -1053,34 +1029,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  os_id:
-                    type: string
-                    example: "CN2021250D1DTN7"
-                  moderation_id:
-                    type: number
-                    example: 0
-                  moderation_status:
-                    type: string
-                    example: "PENDING"
-                    enum: ["PENDING", "APPROVED", "REJECTED", "REVOKED"]
-                  geocoded_address:
-                    type: string
-                    example: "5900 S Santa Fe Dr, Littleton, CO 80120, USA"
-                  geocoded_geometry:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                        example: "Point"
-                      coordinates:
-                        type: array
-                        items:
-                          type: number
-                          example:
-                            - -105.0187252
-                            - 39.6080824
+                $ref: "#/components/schemas/location_update"
         404:
           description: Not Found
           content:
@@ -1582,6 +1531,10 @@ components:
       $ref: "schemas/location.json"
     location_source:
       $ref: "schemas/location_source.json"
+    location_new:
+      $ref: "schemas/location_new.json"
+    location_update:
+      $ref: "schemas/location_update.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     match:

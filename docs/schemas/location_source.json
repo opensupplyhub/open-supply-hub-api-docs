@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "description": "This schema represents a location creation or contribution to existing location",
+    "description": "This schema represents a source of location creation or contribution to existing location",
     "allOf": [
       {
         "properties": {
