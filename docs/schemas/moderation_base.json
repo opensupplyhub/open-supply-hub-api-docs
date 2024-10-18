@@ -8,15 +8,13 @@
             "example": 0,
             "description": "The unique identifier of the moderation event"
         },
-        "moderation_status": {
+        "status": {
             "type": "string",
             "example": "PENDING",
             "description": "Only one of this moderation statuses can be present in the response",
             "enum": [
                 "PENDING",
-                "APPROVED",
-                "REJECTED",
-                "REVOKED"
+                "RESOLVED"
             ]
         }
     }
