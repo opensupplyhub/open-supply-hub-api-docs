@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents a source of location creation or contribution to existing location",
+    "allOf": [
+      {
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "Indicates a production-location contribution type that was requested",
+            "enum": ["API", "SLC"]
+          }
+        }
+      },
+      {
+        "$ref": "location_base.json"
+      }
+    ]
+  }
+  

@@ -934,7 +934,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
         202:
           description: Accepted
@@ -1022,7 +1022,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
         202:
           description: Accepted
@@ -1533,6 +1533,8 @@ components:
       $ref: "schemas/location_new.json"
     location_update:
       $ref: "schemas/location_update.json"
+    location_source:
+      $ref: "schemas/location_source.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     match:
