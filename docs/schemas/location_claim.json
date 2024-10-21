@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents a location",
+    "properties": {
+      "local_name": {
+        "type": "string",
+        "description": "Location name in the language local to where the location is located, provided by the claimant"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the location provided by the claimant"
+      },
+      "business_url": {
+        "type": "string",
+        "description": "The location website url, provided by the claimant"
+      },
+      "minimum_order_quantity": {
+        "type": "string",
+        "description": "Indicates the minimum order quantity accepted by the location"
+      },
+      "average_lead_time": {
+        "type": "string",
+        "description": "The minimum time that a location needs to produce an order"
+      },
+      "percent_female_workers": {
+        "type": "number",
+        "description": "The percentage of female employees at the location"
+      },
+      "affiliations": {
+        "type": "array",
+        "description": "Indicates if the location is affiliated with any industry initiatives",
+        "items": {
+          "type": "string"
+        }
+      },
+      "certifications_standards_regulations": {
+        "type": "array",
+        "description": "Indicates if the location is compliant with any certification, standards, or regulations",
+        "items": {
+          "type": "string"
+        }
+      },
+      "historical_os_id": {
+        "type": "array",
+        "description": "The historical unique identifiers for a location",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+  

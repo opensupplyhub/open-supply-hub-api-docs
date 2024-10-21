@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents base moderation field",
+    "properties": {
+        "moderation_id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": "The unique UUID identifier of the moderation event",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "moderation_status": {
+            "type": "string",
+            "example": "PENDING",
+            "description": "Only one of this moderation statuses can be present in the response",
+            "enum": [
+                "PENDING",
+                "RESOLVED"
+            ]
+        }
+    }
+}

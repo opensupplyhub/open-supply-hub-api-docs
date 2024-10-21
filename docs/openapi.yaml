@@ -934,22 +934,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
         202:
           description: Accepted
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  os_id:
-                    type: string
-                    example: "CN2021250D1DTN7"
-                  status:
-                    type: string
-                    example: "pending"
-                    enum: ["pending", "approved", "rejected"]
+                $ref: "#/components/schemas/location_new"
         422:
           description: Unprocessable Entity
           content:
@@ -1019,54 +1011,6 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-    put:
-      summary: Update an existing location.
-      description: >
-        Updates an existing location with the given details.
-      tags:
-        - production-locations
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/location_base"
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/location_base"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "The location with the given id was not found."
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "The request body is invalid."
-                errors:
-                  - field: "name"
-                    message: "The value must be a non-empty string."
-                  - field: "country"
-                    message: "The value must be a valid country code or name."
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing location.
       description: >
@@ -1078,14 +1022,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/location_base"
+              $ref: "#/components/schemas/location_source"
       responses:
-        200:
-          description: OK
+        202:
+          description: Accepted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/location_base"
+                $ref: "#/components/schemas/location_update"
         404:
           description: Not Found
           content:
@@ -1585,6 +1529,12 @@ components:
       $ref: "schemas/location_contribution.json"
     location:
       $ref: "schemas/location.json"
+    location_new:
+      $ref: "schemas/location_new.json"
+    location_update:
+      $ref: "schemas/location_update.json"
+    location_source:
+      $ref: "schemas/location_source.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     match:

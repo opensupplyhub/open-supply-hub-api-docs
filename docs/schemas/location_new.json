@@ -1,0 +1,18 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents a location creation response object",
+    "allOf": [
+        {
+            "$ref": "moderation_base.json"
+        },
+        {
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    ]
+}
