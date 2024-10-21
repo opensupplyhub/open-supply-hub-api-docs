@@ -1309,15 +1309,6 @@ paths:
             items:
               type: string
               enum: [CLAIM, SINGLE, API_POST]
-        - name: match_status
-          in: query
-          description: Filter using match status of production location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
         - name: moderation_status
           in: query
           description: Filter using moderation status of production location.
@@ -1372,7 +1363,6 @@ paths:
               name,
               country,
               contributor,
-              match_status,
               moderation_status,
             ]
         - $ref: "#/components/parameters/order_by"
@@ -1411,13 +1401,6 @@ paths:
                     errors:
                       - field: "moderation_status"
                         message: "Moderation status must be one of PENDING, APPROVED, REJECTED, or REVOKED."
-                invalid_match_status:
-                  summary: Invalid `match_status`
-                  value:
-                    message: "The request query is invalid."
-                    errors:
-                      - field: "match_status"
-                        message: "Match status must be one of MATCH, NEW_LOCATION, or POTENTIAL_MATCH."
                 invalid_record_type:
                   summary: Invalid `record_type`
                   value:
