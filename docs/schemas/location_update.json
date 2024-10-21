@@ -7,7 +7,7 @@
             "properties": {
                 "os_id": {
                     "type": "string",
-                    "description": "The unique identifier for a location"
+                    "description": "The unique identifier for a location that represents current OS ID"
                 }
             }
         },
@@ -15,10 +15,12 @@
             "$ref": "moderation_base.json"
         },
         {
-            "$ref": "geocoded.json"
-        },
-        {
-            "$ref": "date.json"
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
         }
     ]
 }

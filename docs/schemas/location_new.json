@@ -7,10 +7,12 @@
             "$ref": "moderation_base.json"
         },
         {
-            "$ref": "geocoded.json"
-        },
-        {
-           "$ref": "date.json"
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
         }
     ]
 }

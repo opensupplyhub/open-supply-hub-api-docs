@@ -13,7 +13,7 @@
         }
       },
       {
-        "$ref": "location_base.json"
+        "$ref": "location_main.json"
       }
     ]
   }
