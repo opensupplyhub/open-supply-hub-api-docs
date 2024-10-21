@@ -3,8 +3,10 @@
   "type": "object",
   "description": "This schema represents a base moderation event",
   "properties": {
-    "uuid": {
-      "type": "integer"
+    "moderation_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of moderation event"
     }
   }
 }
