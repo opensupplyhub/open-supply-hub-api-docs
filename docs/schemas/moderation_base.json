@@ -3,7 +3,7 @@
     "type": "object",
     "description": "This schema represents base moderation field",
     "properties": {
-        "moderation_id": {
+        "uuid": {
             "type": "string",
             "example": "123e4567-e89b-12d3-a456-426614174000",
             "description": "The unique UUID identifier of the moderation event",
