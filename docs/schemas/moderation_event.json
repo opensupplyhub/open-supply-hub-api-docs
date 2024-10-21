@@ -8,7 +8,7 @@
       },
       {
         "properties": {
-          "moderation_id": {
+          "uuid": {
             "type": "number",
             "description": "The unique identifier of moderation event"
           },

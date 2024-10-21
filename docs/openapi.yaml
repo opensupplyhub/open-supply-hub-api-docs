@@ -1326,7 +1326,7 @@ paths:
             type: string
             default: PENDING
             enum: [PENDING, APPROVED, REJECTED, REVOKED]
-        - name: moderation_id
+        - name: uuid
           in: query
           description: Filter using the unique moderation identifier.
           required: false
@@ -1397,12 +1397,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               examples:
-                invalid_moderation_id:
-                  summary: Invalid `moderation_id`
+                invalid_uuid:
+                  summary: Invalid `uuid`
                   value:
                     message: "The request query is invalid."
                     errors:
-                      - field: "moderation_id"
+                      - field: "uuid"
                         message: "Moderation id must be a number"
                 invalid_moderation_status:
                   summary: Invalid `moderation_status`
@@ -1461,11 +1461,11 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
-  /v1/moderation-events/{moderation_id}:
+  /v1/moderation-events/{uuid}:
     get:
       summary: Get moderation event by id.
       parameters:
-        - name: moderation_id
+        - name: uuid
           in: path
           description: The unique identifier of moderation event.
           required: true
@@ -1492,7 +1492,7 @@ paths:
               example:
                 message: "The request path parameter is invalid."
                 errors:
-                  - field: "moderation_id"
+                  - field: "uuid"
                     message: "Moderation id must be a number"
         500:
           description: Internal Server Error
@@ -1505,7 +1505,7 @@ paths:
     patch:
       summary: Change moderation event. Available only for data moderators.
       parameters:
-        - name: moderation_id
+        - name: uuid
           in: path
           description: The unique identifier of the moderation event.
           required: true
@@ -1537,12 +1537,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               examples:
-                invalid_moderation_id:
-                  summary: Invalid `moderation_id`
+                invalid_uuid:
+                  summary: Invalid `uuid`
                   value:
                     message: "The request path parameter is invalid."
                     errors:
-                      - field: "moderation_id"
+                      - field: "uuid"
                         message: "Moderation id must be a number"
                 invalid_moderation_status:
                   summary: Invalid `moderation_status`
