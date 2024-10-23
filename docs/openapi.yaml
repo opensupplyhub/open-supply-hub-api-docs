@@ -1518,12 +1518,72 @@ paths:
       summary: Create production location based on moderation event.
       description: >
         When data moderator approves a moderation event, a new production location is created based on the moderation event.
+      responses:
+        201:
+          description: Created
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "Moderation event not found."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation id must be a valid string."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
     patch:
       tags:
         - moderation-events
       summary: Add a new contribution to the production location.
       description: >
         When data moderator approves a moderation event, a new contribution is added to the production location.
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "Moderation event not found."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation id must be a valid string"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
 components:
   schemas:
     claim:
