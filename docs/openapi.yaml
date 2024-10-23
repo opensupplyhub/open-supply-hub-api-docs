@@ -1309,16 +1309,17 @@ paths:
           default: created_at
           schema:
             type: string
-            enum: [
-              created_at,
-              moderation_decision_date,
-              updated_at,
-              name,
-              country,
-              contributor,
-              match_status,
-              moderation_status,
-            ]
+            enum:
+              [
+                created_at,
+                moderation_decision_date,
+                updated_at,
+                name,
+                country,
+                contributor,
+                match_status,
+                moderation_status,
+              ]
         - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
@@ -1414,7 +1415,7 @@ paths:
           description: The unique identifier of moderation event.
           required: true
           schema:
-            type: number
+            type: string
       description: >
         Returns moderation event associated with specific id.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
@@ -1503,6 +1504,26 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/production-locations:
+    parameters:
+      - name: moderation_id
+        in: path
+        description: The unique identifier of moderation event.
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - moderation-events
+      summary: Create production location based on moderation event.
+      description: >
+        When data moderator approves a moderation event, a new production location is created based on the moderation event.
+    patch:
+      tags:
+        - moderation-events
+      summary: Add a new contribution to the production location.
+      description: >
+        When data moderator approves a moderation event, a new contribution is added to the production location.
 components:
   schemas:
     claim:
