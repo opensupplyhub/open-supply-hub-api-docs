@@ -29,7 +29,7 @@
           "country": {
             "$ref": "country.json"
           },
-          "contributor": {
+          "contributor_id": {
             "type": "number",
             "description": "Returns contributor id"
           },
