@@ -1506,13 +1506,17 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: moderation_status
-          in: query
-          description: Moderation status of production location.
-          required: false
-          schema:
-            type: string
-            enum: [PENDING, RESOLVED]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                moderation_status:
+                  type: string
+                  enum: [PENDING, RESOLVED]
+                  description: Moderation status of production location.
       description: >
         Returns updated moderation event.
         Moderation events data for the search becomes available 15 minutes after upload to the system.

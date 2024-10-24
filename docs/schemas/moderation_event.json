@@ -4,9 +4,6 @@
     "description": "This schema represents a moderation event",
     "allOf": [
       {
-        "$ref": "moderation_events_base.json"
-      },
-      {
         "properties": {
           "moderation_id": {
             "type": "string",
