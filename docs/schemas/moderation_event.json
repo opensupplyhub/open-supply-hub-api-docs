@@ -34,11 +34,11 @@
             "description": "Returns contributor id"
           },
           "request_type": {
-            "type": "array",
+            "type": "string",
             "enum": ["CREATE", "UPDATE", "CLAIM"]
           },
           "source": {
-            "type": "array",
+            "type": "string",
             "enum": ["API", "SLC"],
             "description": "Source type of production location"
           },
