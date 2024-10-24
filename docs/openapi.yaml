@@ -1284,7 +1284,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: contributor
+        - name: contributor_id
           in: query
           description: Filter using contributor id.
           required: false
@@ -1372,7 +1372,7 @@ paths:
               updated_at,
               name,
               country,
-              contributor,
+              contributor_id,
               moderation_status,
             ]
         - $ref: "#/components/parameters/order_by"
