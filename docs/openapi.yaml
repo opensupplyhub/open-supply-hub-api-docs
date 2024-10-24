@@ -1407,8 +1407,8 @@ paths:
           description: The unique identifier of moderation event.
           required: true
           schema:
-            type": string
-            format": uuid
+            type: string
+            format: uuid
       description: >
         Returns moderation event associated with specific id.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
