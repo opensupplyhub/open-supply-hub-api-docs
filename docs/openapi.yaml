@@ -1511,6 +1511,7 @@ paths:
         required: true
         schema:
           type: string
+          format: uuid
     post:
       tags:
         - moderation-events
@@ -1520,6 +1521,13 @@ paths:
       responses:
         201:
           description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  os_id:
+                    type: string
         404:
           description: Not Found
           content:
@@ -1554,8 +1562,15 @@ paths:
       description: >
         When data moderator approves a moderation event, a new contribution is added to the production location.
       responses:
-        204:
-          description: No Content
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  os_id:
+                    type: string
         404:
           description: Not Found
           content:
