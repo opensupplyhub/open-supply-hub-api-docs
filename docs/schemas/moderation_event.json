@@ -4,12 +4,10 @@
     "description": "This schema represents a moderation event",
     "allOf": [
       {
-        "$ref": "moderation_events_base.json"
-      },
-      {
         "properties": {
           "moderation_id": {
-            "type": "number",
+            "type": "string",
+            "format": "uuid",
             "description": "The unique identifier of moderation event"
           },
           "created_at": {
@@ -31,35 +29,31 @@
           "country": {
             "$ref": "country.json"
           },
-          "contributor": {
+          "contributor_id": {
             "type": "number",
             "description": "Returns contributor id"
           },
-          "record_type": {
-            "type": "array",
-            "enum": ["CLAIM", "SINGLE", "API_POST"],
-            "description": "Record type response can contain any combination of 'CLAIM', 'SINGLE', and 'API_POST' but 'SINGLE' and 'API_POST' cannot be present together."
+          "request_type": {
+            "type": "string",
+            "enum": ["CREATE", "UPDATE", "CLAIM"]
+          },
+          "source": {
+            "type": "string",
+            "enum": ["API", "SLC"],
+            "description": "Source type of production location"
           },
           "moderation_status": {
             "type": "string",
-            "enum": ["PENDING", "APPROVED", "REJECTED", "REVOKED"],
-            "description": "Only one of this moderation statuses can be present in the response"
+            "enum": ["PENDING", "RESOLVED"],
+            "description": "Moderation status of the production location"
           },
-          "moderation_decision_date": {
+          "moderation_status_change_date": {
             "type": "string",
             "format": "date-time"
           },
-          "claims": {
-            "type": "array",
-            "items": {
-              "$ref": "claim.json"
-            }
-          },
-          "matches": {
-            "type": "array",
-            "items": {
-              "$ref": "match.json"
-            }
+          "claim_id": {
+            "type": "number",
+            "description": "Linked claim id for this production location"
           }
         }
       }

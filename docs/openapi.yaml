@@ -1228,7 +1228,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: contributor
+        - name: contributor_id
           in: query
           description: Filter using contributor id.
           required: false
@@ -1244,24 +1244,24 @@ paths:
             type: array
             items:
               type: string
-        - name: record_type
+        - name: request_type
           in: query
-          description: Filter using record type of production location.
+          description: Filter using request type of production location.
           required: false
           schema:
             type: array
             items:
               type: string
-              enum: [CLAIM, SINGLE, API_POST]
-        - name: match_status
+              enum: [CREATE, UPDATE, CLAIM]
+        - name: source
           in: query
-          description: Filter using match status of production location.
+          description: Filter using source type of production location.
           required: false
           schema:
             type: array
             items:
               type: string
-              enum: [MATCH, NEW_LOCATION, POTENTIAL_MATCH]
+              enum: [API, SLC]
         - name: moderation_status
           in: query
           description: Filter using moderation status of production location.
@@ -1269,7 +1269,7 @@ paths:
           schema:
             type: string
             default: PENDING
-            enum: [PENDING, APPROVED, REJECTED, REVOKED]
+            enum: [PENDING, RESOLVED]
         - name: moderation_id
           in: query
           description: Filter using the unique moderation identifier.
@@ -1277,7 +1277,8 @@ paths:
           schema:
             type: array
             items:
-              type: number
+              type: string
+              format: uuid
         - name: country
           in: query
           description: Filter using the alpha-2 code of the location.
@@ -1309,17 +1310,15 @@ paths:
           default: created_at
           schema:
             type: string
-            enum:
-              [
-                created_at,
-                moderation_decision_date,
-                updated_at,
-                name,
-                country,
-                contributor,
-                match_status,
-                moderation_status,
-              ]
+            enum: [
+              created_at,
+              moderation_decision_date,
+              updated_at,
+              name,
+              country,
+              contributor_id,
+              moderation_status,
+            ]
         - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
@@ -1348,28 +1347,21 @@ paths:
                     message: "The request query is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a number"
+                        message: "Moderation id must be a string with uuid format"
                 invalid_moderation_status:
                   summary: Invalid `moderation_status`
                   value:
                     message: "The request query is invalid."
                     errors:
                       - field: "moderation_status"
-                        message: "Moderation status must be one of PENDING, APPROVED, REJECTED, or REVOKED."
-                invalid_match_status:
-                  summary: Invalid `match_status`
+                        message: "Moderation status must be one of PENDING or RESOLVED."
+                invalid_request_type:
+                  summary: Invalid `request_type`
                   value:
                     message: "The request query is invalid."
                     errors:
-                      - field: "match_status"
-                        message: "Match status must be one of MATCH, NEW_LOCATION, or POTENTIAL_MATCH."
-                invalid_record_type:
-                  summary: Invalid `record_type`
-                  value:
-                    message: "The request query is invalid."
-                    errors:
-                      - field: "record_type"
-                        message: "Record type must be one of CLAIM, SINGLE, or API_POST."
+                      - field: "request_type"
+                        message: "Request type must be one of CREATE, UPDATE, or CLAIM."
                 invalid_country:
                   summary: Invalid `country`
                   value:
@@ -1416,6 +1408,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       description: >
         Returns moderation event associated with specific id.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
@@ -1438,7 +1431,7 @@ paths:
                 message: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a number"
+                    message: "Moderation id must be a string with uuid format"
         500:
           description: Internal Server Error
           content:
@@ -1455,14 +1448,19 @@ paths:
           description: The unique identifier of the moderation event.
           required: true
           schema:
-            type: number
-        - name: moderation_status
-          in: query
-          description: Moderation status of production location.
-          required: false
-          schema:
             type: string
-            enum: [PENDING, APPROVED, REJECTED, REVOKED]
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                moderation_status:
+                  type: string
+                  enum: [PENDING, RESOLVED]
+                  description: Moderation status of production location.
       description: >
         Returns updated moderation event.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
@@ -1488,14 +1486,14 @@ paths:
                     message: "The request path parameter is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a number"
+                        message: "Moderation id must be a string with uuid format."
                 invalid_moderation_status:
                   summary: Invalid `moderation_status`
                   value:
                     message: "The request query is invalid."
                     errors:
                       - field: "moderation_status"
-                        message: "Moderation status must be one of PENDING, APPROVED, REJECTED, or REVOKED."
+                        message: "Moderation status must be one of PENDING or RESOLVED."
         500:
           description: Internal Server Error
           content:
