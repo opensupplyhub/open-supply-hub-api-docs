@@ -42,12 +42,12 @@
             "enum": ["API", "SLC"],
             "description": "Source type of production location"
           },
-          "moderation_status": {
+          "status": {
             "type": "string",
             "enum": ["PENDING", "RESOLVED"],
             "description": "Moderation status of the production location"
           },
-          "moderation_status_change_date": {
+          "change_date": {
             "type": "string",
             "format": "date-time"
           },
