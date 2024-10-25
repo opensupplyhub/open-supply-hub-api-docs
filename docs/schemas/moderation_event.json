@@ -30,8 +30,9 @@
               "type": "string",
               "description": "Returns location address"
           },
-          "country": {
-              "$ref": "country.json"
+          "country_code": {
+              "type": "string",
+              "description": "Returns location country code"
           }
       }
     },
