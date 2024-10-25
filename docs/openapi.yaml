@@ -1315,9 +1315,10 @@ paths:
                 created_at,
                 status_change_date,
                 updated_at,
-                name,
-                country,
                 contributor_id,
+                contributor_name,
+                country_name,
+                source,
                 status,
               ]
         - $ref: "#/components/parameters/order_by"

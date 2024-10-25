@@ -40,6 +40,14 @@
       "type": "number",
       "description": "Returns contributor id"
     },
+    "contributor_name": {
+      "type": "string",
+      "description": "Returns contributor name"
+    },
+    "country_name": {
+      "type": "string",
+      "description": "Returns country name"
+    },
     "request_type": {
       "type": "string",
       "enum": ["CREATE", "UPDATE", "CLAIM"]
