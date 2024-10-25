@@ -1310,15 +1310,16 @@ paths:
           default: created_at
           schema:
             type: string
-            enum: [
-              created_at,
-              moderation_decision_date,
-              updated_at,
-              name,
-              country,
-              contributor_id,
-              moderation_status,
-            ]
+            enum:
+              [
+                created_at,
+                moderation_decision_date,
+                updated_at,
+                name,
+                country,
+                contributor_id,
+                moderation_status,
+              ]
         - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
