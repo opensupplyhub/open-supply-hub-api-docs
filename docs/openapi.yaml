@@ -1310,15 +1310,16 @@ paths:
           default: created_at
           schema:
             type: string
-            enum: [
-              created_at,
-              moderation_decision_date,
-              updated_at,
-              name,
-              country,
-              contributor_id,
-              moderation_status,
-            ]
+            enum:
+              [
+                created_at,
+                moderation_decision_date,
+                updated_at,
+                name,
+                country,
+                contributor_id,
+                moderation_status,
+              ]
         - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
@@ -1494,6 +1495,101 @@ paths:
                     errors:
                       - field: "moderation_status"
                         message: "Moderation status must be one of PENDING or RESOLVED."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/production-locations:
+    parameters:
+      - name: moderation_id
+        in: path
+        description: The unique identifier of moderation event.
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      tags:
+        - moderation-events
+      summary: Create production location based on moderation event.
+      description: >
+        When data moderator approves a moderation event, a new production location is created based on the moderation event.
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  os_id:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "Moderation event not found."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation id must be a valid string."
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
+    patch:
+      tags:
+        - moderation-events
+      summary: Add a new contribution to the production location.
+      description: >
+        When data moderator approves a moderation event, a new contribution is added to the production location.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  os_id:
+                    type: string
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "Moderation event not found."
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation id must be a valid string"
         500:
           description: Internal Server Error
           content:
