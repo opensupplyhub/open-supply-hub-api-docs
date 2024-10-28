@@ -1262,7 +1262,7 @@ paths:
             items:
               type: string
               enum: [API, SLC]
-        - name: moderation_status
+        - name: status
           in: query
           description: Filter using moderation status of production location.
           required: false
@@ -1311,14 +1311,15 @@ paths:
           schema:
             type: string
             enum:
-              [
+              [                
                 created_at,
-                moderation_decision_date,
+                status_change_date,
                 updated_at,
-                name,
-                country,
                 contributor_id,
-                moderation_status,
+                contributor_name,
+                country_name,
+                source,
+                status,
               ]
         - $ref: "#/components/parameters/order_by"
       description: >
@@ -1349,12 +1350,12 @@ paths:
                     errors:
                       - field: "moderation_id"
                         message: "Moderation id must be a string with uuid format"
-                invalid_moderation_status:
-                  summary: Invalid `moderation_status`
+                invalid_status:
+                  summary: Invalid `status`
                   value:
                     message: "The request query is invalid."
                     errors:
-                      - field: "moderation_status"
+                      - field: "status"
                         message: "Moderation status must be one of PENDING or RESOLVED."
                 invalid_request_type:
                   summary: Invalid `request_type`
@@ -1458,7 +1459,7 @@ paths:
             schema:
               type: object
               properties:
-                moderation_status:
+                status:
                   type: string
                   enum: [PENDING, RESOLVED]
                   description: Moderation status of production location.
@@ -1488,12 +1489,12 @@ paths:
                     errors:
                       - field: "moderation_id"
                         message: "Moderation id must be a string with uuid format."
-                invalid_moderation_status:
-                  summary: Invalid `moderation_status`
+                invalid_status:
+                  summary: Invalid `status`
                   value:
                     message: "The request query is invalid."
                     errors:
-                      - field: "moderation_status"
+                      - field: "status"
                         message: "Moderation status must be one of PENDING or RESOLVED."
         500:
           description: Internal Server Error
