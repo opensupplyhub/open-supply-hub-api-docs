@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "description": "This schema represents a moderation event",
   "properties": {
@@ -22,18 +23,17 @@
     "cleaned_data": {
       "type": "object",
       "properties": {
-          "name": {
-              "type": "string",
-              "description": "Returns location name"
-          },
-          "address": {
-              "type": "string",
-              "description": "Returns location address"
-          },
-          "country_code": {
-              "type": "string",
-              "description": "Returns location country code"
-          }
+        "name": {
+          "type": "string",
+          "description": "Returns location name"
+        },
+        "address": {
+          "type": "string",
+          "description": "Returns location address"
+        },
+        "country": {
+          "$ref": "country.json"
+        }
       }
     },
     "contributor_id": {
@@ -43,10 +43,6 @@
     "contributor_name": {
       "type": "string",
       "description": "Returns contributor name"
-    },
-    "country_name": {
-      "type": "string",
-      "description": "Returns country name"
     },
     "request_type": {
       "type": "string",
@@ -71,5 +67,13 @@
       "description": "Linked claim id for this production location"
     }
   },
-  "required": ["moderation_id", "created_at", "os_id", "contributor_id", "request_type", "source", "status"]
+  "required": [
+    "moderation_id",
+    "created_at",
+    "updated_at",
+    "contributor_id",
+    "contributor_name",
+    "request_type",
+    "status"
+  ]
 }
