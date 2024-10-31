@@ -1488,14 +1488,40 @@ paths:
                     message: "The request path parameter is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a string with uuid format."
+                        message: "Invalid UUID format."
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    message: "The request query is invalid."
+                    message: "The request body contains invalid or missing fields."
                     errors:
                       - field: "status"
                         message: "Moderation status must be one of PENDING or RESOLVED."
+                missing_status:
+                  summary: Missing `status`
+                  value:
+                    message: "The request body contains invalid or missing fields."
+                    errors:
+                      - field: "status"
+                        message: "This field is required."
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "You do not have permission to perform this action."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation event not found."
         500:
           description: Internal Server Error
           content:
