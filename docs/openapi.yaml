@@ -1269,7 +1269,7 @@ paths:
           schema:
             type: string
             default: PENDING
-            enum: [PENDING, RESOLVED]
+            enum: [PENDING, RESOLVED, REJECTED]
         - name: moderation_id
           in: query
           description: Filter using the unique moderation identifier.
@@ -1356,7 +1356,7 @@ paths:
                     message: "The request query is invalid."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING or RESOLVED."
+                        message: "Moderation status must be one of PENDING, RESOLVED or REJECTED."
                 invalid_request_type:
                   summary: Invalid `request_type`
                   value:
@@ -1461,7 +1461,7 @@ paths:
               properties:
                 status:
                   type: string
-                  enum: [PENDING, RESOLVED]
+                  enum: [PENDING, RESOLVED, REJECTED]
                   description: Moderation status of production location.
       description: >
         Returns updated moderation event.
@@ -1488,14 +1488,40 @@ paths:
                     message: "The request path parameter is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a string with uuid format."
+                        message: "Invalid UUID format."
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    message: "The request query is invalid."
+                    message: "The request body contains invalid or missing fields."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING or RESOLVED."
+                        message: "Moderation status must be one of PENDING, RESOLVED or REJECTED."
+                missing_status:
+                  summary: Missing `status`
+                  value:
+                    message: "The request body contains invalid or missing fields."
+                    errors:
+                      - field: "status"
+                        message: "This field is required."
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "Only Moderator could perform this action."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    message: "Moderation event not found."
         500:
           description: Internal Server Error
           content:
