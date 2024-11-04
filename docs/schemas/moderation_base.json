@@ -15,7 +15,7 @@
             "description": "Only one of this moderation statuses can be present in the response",
             "enum": [
                 "PENDING",
-                "RESOLVED",
+                "ACCEPTED",
                 "REJECTED"
             ]
         }

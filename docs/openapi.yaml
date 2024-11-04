@@ -1269,7 +1269,7 @@ paths:
           schema:
             type: string
             default: PENDING
-            enum: [PENDING, RESOLVED, REJECTED]
+            enum: [PENDING, ACCEPTED, REJECTED]
         - name: moderation_id
           in: query
           description: Filter using the unique moderation identifier.
@@ -1356,7 +1356,7 @@ paths:
                     message: "The request query is invalid."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING, RESOLVED or REJECTED."
+                        message: "Moderation status must be one of PENDING, ACCEPTED or REJECTED."
                 invalid_request_type:
                   summary: Invalid `request_type`
                   value:
@@ -1461,7 +1461,7 @@ paths:
               properties:
                 status:
                   type: string
-                  enum: [PENDING, RESOLVED, REJECTED]
+                  enum: [PENDING, ACCEPTED, REJECTED]
                   description: Moderation status of production location.
       description: >
         Returns updated moderation event.
@@ -1495,7 +1495,7 @@ paths:
                     message: "The request body contains invalid or missing fields."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING, RESOLVED or REJECTED."
+                        message: "Moderation status must be one of PENDING, ACCEPTED or REJECTED."
                 missing_status:
                   summary: Missing `status`
                   value:
