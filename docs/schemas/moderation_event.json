@@ -55,7 +55,7 @@
     },
     "status": {
       "type": "string",
-      "enum": ["PENDING", "RESOLVED", "REJECTED"],
+      "enum": ["PENDING", "APPROVED", "REJECTED"],
       "description": "Moderation status of the production location"
     },
     "status_change_date": {
