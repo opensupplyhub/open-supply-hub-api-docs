@@ -1433,7 +1433,15 @@ paths:
                 message: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a string with uuid format"
+                    message: "Invalid UUID format."
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "Only an authorized user can perform this action."
         500:
           description: Internal Server Error
           content:
