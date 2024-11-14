@@ -5,9 +5,11 @@ info:
   description: This specification outlines proposed API design for OS Hub to facilitate discussions and gather feedback before development begins.
   version: 1.0.0
 servers:
-  - url: http://localhost:8095/api
-    description: Local development server
+  - url: https://opensupplyhub.org/api
+    description: Production environment
 tags:
+  - name: beta
+    description: APIs are implemented and ready for beta testing
   - name: countries
     description: Operations related to countries
   - name: sectors
@@ -747,131 +749,6 @@ paths:
             type: string
             minLength: 1
             maxLength: 255
-        - name: sector
-          in: query
-          description: Filter using the sector of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
-        - name: product_type
-          in: query
-          description: Filter using the product type of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
-        - name: location_type
-          in: query
-          description: Filter using the location type of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
-        - name: processing_type
-          in: query
-          description: Filter using the processing type of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
-        - name: number_of_workers
-          in: query
-          description: Filter using the number of employees of the location.
-          required: false
-          schema:
-            type: object
-            properties:
-              min:
-                type: integer
-                minimum: 0
-              max:
-                type: integer
-                minimum: 0
-          style: deepObject
-          explode: true
-        - name: coordinates
-          in: query
-          description: Filter using the coordinates of the location.
-          required: false
-          schema:
-            type: object
-            properties:
-              lat:
-                type: number
-                minimum: -90
-                maximum: 90
-              lng:
-                type: number
-                minimum: -180
-                maximum: 180
-          style: deepObject
-          explode: true
-        - name: minimum_order_quantity
-          in: query
-          description: Filter using the minimum order quantity of the location.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 200
-        - name: average_lead_time
-          in: query
-          description: Filter using the average lead time of the location.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 200
-        - name: percent_female_workers
-          in: query
-          description: Filter using the percentage
-          required: false
-          schema:
-            type: object
-            properties:
-              min:
-                type: integer
-                minimum: 0
-                maximum: 100
-              max:
-                type: integer
-                minimum: 0
-                maximum: 100
-          style: deepObject
-          explode: true
-        - name: affiliations
-          in: query
-          description: Filter using the affiliations of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
-        - name: certifications_standards_regulations
-          in: query
-          description: Filter using the certifications, standards, and regulations of the location.
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              minLength: 1
-              maxLength: 255
         - name: country
           in: query
           description: Filter using the alpha-2 code of the location.
@@ -895,15 +772,22 @@ paths:
         Production location data for the search becomes available 15 minutes after upload to the system.
       tags:
         - production-locations
+        - beta
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/location"
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    minimum: 0
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/location"
         400:
           description: Bad Request
           content:
