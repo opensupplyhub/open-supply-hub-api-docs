@@ -14,6 +14,11 @@
       "example": "PENDING",
       "description": "Only one of this moderation statuses can be present in the response",
       "enum": ["PENDING", "APPROVED", "REJECTED"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the moderation event was created"
     }
   }
 }
