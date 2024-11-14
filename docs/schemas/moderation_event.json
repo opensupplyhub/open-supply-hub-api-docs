@@ -46,7 +46,7 @@
     },
     "request_type": {
       "type": "string",
-      "enum": ["CREATE", "UPDATE", "CLAIM"]
+      "enum": ["CREATE", "UPDATE"]
     },
     "source": {
       "type": "string",
