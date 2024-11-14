@@ -1311,7 +1311,7 @@ paths:
           schema:
             type: string
             enum:
-              [                
+              [
                 created_at,
                 status_change_date,
                 updated_at,
@@ -1596,6 +1596,19 @@ paths:
       summary: Add a new contribution to the production location.
       description: >
         When data moderator approves a moderation event, a new contribution is added to the production location.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                os_id:
+                  type: string
+                  description: The unique identifier of the location.
+                  example: "CN2223250D1DTN7"
+              required:
+                - os_id
       responses:
         200:
           description: OK
