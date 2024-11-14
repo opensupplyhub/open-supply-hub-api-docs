@@ -1682,8 +1682,6 @@ components:
       $ref: "schemas/location_source.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
-    match:
-      $ref: "schemas/match.json"
     error:
       $ref: "schemas/error.json"
 
