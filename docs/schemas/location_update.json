@@ -13,14 +13,6 @@
     },
     {
       "$ref": "moderation_base.json"
-    },
-    {
-      "properties": {
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
     }
   ]
 }
