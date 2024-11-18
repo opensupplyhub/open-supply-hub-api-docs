@@ -1224,10 +1224,12 @@ paths:
         - $ref: "#/components/parameters/limit"
         - name: search_after
           in: query
-          description: Cursor for the pagination.
+          description: Cursor for the pagination. Uses unix epoch time of created_at field by default
           required: false
           schema:
-            type: string
+            type: integer
+            format: int64
+            example: 1728860400000
         - name: contributor_id
           in: query
           description: Filter using contributor id.
