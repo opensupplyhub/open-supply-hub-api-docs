@@ -697,12 +697,30 @@ paths:
       summary: Get list of production locations exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: search_after
+        - name: search_after[value]
           in: query
-          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          description: >
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+            - `name`, `address`: Text (string).
+            Must be used in concert with `search_after[id]`
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                example: "Production location name"
+                description: Text value for the `name` field.
+              - type: string
+                example: "Production location address"
+                description: Text value for the `address` field.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses os_id of the previous element.
           required: false
           schema:
             type: string
+            example: CN2223250D1DTN7
+            description: The unique identifier of the location. Must be used in concert with `search_after[value]`
         - name: query
           in: query
           description: Filter using the query string (searches across multiple fields).
@@ -1106,9 +1124,28 @@ paths:
       summary: Get list of moderation events exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: search_after
+        - name: search_after[value]
           in: query
-          description: Cursor for the pagination. Uses unix epoch time of created_at field by default
+          description: >
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+            - `created_at`, `status_change_date`, `updated_at`: Unix epoch time (integer).
+            - `contributor_id`: Numeric ID (integer).
+            - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
+            Must be used in concert with `search_after[id]`
+          required: false
+          schema:
+            oneOf:
+              - type: integer
+                format: int64
+                example: 1728860400000
+                description: Unix epoch time for fields like `created_at`, `status_change_date`, or `updated_at`.
+              - type: string
+                example: "John Doe"
+                description: Text value for fields like `contributor_name`, `name`, `address`, `source`, `country`, or `status`.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses moderation_id of the previous element. Must be used in concert with `search_after[value]`
           required: false
           schema:
             type: integer
@@ -1196,17 +1233,18 @@ paths:
           default: created_at
           schema:
             type: string
-            enum:
-              [
-                created_at,
-                status_change_date,
-                updated_at,
-                contributor_id,
-                contributor_name,
-                country_name,
-                source,
-                status,
-              ]
+            enum: [
+              'created_at',
+              'status_change_date',
+              'updated_at',
+              'contributor_id',
+              'contributor_name',
+              'country',
+              'name',
+              'address',
+              'source',
+              'status',
+            ]
         - $ref: "#/components/parameters/order_by"
       description: >
         Returns an array of moderation events.
