@@ -721,6 +721,14 @@ paths:
             type: string
             example: CN2223250D1DTN7
             description: The unique identifier of the location. Must be used in concert with `search_after[value]`
+        - name: from
+          in: query
+          description: Number from which to start showing the results for the pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            description: The `from` and `size` parameters return results one page at a time.
         - name: query
           in: query
           description: Filter using the query string (searches across multiple fields).
@@ -1151,6 +1159,14 @@ paths:
             type: integer
             format: int64
             example: 1728860400000
+        - name: from
+          in: query
+          description: Number from which to start showing the results for the pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            description: The `from` and `size` parameters return results one page at a time.
         - name: contributor_id
           in: query
           description: Filter using contributor id.
