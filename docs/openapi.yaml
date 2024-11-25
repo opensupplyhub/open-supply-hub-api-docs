@@ -1137,17 +1137,17 @@ paths:
           description: >
             Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
             from the last item of the previous page. The expected type and format depend on the `sort_by` field:
-            - `created_at`, `status_change_date`, `updated_at`: Unix epoch time (integer).
+            - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
             - `contributor_id`: Numeric ID (integer).
             - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
             Must be used in concert with `search_after[id]`
           required: false
           schema:
             oneOf:
-              - type: integer
-                format: int64
-                example: 1728860400000
-                description: Unix epoch time for fields like `created_at`, `status_change_date`, or `updated_at`.
+              - type: string
+                format: date-time
+                example: '2024-11-19T07:52:12.641297Z'
+                description: ISO 8601 (YYYY-MM-DDTHH:mm:ss.ssssssZ) time format for fields like `created_at`, `status_change_date`, or `updated_at`.
               - type: string
                 example: "John Doe"
                 description: Text value for fields like `contributor_name`, `name`, `address`, `source`, `country`, or `status`.
@@ -1156,9 +1156,8 @@ paths:
           description: Cursor for the pagination. Uses moderation_id of the previous element. Must be used in concert with `search_after[value]`
           required: false
           schema:
-            type: integer
-            format: int64
-            example: 1728860400000
+            type: string
+            example: 1f35a90f-70a0-4c3e-8e06-2ed8e1fc6810
         - name: from
           in: query
           description: Number from which to start showing the results for the pagination.
