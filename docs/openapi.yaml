@@ -702,7 +702,10 @@ paths:
           description: >
             Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
             from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
             - `name`, `address`: Text (string).
+
+
             Must be used in concert with `search_after[id]`
           required: false
           schema:
@@ -1135,12 +1138,18 @@ paths:
         - name: search_after[value]
           in: query
           description: >
+            description: |
             Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
             from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
             - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
+
             - `contributor_id`: Numeric ID (integer).
+
             - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
-            Must be used in concert with `search_after[id]`
+
+
+            Must be used in concert with `search_after[id]`.
           required: false
           schema:
             oneOf:
