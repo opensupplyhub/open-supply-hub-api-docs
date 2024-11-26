@@ -762,7 +762,7 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
+          default: none (best match)
           schema:
             type: string
             enum: [name, address]
