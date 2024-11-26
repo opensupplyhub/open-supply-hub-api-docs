@@ -111,9 +111,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [email]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -411,9 +411,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: alpha_2
           schema:
             type: string
+            default: alpha_2
             enum: [name, alpha_2, alpha_3, numeric]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -485,9 +485,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of sectors that are present in the OS Hub platform.
@@ -530,9 +530,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of product types that are present in the OS Hub platform.
@@ -583,9 +583,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -650,9 +650,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of parent companies that are present in the OS Hub platform.
@@ -762,11 +762,19 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: none (best match)
           schema:
             type: string
+            default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
             enum: [name, address]
-        - $ref: "#/components/parameters/order_by"
+        - order_by:
+          name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          schema:
+            type: string
+            default: none for all queries, `asc` for `sort_by` and `search_after[value]` | `search_after[id]`.
+            enum: [asc, desc]
       description: >
         Returns an array of production locations with name and id and other properties, where id is the unique identifier of the location.
         Production location data for the search becomes available 15 minutes after upload to the system.
@@ -1191,8 +1199,8 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: created_at
           schema:
+            default: none (best match) for all queries; `created_at` when use `search_after[value]` and `search_after[id]`.
             type: string
             enum:
               [
@@ -1205,7 +1213,15 @@ paths:
                 source,
                 status,
               ]
-        - $ref: "#/components/parameters/order_by"
+        - order_by:
+          name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          schema:
+            type: string
+            default: none for all queries, `desc` for `sort_by` and `search_after[value]` | `search_after[id]`.
+            enum: [asc, desc]
       description: >
         Returns an array of moderation events.
         Moderation events data for the search becomes available 15 minutes after upload to the system.
@@ -1566,18 +1582,7 @@ components:
       $ref: "schemas/moderation_event.json"
     error:
       $ref: "schemas/error.json"
-
   parameters:
-    order_by:
-      name: order_by
-      in: query
-      description: The order to sort the results by.
-      required: false
-      schema:
-        type: string
-        default: asc
-        enum: [asc, desc]
-
     limit:
       name: size
       in: query
