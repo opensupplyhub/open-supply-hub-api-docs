@@ -1402,7 +1402,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "Only Moderator could perform this action."
+                detail: "Only the Moderator can perform this action."
         404:
           description: Not Found
           content:
@@ -1447,14 +1447,6 @@ paths:
                 properties:
                   os_id:
                     type: string
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "Moderation event not found."
         400:
           description: Bad Request
           content:
@@ -1462,10 +1454,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request path parameter is invalid."
+                detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a valid string."
+                    detail: "Invalid UUID format."
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "Only the Moderator can perform this action."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    detail: "Moderation event not found."
+        410:
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request path parameter is invalid."
+                errors:
+                  - field: "status"
+                    detail: "The moderation event should be in PENDING status."
         500:
           description: Internal Server Error
           content:
@@ -1473,7 +1495,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     patch:
       tags:
         - moderation-events
