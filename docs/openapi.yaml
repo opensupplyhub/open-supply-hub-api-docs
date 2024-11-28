@@ -860,9 +860,13 @@ paths:
                 message: "An unexpected error occurred while processing the request."
     post:
       summary: Create a new location.
-      description: >
+      description: |
         Creates a new moderation event for the production location
         creation with the given details.
+
+        You can use the GET `/v1/moderation-events/{moderation_id}`
+        endpoint to track the status of the moderation event created
+        by this action.
       tags:
         - production-locations
       requestBody:
