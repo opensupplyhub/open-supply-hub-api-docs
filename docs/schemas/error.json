@@ -3,7 +3,7 @@
   "type": "object",
   "description": "This schema represents an error returned from the API",
   "properties": {
-    "message": {
+    "detail": {
       "type": "string",
       "description": "A message describing the error"
     },
@@ -25,7 +25,7 @@
             "type": "number",
             "description": "A code identifying the error"
           },
-          "message": {
+          "detail": {
             "type": "string",
             "description": "A message describing the error code"
           }
@@ -33,5 +33,5 @@
       }
     }
   },
-  "required": ["message"]
+  "required": ["detail"]
 }
