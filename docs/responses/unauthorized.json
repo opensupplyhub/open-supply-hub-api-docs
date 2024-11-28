@@ -1,0 +1,14 @@
+{
+  "description": "Unauthorized",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/error.json"
+      },
+      "example": {
+          "detail": "Authentication credentials were not provided."
+      }
+    }
+  }
+}
+  

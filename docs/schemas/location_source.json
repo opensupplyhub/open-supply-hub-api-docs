@@ -1,14 +1,74 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a source of location creation or contribution to existing location",
+  "description": "This schema represents a source of location creation or contribution to existing location.",
   "allOf": [
     {
       "properties": {
         "source": {
           "type": "string",
-          "description": "Indicates a production-location contribution type that was requested",
+          "description": "Indicates the type of production location contribution that was requested.",
           "enum": ["API", "SLC"]
+        },
+        "sector": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "The sector that the location operates in.",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "description": "The sector in which the location operates. To provide more than one sector value, you can use a comma (,) or a vertical bar (|) as delimiters between values."
+            }
+          ]
+        },
+        "product_type": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "The product type that the production location produces.",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "description": "The product type that the production location produces. To provide more than one product type value, you can use a comma (,) or a vertical bar (|) as delimiters between values."
+            }
+          ]
+        },
+        "location_type": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "The location type that defines the activities occurring at this production location from a high-level perspective.",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "description": "The location type that defines the activities occurring at this production location from a high-level perspective. To provide more than one location type value, you can use a comma (,) or a vertical bar (|) as delimiters between values."
+            }
+          ]
+        },
+        "processing_type": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "The processing type that defines the activities occurring at this production location from a more granular perspective.",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "description": "The processing type that defines the activities occurring at this production location from a more granular perspective. To provide more than one processing type value, you can use a comma (,) or a vertical bar (|) as delimiters between values."
+            }
+          ]
         }
       }
     },

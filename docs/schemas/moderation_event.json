@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a moderation event",
+  "description": "This schema represents a moderation event.",
   "properties": {
     "moderation_id": {
       "type": "string",
       "format": "uuid",
-      "description": "The unique identifier of moderation event"
+      "description": "The unique identifier of moderation event."
     },
     "created_at": {
       "type": "string",
@@ -18,18 +18,18 @@
     },
     "os_id": {
       "type": "string",
-      "description": "The unique identifier for a location"
+      "description": "The unique identifier for a location."
     },
     "cleaned_data": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Returns location name"
+          "description": "Returns location name."
         },
         "address": {
           "type": "string",
-          "description": "Returns location address"
+          "description": "Returns location address."
         },
         "country": {
           "$ref": "country.json"
@@ -38,11 +38,11 @@
     },
     "contributor_id": {
       "type": "number",
-      "description": "Returns contributor id"
+      "description": "Returns contributor id."
     },
     "contributor_name": {
       "type": "string",
-      "description": "Returns contributor name"
+      "description": "Returns contributor name."
     },
     "request_type": {
       "type": "string",
@@ -51,12 +51,12 @@
     "source": {
       "type": "string",
       "enum": ["API", "SLC"],
-      "description": "Source type of production location"
+      "description": "Source type of production location."
     },
     "status": {
       "type": "string",
       "enum": ["PENDING", "APPROVED", "REJECTED"],
-      "description": "Moderation status of the production location"
+      "description": "Moderation status of the production location."
     },
     "status_change_date": {
       "type": "string",
@@ -64,7 +64,7 @@
     },
     "claim_id": {
       "type": "number",
-      "description": "Linked claim id for this production location"
+      "description": "Linked claim id for this production location."
     }
   },
   "required": [

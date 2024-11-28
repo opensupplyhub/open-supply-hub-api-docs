@@ -1,23 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a country",
+  "description": "This schema represents a country.",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of the country according to ISO 3166-1"
+      "description": "The name of the country according to ISO 3166-1."
     },
     "alpha_2": {
       "type": "string",
-      "description": "The ISO 3166-1 alpha-2 code of the country"
+      "description": "The ISO 3166-1 alpha-2 code of the country."
     },
     "alpha_3": {
       "type": "string",
-      "description": "The ISO 3166-1 alpha-3 code of the country"
+      "description": "The ISO 3166-1 alpha-3 code of the country."
     },
     "numeric": {
       "type": "string",
-      "description": "The ISO 3166-1 numeric code of the country"
+      "description": "The ISO 3166-1 numeric code of the country."
     }
   },
   "required": ["name", "alpha_2", "alpha_3", "numeric"]

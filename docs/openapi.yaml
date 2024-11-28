@@ -9,23 +9,23 @@ servers:
     description: Production environment
 tags:
   - name: beta
-    description: APIs are implemented and ready for beta testing
+    description: APIs are implemented and ready for beta testing.
   - name: countries
-    description: Operations related to countries
+    description: Operations related to countries.
   - name: sectors
-    description: Operations related to sectors
+    description: Operations related to sectors.
   - name: product-types
-    description: Operations related to product types
+    description: Operations related to product types.
   - name: location-types
-    description: Operations related to location types
+    description: Operations related to location types.
   - name: parent-companies
-    description: Operations related to parent companies
+    description: Operations related to parent companies.
   - name: contributors
-    description: Operations related to contributors
+    description: Operations related to contributors.
   - name: production-locations
-    description: Operations related to production locations
+    description: Operations related to production locations.
   - name: moderation-events
-    description: Operations related to moderation events
+    description: Operations related to moderation events.
 paths:
   /v1/contributors:
     get:
@@ -158,6 +158,10 @@ paths:
                 errors:
                   - field: "email"
                     message: "The value must be a valid email."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -185,6 +189,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        401:
+          $ref: "#/components/responses/unauthorized"
         422:
           description: Unprocessable Entity
           content:
@@ -196,6 +202,8 @@ paths:
                 errors:
                   - field: "email"
                     message: "The value must be a valid email."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -225,6 +233,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -233,6 +243,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The contributor with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -260,6 +272,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -279,6 +293,8 @@ paths:
                 errors:
                   - field: "email"
                     message: "The value must be a valid email."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -306,6 +322,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/contributor"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -325,6 +343,8 @@ paths:
                 errors:
                   - field: "email"
                     message: "The value must be a valid email."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -342,6 +362,8 @@ paths:
       responses:
         204:
           description: No Content
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -350,6 +372,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The contributor with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -444,14 +468,6 @@ paths:
                     alpha_2: "US"
                     alpha_3: "USA"
                     numeric: "840"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "An unexpected error occurred while processing the request."
         400:
           description: Bad Request
           content:
@@ -463,6 +479,18 @@ paths:
                 errors:
                   - field: "search_after"
                     message: "The value must be a valid id."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                message: "An unexpected error occurred while processing the request."
   /v1/sectors:
     get:
       parameters:
@@ -508,6 +536,10 @@ paths:
                   - name: "Agriculture"
                   - name: "Apparel"
                   - name: "Information"
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
   /v1/product-types:
     get:
       parameters:
@@ -553,6 +585,10 @@ paths:
                   - name: "Accessories"
                   - name: "Belts"
                   - name: "Caps"
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
   /v1/location-types:
     get:
       parameters:
@@ -628,6 +664,10 @@ paths:
                       - name: "Printing"
                       - name: "Dyeing"
                       - name: "Laundering"
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
   /v1/parent-companies:
     get:
       parameters:
@@ -684,6 +724,10 @@ paths:
                 errors:
                   - field: "name"
                     message: "The value must be a non-empty string."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -768,8 +812,11 @@ paths:
             enum: [name, address]
         - $ref: "#/components/parameters/order_by"
       description: >
-        Returns an array of production locations with name and id and other properties, where id is the unique identifier of the location.
-        Production location data for the search becomes available 15 minutes after upload to the system.
+        Returns an array of production locations, including the name, id,
+        and other properties, where the id is the unique identifier of
+        each location. Production location data for the search becomes
+        available 15 minutes after the uploaded location data is approved by
+        the data moderator.
       tags:
         - production-locations
         - beta
@@ -799,6 +846,10 @@ paths:
                 errors:
                   - field: "number_of_workers"
                     message: "The value must be a valid object with `min` and `max` properties."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -810,7 +861,8 @@ paths:
     post:
       summary: Create a new location.
       description: >
-        Creates a new location with the given details.
+        Creates a new moderation event for the production location
+        creation with the given details.
       tags:
         - production-locations
       requestBody:
@@ -826,6 +878,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/location_new"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request body is invalid."
+                errors:
+                  - field: "non_field_errors"
+                    detail: "Invalid data. Expected a dictionary (object), but got list."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        403:
+          $ref: "#/components/responses/unconfirmed_user"
         422:
           description: Unprocessable Entity
           content:
@@ -833,12 +900,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "name"
-                    message: "The value must be a non-empty string."
+                    detail: "The value must be a non-empty string."
                   - field: "country"
-                    message: "The value must be a valid country code or name."
+                    detail: "The value must be a valid country code or name."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -846,7 +915,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
+        503:
+          $ref: "#/components/responses/data_upload_maintenance_error"
   /v1/production-locations/{os_id}:
     parameters:
       - name: os_id
@@ -858,7 +929,11 @@ paths:
     get:
       summary: Get details of a location by its unique identifier.
       description: >
-        Returns details of a location with name and id and other properties, where id is the unique identifier of the location.
+        Returns details of a location, including the name, id, and other
+        properties, where the id is the unique identifier of the
+        location. Production location data for the search becomes
+        available 15 minutes after the uploaded location is approved by
+        the data moderator.
       tags:
         - production-locations
       responses:
@@ -879,6 +954,8 @@ paths:
                 errors:
                   - field: "os_id"
                     message: "The value must be a valid id."
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -887,6 +964,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The location with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -914,6 +993,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/location_update"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -935,6 +1016,8 @@ paths:
                     message: "The value must be a non-empty string."
                   - field: "country"
                     message: "The value must be a valid country code or name."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -956,6 +1039,8 @@ paths:
             application/json:
               schema:
                 example: null
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -964,6 +1049,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The location with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -995,6 +1082,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/location_contribution"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -1003,6 +1092,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The location with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1034,6 +1125,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/claim"
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -1042,6 +1135,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 message: "The location with the given id was not found."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1074,6 +1169,8 @@ paths:
                     type: string
                     example: "pending"
                     enum: ["pending", "approved", "rejected"]
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -1093,6 +1190,8 @@ paths:
                 errors:
                   - field: "job_title"
                     message: "The job title is required."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1207,8 +1306,9 @@ paths:
               ]
         - $ref: "#/components/parameters/order_by"
       description: >
-        Returns an array of moderation events.
-        Moderation events data for the search becomes available 15 minutes after upload to the system.
+        Returns an array of moderation events. Moderation event data for
+        the search becomes available 1 minute after the moderation event
+        is created.
       tags:
         - moderation-events
       responses:
@@ -1233,7 +1333,7 @@ paths:
                     message: "The request query is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a string with uuid format"
+                        message: "Moderation id must be a string with uuid format."
                 invalid_status:
                   summary: Invalid `status`
                   value:
@@ -1276,6 +1376,10 @@ paths:
                     errors:
                       - field: "date_lt"
                         message: "Start date cannot be later than the end date."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1296,8 +1400,9 @@ paths:
             type: string
             format: uuid
       description: >
-        Returns moderation event associated with specific id.
-        Moderation events data for the search becomes available 15 minutes after upload to the system.
+        Returns the moderation event associated with a specific id.
+        Moderation event data for the search becomes available 1
+        minute after the moderation event is created.
       tags:
         - moderation-events
       responses:
@@ -1319,13 +1424,9 @@ paths:
                   - field: "moderation_id"
                     message: "Invalid UUID format."
         401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Only an authorized user can perform this action."
+          $ref: "#/components/responses/unauthorized"
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1356,8 +1457,9 @@ paths:
                   enum: [PENDING, APPROVED, REJECTED]
                   description: Moderation status of production location.
       description: >
-        Returns updated moderation event.
-        Moderation events data for the search becomes available 15 minutes after upload to the system.
+        Changes the moderation event. Moderation event data is updated
+        in the search results 1 minute after the update action is
+        performed.
       tags:
         - moderation-events
       responses:
@@ -1395,6 +1497,8 @@ paths:
                     errors:
                       - field: "status"
                         message: "This field is required."
+        401:
+          $ref: "#/components/responses/unauthorized"
         403:
           description: Forbidden
           content:
@@ -1414,6 +1518,8 @@ paths:
                 errors:
                   - field: "moderation_id"
                     message: "Moderation event not found."
+        429:
+          $ref: "#/components/responses/throttled"  
         500:
           description: Internal Server Error
           content:
@@ -1434,9 +1540,21 @@ paths:
     post:
       tags:
         - moderation-events
-      summary: Create production location based on moderation event.
-      description: >
-        When data moderator approves a moderation event, a new production location is created based on the moderation event.
+      summary: >
+        Creates a new production location based on the moderation
+        event.
+      description: |
+        Creates a new production location based on the moderation
+        event, either for creating a new production location or
+        contributing to an existing one.
+
+        When a data moderator decides to create a new production
+        location, this endpoint is used. A new production
+        location can be created even if the moderation event is
+        of type `UPDATE`. You can refer to the GET 
+        `/v1/production-locations/` or
+        `/v1/production-locations/{os_id}/` endpoints to search for
+        the newly created production location.
       responses:
         201:
           description: Created
@@ -1458,6 +1576,8 @@ paths:
                 errors:
                   - field: "moderation_id"
                     detail: "Invalid UUID format."
+        401:
+          $ref: "#/components/responses/unauthorized"
         403:
           description: Forbidden
           content:
@@ -1488,6 +1608,8 @@ paths:
                 errors:
                   - field: "status"
                     detail: "The moderation event should be in PENDING status."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1499,9 +1621,19 @@ paths:
     patch:
       tags:
         - moderation-events
-      summary: Add a new contribution to the production location.
-      description: >
-        When data moderator approves a moderation event, a new contribution is added to the production location.
+      summary: >
+        Add a new contribution to the existing production location.
+      description: |
+        Adds a new contribution to the existing location based on the
+        moderation event.
+
+        When a data moderator decides to add location data as a new
+        contribution to an existing production location, this endpoint
+        is used to create the contribution. A new contribution can be
+        added even if the moderation event is of type `CREATE`. You can
+        refer to the GET `/v1/production-locations/` or
+        `/v1/production-locations/{os_id}/` endpoints to search for the
+        production location to which the contribution was made.
       requestBody:
         required: true
         content:
@@ -1525,6 +1657,8 @@ paths:
                 properties:
                   os_id:
                     type: string
+        401:
+          $ref: "#/components/responses/unauthorized"
         404:
           description: Not Found
           content:
@@ -1543,7 +1677,9 @@ paths:
                 message: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a valid string"
+                    message: "Moderation id must be a valid string."
+        429:
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1588,7 +1724,15 @@ components:
       $ref: "schemas/moderation_event.json"
     error:
       $ref: "schemas/error.json"
-
+  responses:
+    unauthorized:
+      $ref: "responses/unauthorized.json"
+    unconfirmed_user:
+      $ref: "responses/unconfirmed_user.json"
+    throttled:
+      $ref: "responses/throttled.json"
+    data_upload_maintenance_error:
+      $ref: "responses/data_upload_maintenance_error.json"
   parameters:
     order_by:
       name: order_by
@@ -1599,7 +1743,6 @@ components:
         type: string
         default: asc
         enum: [asc, desc]
-
     limit:
       name: size
       in: query

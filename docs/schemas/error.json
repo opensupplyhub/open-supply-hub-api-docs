@@ -1,37 +1,45 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents an error returned from the API",
+  "description": "This schema represents an error returned from the API.",
   "properties": {
-    "message": {
+    "detail": {
       "type": "string",
-      "description": "A message describing the error"
-    },
-    "code": {
-      "type": "number",
-      "description": "A code identifying the error"
+      "description": "A message describing a general error."
     },
     "errors": {
       "type": "array",
-      "description": "An array of errors",
+      "description": "An array of errors.",
       "items": {
         "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "The field that the error is associated with"
+        "oneOf": [
+          {
+            "properties": {
+              "field": {
+                "type": "string",
+                "description": "The field that the error is associated with."
+              },
+              "detail": {
+                "type": "string",
+                "description": "A specific message describing the error related to a field or fields."
+              }
+            }
           },
-          "code": {
-            "type": "number",
-            "description": "A code identifying the error"
-          },
-          "message": {
-            "type": "string",
-            "description": "A message describing the error code"
+          {
+            "properties": {
+              "field": {
+                "const": "non_field_errors",
+                "description": "If the error isn’t field-specific, the non_field_errors key will be used for issues spanning multiple fields or related to the overall data object."
+              },
+              "detail": {
+                "type": "string",
+                "description": "A specific message describing the error related to fields or the overall data object."
+              }
+            }
           }
-        }
+        ]
       }
     }
   },
-  "required": ["message"]
+  "required": ["detail"]
 }

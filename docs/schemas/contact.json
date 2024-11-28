@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema a contact fo the location",
+  "description": "This schema a contact for the location.",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name for the point of contact (or claimant) for the location"
+      "description": "The name for the point of contact (or claimant) for the location."
     },
     "email": {
       "type": "string",
-      "description": "The email address for the point of contact"
+      "description": "The email address for the point of contact."
     },
     "phone": {
       "type": "string",
-      "description": "The phone number for the point of contact"
+      "description": "The phone number for the point of contact."
     }
   },
   "required": ["name", "email"]

@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a sector",
+  "description": "This schema represents a sector.",
   "properties": {
     "name": {
       "type": "string",
-      "description": "The name of the sector"
+      "description": "The name of the sector."
     }
   },
   "required": ["name"]
