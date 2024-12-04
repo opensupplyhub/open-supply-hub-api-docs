@@ -6,7 +6,7 @@
         "$ref": "../schemas/error.json"
       },
       "example": {
-          "detail": "User must be registered, active, and have confirmed their email to access this endpoint."
+          "detail": "User must be registered and have confirmed their email to access."
       }
     }
   }

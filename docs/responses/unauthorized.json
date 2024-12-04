@@ -5,8 +5,13 @@
       "schema": {
         "$ref": "../schemas/error.json"
       },
-      "example": {
-          "detail": "Authentication credentials were not provided."
+      "examples": {
+          "no credentials": {
+            "value": "Authentication credentials were not provided."
+          },
+          "inactive or deleted user": {
+            "value": "User inactive or deleted."
+          }
       }
     }
   }
