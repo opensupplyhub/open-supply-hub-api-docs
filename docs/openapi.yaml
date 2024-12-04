@@ -1670,6 +1670,16 @@ components:
     error:
       $ref: "schemas/error.json"
   parameters:
+    order_by:
+      name: order_by
+      in: query
+      description: The order to sort the results by.
+      required: false
+      schema:
+        type: string
+        default: asc
+        enum: [asc, desc]
+
     limit:
       name: size
       in: query
