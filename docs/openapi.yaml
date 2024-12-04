@@ -27,7 +27,7 @@ tags:
   - name: moderation-events
     description: Operations related to moderation events
 paths:
-  /v1/contributors:
+  /v1/contributors/:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -154,10 +154,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request query is invalid."
+                detail: "The request query is invalid."
                 errors:
                   - field: "email"
-                    message: "The value must be a valid email."
+                    detail: "The value must be a valid email."
         500:
           description: Internal Server Error
           content:
@@ -165,7 +165,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     post:
       summary: Create a new contributor.
       description: >
@@ -192,10 +192,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "email"
-                    message: "The value must be a valid email."
+                    detail: "The value must be a valid email."
         500:
           description: Internal Server Error
           content:
@@ -203,8 +203,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/contributors/{user_id}:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/contributors/{user_id}/:
     parameters:
       - name: user_id
         in: path
@@ -232,7 +232,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The contributor with the given id was not found."
+                detail: "The contributor with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -240,7 +240,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     put:
       summary: Update an existing contributor.
       description: >
@@ -267,7 +267,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The contributor with the given id was not found."
+                detail: "The contributor with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -275,10 +275,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "email"
-                    message: "The value must be a valid email."
+                    detail: "The value must be a valid email."
         500:
           description: Internal Server Error
           content:
@@ -286,7 +286,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing contributor.
       description: >
@@ -313,7 +313,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The contributor with the given id was not found."
+                detail: "The contributor with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -321,10 +321,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "email"
-                    message: "The value must be a valid email."
+                    detail: "The value must be a valid email."
         500:
           description: Internal Server Error
           content:
@@ -332,7 +332,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     delete:
       summary: Delete an existing contributor.
       description: >
@@ -349,7 +349,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The contributor with the given id was not found."
+                detail: "The contributor with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -357,8 +357,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/countries:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/countries/:
     get:
       summary: Get list of countries supported by the OS Hub platform.
       description: >
@@ -451,7 +451,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
         400:
           description: Bad Request
           content:
@@ -459,11 +459,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request query is invalid."
+                detail: "The request query is invalid."
                 errors:
                   - field: "search_after"
-                    message: "The value must be a valid id."
-  /v1/sectors:
+                    detail: "The value must be a valid id."
+  /v1/sectors/:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -508,7 +508,7 @@ paths:
                   - name: "Agriculture"
                   - name: "Apparel"
                   - name: "Information"
-  /v1/product-types:
+  /v1/product-types/:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -553,7 +553,7 @@ paths:
                   - name: "Accessories"
                   - name: "Belts"
                   - name: "Caps"
-  /v1/location-types:
+  /v1/location-types/:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -628,7 +628,7 @@ paths:
                       - name: "Printing"
                       - name: "Dyeing"
                       - name: "Laundering"
-  /v1/parent-companies:
+  /v1/parent-companies/:
     get:
       parameters:
         - $ref: "#/components/parameters/limit"
@@ -680,10 +680,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request query is invalid."
+                detail: "The request query is invalid."
                 errors:
                   - field: "name"
-                    message: "The value must be a non-empty string."
+                    detail: "The value must be a non-empty string."
         500:
           description: Internal Server Error
           content:
@@ -691,18 +691,47 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/production-locations:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/production-locations/:
     get:
       summary: Get list of production locations exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: search_after
+        - name: search_after[value]
           in: query
-          description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
+          description: >
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
+            - `name`, `address`: Text (string).
+
+
+            Must be used in concert with `search_after[id]`
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                example: "Production location name"
+                description: Text value for the `name` field.
+              - type: string
+                example: "Production location address"
+                description: Text value for the `address` field.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses os_id of the previous element.
           required: false
           schema:
             type: string
+            example: CN2223250D1DTN7
+            description: The unique identifier of the location. Must be used in concert with `search_after[value]`
+        - name: from
+          in: query
+          description: Number from which to start showing the results for the pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            description: The `from` and `size` parameters return results one page at a time.
         - name: query
           in: query
           description: Filter using the query string (searches across multiple fields).
@@ -803,10 +832,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request query is invalid."
+                detail: "The request query is invalid."
                 errors:
                   - field: "number_of_workers"
-                    message: "The value must be a valid object with `min` and `max` properties."
+                    detail: "The value must be a valid object with `min` and `max` properties."
         500:
           description: Internal Server Error
           content:
@@ -814,7 +843,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     post:
       summary: Create a new location.
       description: >
@@ -841,12 +870,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "name"
-                    message: "The value must be a non-empty string."
+                    detail: "The value must be a non-empty string."
                   - field: "country"
-                    message: "The value must be a valid country code or name."
+                    detail: "The value must be a valid country code or name."
         500:
           description: Internal Server Error
           content:
@@ -854,8 +883,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/production-locations/{os_id}:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/production-locations/{os_id}/:
     parameters:
       - name: os_id
         in: path
@@ -883,10 +912,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request query is invalid."
+                detail: "The request query is invalid."
                 errors:
                   - field: "os_id"
-                    message: "The value must be a valid id."
+                    detail: "The value must be a valid id."
         404:
           description: Not Found
           content:
@@ -894,7 +923,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -902,7 +931,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing location.
       description: >
@@ -929,7 +958,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -937,12 +966,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "name"
-                    message: "The value must be a non-empty string."
+                    detail: "The value must be a non-empty string."
                   - field: "country"
-                    message: "The value must be a valid country code or name."
+                    detail: "The value must be a valid country code or name."
         500:
           description: Internal Server Error
           content:
@@ -950,7 +979,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     delete:
       summary: Delete an existing location.
       description: >
@@ -971,7 +1000,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -979,8 +1008,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/production-locations/{os_id}/contributions:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/production-locations/{os_id}/contributions/:
     parameters:
       - name: os_id
         in: path
@@ -1010,7 +1039,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1018,8 +1047,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/production-locations/{os_id}/claims:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/production-locations/{os_id}/claims/:
     parameters:
       - name: os_id
         in: path
@@ -1049,7 +1078,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         500:
           description: Internal Server Error
           content:
@@ -1057,7 +1086,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     post:
       summary: Claim a location.
       description: >
@@ -1089,7 +1118,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The location with the given id was not found."
+                detail: "The location with the given id was not found."
         422:
           description: Unprocessable Entity
           content:
@@ -1097,10 +1126,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request body is invalid."
+                detail: "The request body is invalid."
                 errors:
                   - field: "job_title"
-                    message: "The job title is required."
+                    detail: "The job title is required."
         500:
           description: Internal Server Error
           content:
@@ -1108,18 +1137,52 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/moderation-events:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/:
     get:
       summary: Get list of moderation events exposed by the OS Hub platform.
       parameters:
         - $ref: "#/components/parameters/limit"
-        - name: search_after
+        - name: search_after[value]
           in: query
-          description: Cursor for the pagination.
+          description: >
+            description: |
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
+            - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
+
+            - `contributor_id`: Numeric ID (integer).
+
+            - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
+
+
+            Must be used in concert with `search_after[id]`.
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                format: date-time
+                example: '2024-11-19T07:52:12.641297Z'
+                description: ISO 8601 (YYYY-MM-DDTHH:mm:ss.ssssssZ) time format for fields like `created_at`, `status_change_date`, or `updated_at`.
+              - type: string
+                example: "John Doe"
+                description: Text value for fields like `contributor_name`, `name`, `address`, `source`, `country`, or `status`.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses moderation_id of the previous element. Must be used in concert with `search_after[value]`
           required: false
           schema:
             type: string
+            example: 1f35a90f-70a0-4c3e-8e06-2ed8e1fc6810
+        - name: from
+          in: query
+          description: Number from which to start showing the results for the pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            description: The `from` and `size` parameters return results one page at a time.
         - name: contributor_id
           in: query
           description: Filter using contributor id.
@@ -1203,15 +1266,17 @@ paths:
             default: none (best match) for all queries; `created_at` when use `search_after[value]` and `search_after[id]`.
             type: string
             enum:
-              [
-                created_at,
-                status_change_date,
-                updated_at,
-                contributor_id,
-                contributor_name,
-                country_name,
-                source,
-                status,
+              [                
+              'created_at',
+              'status_change_date',
+              'updated_at',
+              'contributor_id',
+              'contributor_name',
+              'country',
+              'name',
+              'address',
+              'source',
+              'status',
               ]
         - order_by:
           name: order_by
@@ -1246,52 +1311,52 @@ paths:
                 invalid_moderation_id:
                   summary: Invalid `moderation_id`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Moderation id must be a string with uuid format"
+                        detail: "Moderation id must be a string with uuid format"
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING, APPROVED or REJECTED."
+                        detail: "Moderation status must be one of PENDING, APPROVED or REJECTED."
                 invalid_request_type:
                   summary: Invalid `request_type`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "request_type"
-                        message: "Request type must be one of CREATE, UPDATE, or CLAIM."
+                        detail: "Request type must be one of CREATE, UPDATE, or CLAIM."
                 invalid_country:
                   summary: Invalid `country`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "country"
-                        message: "Country must be a valid alpha-2 country code."
+                        detail: "Country must be a valid alpha-2 country code."
                 invalid_date_gte:
                   summary: Invalid `date_gte`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "date_gte"
-                        message: "The value must be a valid date string."
+                        detail: "The value must be a valid date string."
                 invalid_date_lt:
                   summary: Invalid `date_lt`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "date_lt"
-                        message: "The value must be a valid date string."
+                        detail: "The value must be a valid date string."
                 invalid_date_range:
                   summary: Invalid `date_lt` and `date_gte`
                   value:
-                    message: "The request query is invalid."
+                    detail: "The request query is invalid."
                     errors:
                       - field: "date_lt"
-                        message: "Start date cannot be later than the end date."
+                        detail: "Start date cannot be later than the end date."
         500:
           description: Internal Server Error
           content:
@@ -1299,8 +1364,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/moderation-events/{moderation_id}:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/:
     get:
       summary: Get moderation event by id.
       parameters:
@@ -1330,10 +1395,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request path parameter is invalid."
+                detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Invalid UUID format."
+                    detail: "Invalid UUID format."
         401:
           description: Unauthorized
           content:
@@ -1349,7 +1414,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     patch:
       summary: Change moderation event. Available only for data moderators.
       parameters:
@@ -1393,24 +1458,24 @@ paths:
                 invalid_moderation_id:
                   summary: Invalid `moderation_id`
                   value:
-                    message: "The request path parameter is invalid."
+                    detail: "The request path parameter is invalid."
                     errors:
                       - field: "moderation_id"
-                        message: "Invalid UUID format."
+                        detail: "Invalid UUID format."
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    message: "The request body contains invalid or missing fields."
+                    detail: "The request body contains invalid or missing fields."
                     errors:
                       - field: "status"
-                        message: "Moderation status must be one of PENDING, APPROVED or REJECTED."
+                        detail: "Moderation status must be one of PENDING, APPROVED or REJECTED."
                 missing_status:
                   summary: Missing `status`
                   value:
-                    message: "The request body contains invalid or missing fields."
+                    detail: "The request body contains invalid or missing fields."
                     errors:
                       - field: "status"
-                        message: "This field is required."
+                        detail: "This field is required."
         403:
           description: Forbidden
           content:
@@ -1418,7 +1483,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "Only Moderator could perform this action."
+                detail: "Only the Moderator can perform this action."
         404:
           description: Not Found
           content:
@@ -1426,10 +1491,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request path parameter is invalid."
+                detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation event not found."
+                    detail: "Moderation event not found."
         500:
           description: Internal Server Error
           content:
@@ -1437,8 +1502,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
-  /v1/moderation-events/{moderation_id}/production-locations:
+                detail: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/production-locations/:
     parameters:
       - name: moderation_id
         in: path
@@ -1463,14 +1528,6 @@ paths:
                 properties:
                   os_id:
                     type: string
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                message: "Moderation event not found."
         400:
           description: Bad Request
           content:
@@ -1478,10 +1535,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request path parameter is invalid."
+                detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a valid string."
+                    detail: "Invalid UUID format."
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "Only the Moderator can perform this action."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request path parameter is invalid."
+                errors:
+                  - field: "moderation_id"
+                    detail: "Moderation event not found."
+        410:
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request path parameter is invalid."
+                errors:
+                  - field: "status"
+                    detail: "The moderation event should be in PENDING status."
         500:
           description: Internal Server Error
           content:
@@ -1489,7 +1576,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
     patch:
       tags:
         - moderation-events
@@ -1526,7 +1613,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "Moderation event not found."
+                detail: "Moderation event not found."
         400:
           description: Bad Request
           content:
@@ -1534,10 +1621,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "The request path parameter is invalid."
+                detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    message: "Moderation id must be a valid string"
+                    detail: "Moderation id must be a valid string"
         500:
           description: Internal Server Error
           content:
@@ -1545,7 +1632,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                message: "An unexpected error occurred while processing the request."
+                detail: "An unexpected error occurred while processing the request."
 components:
   schemas:
     claim:
