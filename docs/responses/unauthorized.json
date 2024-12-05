@@ -7,10 +7,14 @@
       },
       "examples": {
           "no credentials": {
-            "value": "Authentication credentials were not provided."
+            "value": {
+              "detail": "Authentication credentials were not provided."
+            }
           },
           "inactive or deleted user": {
-            "value": "User inactive or deleted."
+            "value": {
+              "detail": "User inactive or deleted."
+            }
           }
       }
     }
