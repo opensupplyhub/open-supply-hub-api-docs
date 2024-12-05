@@ -718,12 +718,11 @@ paths:
                 description: Text value for the `address` field.
         - name: search_after[id]
           in: query
-          description: Cursor for the pagination. Uses os_id of the previous element.
+          description: Cursor for the pagination. Uses os_id of the previous element. Must be used in concert with `search_after[value]`.
           required: false
           schema:
             type: string
             example: CN2223250D1DTN7
-            description: The unique identifier of the location. Must be used in concert with `search_after[value]`
         - name: from
           in: query
           description: Number from which to start showing the results for the pagination.
