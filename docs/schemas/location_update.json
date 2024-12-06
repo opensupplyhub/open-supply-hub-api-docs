@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents an existing location update response object",
+  "description": "This schema represents an existing location update response object.",
   "allOf": [
     {
       "properties": {
         "os_id": {
           "type": "string",
-          "description": "The unique identifier for a location that represents current OS ID"
+          "description": "The unique identifier for a location that represents current OS ID."
         }
       }
     },

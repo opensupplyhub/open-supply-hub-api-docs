@@ -1,0 +1,23 @@
+{
+  "description": "Unauthorized",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/error.json"
+      },
+      "examples": {
+          "no credentials": {
+            "value": {
+              "detail": "Authentication credentials were not provided."
+            }
+          },
+          "inactive or deleted user": {
+            "value": {
+              "detail": "User inactive or deleted."
+            }
+          }
+      }
+    }
+  }
+}
+  

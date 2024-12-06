@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a location",
+  "description": "This schema represents a location.",
   "allOf": [
     {
       "$ref": "location_main.json"

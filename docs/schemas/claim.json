@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a location claim request",
+  "description": "This schema represents a location claim request.",
   "allOf": [
     {
       "properties": {
         "claim_id": {
           "type": "string",
-          "description": "The unique identifier of the claim request"
+          "description": "The unique identifier of the claim request."
         }
       },
       "required": ["claim_id"]

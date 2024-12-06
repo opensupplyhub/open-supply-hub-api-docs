@@ -1,26 +1,26 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents a location",
+  "description": "This schema represents a location.",
   "allOf": [
     {
       "properties": {
         "os_id": {
           "type": "string",
-          "description": "The unique identifier for a location"
+          "description": "The unique identifier for a location."
         },
         "contribution_id": {
           "type": "string",
-          "description": "The unique identifier for a contribution"
+          "description": "The unique identifier for a contribution."
         },
         "contribution_type": {
           "type": "string",
-          "description": "The type of contribution was made to the location",
+          "description": "The type of contribution was made to the location.",
           "enum": ["create", "update"]
         },
         "user_id": {
           "type": "string",
-          "description": "The unique identifier for a user"
+          "description": "The unique identifier for a user."
         }
       },
       "required": ["os_id", "contribution_type", "user_id", "contribution_id"]

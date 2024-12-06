@@ -5,52 +5,52 @@
   "properties": {
     "full_name": {
       "type": "string",
-      "description": "The full name of the claimant"
+      "description": "The full name of the claimant."
     },
     "job_title": {
       "type": "string",
-      "description": "The job title of the claimant"
+      "description": "The job title of the claimant."
     },
     "email": {
       "type": "string",
-      "description": "The email of the claimant"
+      "description": "The email of the claimant."
     },
     "phone": {
       "type": "string",
-      "description": "The phone number of the claimant"
+      "description": "The phone number of the claimant."
     },
     "company_name": {
       "type": "string",
-      "description": "Official name of LLC or company registered"
+      "description": "Official name of LLC or company registered."
     },
     "parent_company": {
       "type": "string",
-      "description": "Name of parent company if applicable"
+      "description": "Name of parent company if applicable."
     },
     "website_url": {
       "type": "string",
-      "description": "URL of the company website"
+      "description": "URL of the company website."
     },
     "description": {
       "type": "string",
-      "description": "Location bio/description"
+      "description": "Location bio/description."
     },
     "preferred_contact_method": {
       "type": "string",
-      "description": "Preferred contact method",
+      "description": "Preferred contact method.",
       "enum": ["email", "phone"]
     },
     "linkedin_url": {
       "type": "string",
-      "description": "URL of the company LinkedIn page"
+      "description": "URL of the company LinkedIn page."
     },
     "additional_info": {
       "type": "string",
-      "description": "Additional information about the location"
+      "description": "Additional information about the location."
     },
     "location": {
       "type": "object",
-      "description": "The location details",
+      "description": "The location details.",
       "allOf": [
         {
           "$ref": "location_base.json"
