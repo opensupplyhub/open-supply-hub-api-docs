@@ -111,9 +111,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [email]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -435,9 +435,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: alpha_2
           schema:
             type: string
+            default: alpha_2
             enum: [name, alpha_2, alpha_3, numeric]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -513,9 +513,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of sectors that are present in the OS Hub platform.
@@ -562,9 +562,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of product types that are present in the OS Hub platform.
@@ -619,9 +619,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
         - name: fields
@@ -690,9 +690,9 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: name
             enum: [name]
         - $ref: "#/components/parameters/order_by"
       summary: Get list of parent companies that are present in the OS Hub platform.
@@ -762,12 +762,11 @@ paths:
                 description: Text value for the `address` field.
         - name: search_after[id]
           in: query
-          description: Cursor for the pagination. Uses os_id of the previous element.
+          description: Cursor for the pagination. Uses os_id of the previous element. Must be used in concert with `search_after[value]`.
           required: false
           schema:
             type: string
             example: CN2223250D1DTN7
-            description: The unique identifier of the location. Must be used in concert with `search_after[value]`
         - name: from
           in: query
           description: Number from which to start showing the results for the pagination.
@@ -835,11 +834,19 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: name
           schema:
             type: string
+            default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
             enum: [name, address]
-        - $ref: "#/components/parameters/order_by"
+        - order_by:
+          name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          schema:
+            type: string
+            default: none for all queries, `asc` for `sort_by` and `search_after[value]` | `search_after[id]`.
+            enum: [asc, desc]
       description: >
         Returns an array of production locations, including the name, id,
         and other properties, where the id is the unique identifier of
@@ -1357,10 +1364,11 @@ paths:
           in: query
           description: The field to sort the results by.
           required: false
-          default: created_at
           schema:
+            default: none (best match) for all queries; `created_at` when use `search_after[value]` and `search_after[id]`.
             type: string
-            enum: [
+            enum:
+              [                
               'created_at',
               'status_change_date',
               'updated_at',
@@ -1371,8 +1379,16 @@ paths:
               'address',
               'source',
               'status',
-            ]
-        - $ref: "#/components/parameters/order_by"
+              ]
+        - order_by:
+          name: order_by
+          in: query
+          description: The order to sort the results by.
+          required: false
+          schema:
+            type: string
+            default: none for all queries, `desc` for `sort_by` and `search_after[value]` | `search_after[id]`.
+            enum: [asc, desc]
       description: >
         Returns an array of moderation events. Moderation event data for
         the search becomes available 1 minute after the moderation event
