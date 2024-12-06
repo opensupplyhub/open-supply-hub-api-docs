@@ -976,6 +976,7 @@ paths:
         the data moderator.
       tags:
         - production-locations
+        - beta
       responses:
         200:
           description: OK
@@ -1265,7 +1266,7 @@ paths:
             oneOf:
               - type: string
                 format: date-time
-                example: '2024-11-19T07:52:12.641297Z'
+                example: "2024-11-19T07:52:12.641297Z"
                 description: ISO 8601 (YYYY-MM-DDTHH:mm:ss.ssssssZ) time format for fields like `created_at`, `status_change_date`, or `updated_at`.
               - type: string
                 example: "John Doe"
@@ -1368,17 +1369,17 @@ paths:
             default: none (best match) for all queries; `created_at` when use `search_after[value]` and `search_after[id]`.
             type: string
             enum:
-              [                
-              'created_at',
-              'status_change_date',
-              'updated_at',
-              'contributor_id',
-              'contributor_name',
-              'country',
-              'name',
-              'address',
-              'source',
-              'status',
+              [
+                "created_at",
+                "status_change_date",
+                "updated_at",
+                "contributor_id",
+                "contributor_name",
+                "country",
+                "name",
+                "address",
+                "source",
+                "status",
               ]
         - order_by:
           name: order_by
@@ -1611,7 +1612,7 @@ paths:
                   - field: "moderation_id"
                     detail: "Moderation event not found."
         429:
-          $ref: "#/components/responses/throttled"  
+          $ref: "#/components/responses/throttled"
         500:
           description: Internal Server Error
           content:
@@ -1643,7 +1644,7 @@ paths:
         When a data moderator decides to create a new production
         location, this endpoint is used. A new production
         location can be created even if the moderation event is
-        of type `UPDATE`. You can refer to the GET 
+        of type `UPDATE`. You can refer to the GET
         `/v1/production-locations/` or
         `/v1/production-locations/{os_id}/` endpoints to search for
         the newly created production location.
