@@ -1517,7 +1517,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "The moderation event with the given uuid was not found."
+                detail: "Moderation event not found."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1579,14 +1579,14 @@ paths:
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    detail: "The request body contains invalid or missing fields."
+                    detail: "The request body is invalid."
                     errors:
                       - field: "status"
                         detail: "Moderation status must be one of PENDING, APPROVED or REJECTED."
                 missing_status:
                   summary: Missing `status`
                   value:
-                    detail: "The request body contains invalid or missing fields."
+                    detail: "The request body is invalid."
                     errors:
                       - field: "status"
                         detail: "This field is required."
@@ -1697,10 +1697,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "The request path parameter is invalid."
-                errors:
-                  - field: "status"
-                    detail: "The moderation event should be in PENDING status."
+                detail: "The moderation event should be in PENDING status."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1750,18 +1747,53 @@ paths:
                 properties:
                   os_id:
                     type: string
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              examples:
+                invalid_moderation_id:
+                  summary: Invalid `moderation_id`
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "moderation_id"
+                        detail: "Invalid UUID format."
+                production_location_not_found:
+                  summary: Production location not found
+                  value:
+                    detail: "The request body is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "No production location found with the provided os_id."
+                not_valid_os_id:
+                  summary: Invalid `os_id`
+                  value:
+                    detail: "The request body is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "The format of the os_id is invalid."
+                os_id_not_provided:
+                  summary: Missing `os_id`
+                  value:
+                    detail: "The request body is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "This field is required."
         401:
           $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
+        403:
+          description: Forbidden
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "Moderation event not found."
-        400:
-          description: Bad Request
+                detail: "Only the Moderator can perform this action."
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
@@ -1770,7 +1802,15 @@ paths:
                 detail: "The request path parameter is invalid."
                 errors:
                   - field: "moderation_id"
-                    detail: "Moderation id must be a valid string."
+                    detail: "Moderation event not found."
+        410:
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The moderation event should be in PENDING status."
         429:
           $ref: "#/components/responses/throttled"
         500:
