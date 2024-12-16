@@ -1708,7 +1708,22 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 detail: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/production-locations/{os_id}/:
     patch:
+      parameters:
+        - name: moderation_id
+          in: path
+          description: The unique identifier of moderation event.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: os_id
+          in: path
+          description: The unique identifier of the location.
+          required: true
+          schema:
+            type: string
       tags:
         - moderation-events
       summary: >
@@ -1724,19 +1739,6 @@ paths:
         refer to the GET `/v1/production-locations/` or
         `/v1/production-locations/{os_id}/` endpoints to search for the
         production location to which the contribution was made.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                os_id:
-                  type: string
-                  description: The unique identifier of the location.
-                  example: "CN2223250D1DTN7"
-              required:
-                - os_id
       responses:
         200:
           description: OK
@@ -1761,27 +1763,13 @@ paths:
                     errors:
                       - field: "moderation_id"
                         detail: "Invalid UUID format."
-                production_location_not_found:
-                  summary: Production location not found
-                  value:
-                    detail: "The request body is invalid."
-                    errors:
-                      - field: "os_id"
-                        detail: "No production location found with the provided os_id."
                 not_valid_os_id:
                   summary: Invalid `os_id`
                   value:
-                    detail: "The request body is invalid."
+                    detail: "The request path parameter is invalid."
                     errors:
                       - field: "os_id"
                         detail: "The format of the os_id is invalid."
-                os_id_not_provided:
-                  summary: Missing `os_id`
-                  value:
-                    detail: "The request body is invalid."
-                    errors:
-                      - field: "os_id"
-                        detail: "This field is required."
         401:
           $ref: "#/components/responses/unauthorized"
         403:
@@ -1798,11 +1786,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/error"
-              example:
-                detail: "The request path parameter is invalid."
-                errors:
-                  - field: "moderation_id"
-                    detail: "Moderation event not found."
+              examples:
+                moderation_event_not_found:
+                  summary: Moderation event not found
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "moderation_id"
+                        detail: "Moderation event not found."
+                production_location_not_found:
+                  summary: Production location not found
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "No production location found with the provided os_id."
         410:
           description: Gone
           content:
