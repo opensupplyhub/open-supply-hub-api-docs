@@ -1800,7 +1800,7 @@ paths:
                     detail: "The request path parameter is invalid."
                     errors:
                       - field: "os_id"
-                        detail: "No production location found with the provided os_id."
+                        detail: "The location with the given id was not found."
         410:
           description: Gone
           content:
