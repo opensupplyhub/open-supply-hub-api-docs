@@ -1769,7 +1769,7 @@ paths:
                     detail: "The request path parameter is invalid."
                     errors:
                       - field: "os_id"
-                        detail: "The format of the os_id is invalid."
+                        detail: "The value must be a valid id."
         401:
           $ref: "#/components/responses/unauthorized"
         403:
