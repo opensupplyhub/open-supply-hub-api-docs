@@ -7,7 +7,8 @@
       "properties": {
         "os_id": {
           "type": "string",
-          "description": "The unique identifier for a location that represents current OS ID."
+          "example": "ID2024331V7D4T9",
+          "description": "The unique identifier for a location that represents current OS id."
         }
       }
     },
