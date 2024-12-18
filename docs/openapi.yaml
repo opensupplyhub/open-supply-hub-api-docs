@@ -900,7 +900,7 @@ paths:
         Creates a new moderation event for the production location
         creation with the given details.
 
-        You can use the GET `/v1/moderation-events/{moderation_id}`
+        You can use the GET `/v1/moderation-events/{moderation_id}/`
         endpoint to track the status of the moderation event created
         by this action.
       tags:
@@ -1017,8 +1017,13 @@ paths:
                 detail: "An unexpected error occurred while processing the request."
     patch:
       summary: Partially update an existing location.
-      description: >
-        Partially updates an existing location with the given details.
+      description: |
+        Creates a new moderation event to contribute to an existing
+        production location with the given details.
+        
+        You can use the GET `/v1/moderation-events/{moderation_id}/`
+        endpoint to track the status of the moderation event created
+        by this action.
       tags:
         - production-locations
       requestBody:
@@ -1034,8 +1039,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/location_update"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The request body is invalid."
+                errors:
+                  - field: "non_field_errors"
+                    detail: "Invalid data. Expected a dictionary (object), but got list."
         401:
           $ref: "#/components/responses/unauthorized"
+        403:
+          $ref: "#/components/responses/unconfirmed_user"
         404:
           description: Not Found
           content:
@@ -1067,6 +1085,8 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 detail: "An unexpected error occurred while processing the request."
+        503:
+          $ref: "#/components/responses/data_upload_maintenance_error"
     delete:
       summary: Delete an existing location.
       description: >
@@ -1255,7 +1275,7 @@ paths:
 
             - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
 
-            - `contributor_id`: Numeric ID (integer).
+            - `contributor_id`: Numeric id (integer).
 
             - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
 
