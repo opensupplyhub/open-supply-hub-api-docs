@@ -1537,7 +1537,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "The moderation event with the given uuid was not found."
+                detail: "Moderation event not found."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1599,14 +1599,14 @@ paths:
                 invalid_status:
                   summary: Invalid `status`
                   value:
-                    detail: "The request body contains invalid or missing fields."
+                    detail: "The request body is invalid."
                     errors:
                       - field: "status"
                         detail: "Moderation status must be one of PENDING, APPROVED or REJECTED."
                 missing_status:
                   summary: Missing `status`
                   value:
-                    detail: "The request body contains invalid or missing fields."
+                    detail: "The request body is invalid."
                     errors:
                       - field: "status"
                         detail: "This field is required."
@@ -1619,7 +1619,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "Only the Moderator can perform this action."
+                detail: "Only the moderator can perform this action."
         404:
           description: Not Found
           content:
@@ -1698,7 +1698,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "Only the Moderator can perform this action."
+                detail: "Only the moderator can perform this action."
         404:
           description: Not Found
           content:
@@ -1717,10 +1717,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
               example:
-                detail: "The request path parameter is invalid."
-                errors:
-                  - field: "status"
-                    detail: "The moderation event should be in PENDING status."
+                detail: "The moderation event should be in PENDING status."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1731,7 +1728,22 @@ paths:
                 $ref: "#/components/schemas/error"
               example:
                 detail: "An unexpected error occurred while processing the request."
+  /v1/moderation-events/{moderation_id}/production-locations/{os_id}/:
     patch:
+      parameters:
+        - name: moderation_id
+          in: path
+          description: The unique identifier of moderation event.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: os_id
+          in: path
+          description: The unique identifier of the location.
+          required: true
+          schema:
+            type: string
       tags:
         - moderation-events
       summary: >
@@ -1747,19 +1759,6 @@ paths:
         refer to the GET `/v1/production-locations/` or
         `/v1/production-locations/{os_id}/` endpoints to search for the
         production location to which the contribution was made.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                os_id:
-                  type: string
-                  description: The unique identifier of the location.
-                  example: "CN2223250D1DTN7"
-              required:
-                - os_id
       responses:
         200:
           description: OK
@@ -1770,27 +1769,66 @@ paths:
                 properties:
                   os_id:
                     type: string
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Moderation event not found."
         400:
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/error"
+              examples:
+                invalid_moderation_id:
+                  summary: Invalid `moderation_id`
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "moderation_id"
+                        detail: "Invalid UUID format."
+                not_valid_os_id:
+                  summary: Invalid `os_id`
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "The value must be a valid id."
+        401:
+          $ref: "#/components/responses/unauthorized"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
               example:
-                detail: "The request path parameter is invalid."
-                errors:
-                  - field: "moderation_id"
-                    detail: "Moderation id must be a valid string."
+                detail: "Only the moderator can perform this action."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              examples:
+                moderation_event_not_found:
+                  summary: Moderation event not found
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "moderation_id"
+                        detail: "Moderation event not found."
+                production_location_not_found:
+                  summary: Production location not found
+                  value:
+                    detail: "The request path parameter is invalid."
+                    errors:
+                      - field: "os_id"
+                        detail: "The location with the given id was not found."
+        410:
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                detail: "The moderation event should be in PENDING status."
         429:
           $ref: "#/components/responses/throttled"
         500:
