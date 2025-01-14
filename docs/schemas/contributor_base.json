@@ -4,7 +4,7 @@
   "description": "This schema represents basic params of an organization or contributor.",
   "properties": {
     "contributor_id": {
-      "type": "string",
+      "type": "number",
       "description": "The unique identifier of the contributor."
     },
     "type": {
