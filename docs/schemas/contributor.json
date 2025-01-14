@@ -1,55 +1,26 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "description": "This schema represents an organization or account.",
-  "properties": {
-    "user_id": {
-      "type": "string",
-      "description": "The unique identifier of the account."
+  "description": "This schema represents an organization or contributor.",
+  "allOf": [
+    {
+      "$ref": "contributor_base.json"
     },
-    "email": {
-      "type": "string",
-      "description": "The email address of the account."
-    },
-    "has_contributed": {
-      "type": "boolean",
-      "description": "Whether the user has contributed data."
-    },
-    "account_type": {
-      "type": "string",
-      "description": "Indicates whether the account is part of an organization or for an individual.",
-      "enum": ["individual", "organization"]
-    },
-    "individual_role": {
-      "type": "string",
-      "description": "Indicates the area the individual represents (e.g. student, researcher, industry)."
-    },
-    "organization": {
-      "type": "object",
-      "description": "The organization that an account is affiliated with.",
+    {
       "properties": {
-        "organization_type": {
-          "type": "string",
-          "description": "The type of organization that an account represents."
-        },
-        "website_url": {
-          "type": "string",
-          "description": "The website of the organization."
-        },
         "name": {
           "type": "string",
-          "description": "this is the name of the organization an account is affiliated with."
+          "description": "The name of the contributor."
         },
         "description": {
           "type": "string",
-          "description": "A description of the organization."
+          "description": "A description of the contributor."
         },
-        "country": {
-          "$ref": "country.json"
+        "website_url": {
+          "type": "string",
+          "description": "The URL of the contributor's website."
         }
-      },
-      "required": ["organization_type", "name", "country"]
+      }
     }
-  },
-  "required": ["user_id", "email", "account_type"]
+  ]
 }

@@ -30,109 +30,21 @@ paths:
   /v1/contributors/:
     get:
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
           required: false
           schema:
             type: string
-        - name: email
-          in: query
-          description: Filter using the email of the contributor.
-          required: false
-          schema:
-            type: string
-            format: email
-            minLength: 1
-            maxLength: 255
-        - name: has_contributed
-          in: query
-          description: Filter using the boolean value of whether the contributor has contributed.
-          required: false
-          schema:
-            type: boolean
-        - name: account_type
-          in: query
-          description: Filter using the account type of the contributor.
-          required: false
-          schema:
-            type: string
-            enum: [individual, organization]
-        - name: individual_role
-          in: query
-          description: Filter using the individual role of the contributor.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 255
-        - name: organization.organization_type
-          in: query
-          description: Filter using the organization type of the contributor.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 255
-        - name: organization.website_url
-          in: query
-          description: Filter using the website URL of the organization.
-          required: false
-          schema:
-            type: string
-            format: uri
-            minLength: 1
-            maxLength: 255
-        - name: organization.name
-          in: query
-          description: Filter using the name of the organization.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 255
-        - name: organization.description
-          in: query
-          description: Filter using the description of the organization.
-          required: false
-          schema:
-            type: string
-            minLength: 1
-            maxLength: 255
-        - name: organization.country
-          in: query
-          description: Filter organization country using the alpha-2, alpha-3 or numeric code.
-          required: false
-          schema:
-            type: string
-            minLength: 1
         - name: sort_by
           in: query
           description: The field to sort the results by.
           required: false
           schema:
             type: string
-            default: name
-            enum: [email]
+            enum: [contributor_id]
         - $ref: "#/components/parameters/order_by"
-        - name: fields
-          in: query
-          description: The fields to include in the response.
-          style: explode
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                [
-                  email,
-                  has_contributed,
-                  account_type,
-                  individual_role,
-                  organization,
-                ]
       summary: Get list of contributors to the OS Hub platform.
       description: >
         Returns an array of contributors with name and id, where id is the unique identifier of the contributor.
@@ -156,222 +68,10 @@ paths:
               example:
                 detail: "The request query is invalid."
                 errors:
-                  - field: "email"
-                    detail: "The value must be a valid email."
+                  - field: "search_after"
+                    detail: "The value must be a valid property."
         401:
           $ref: "#/components/responses/unauthorized"
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-    post:
-      summary: Create a new contributor.
-      description: >
-        Creates a new contributor with the given details.
-      tags:
-        - contributors
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/contributor"
-      responses:
-        201:
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/contributor"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "email"
-                    detail: "The value must be a valid email."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-  /v1/contributors/{user_id}/:
-    parameters:
-      - name: user_id
-        in: path
-        description: The unique identifier of the contributor.
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get details of a contributor by its unique identifier.
-      description: >
-        Returns details of a contributor with name and id and other properties, where id is the unique identifier of the contributor.
-      tags:
-        - contributors
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/contributor"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The contributor with the given id was not found."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-    put:
-      summary: Update an existing contributor.
-      description: >
-        Updates an existing contributor with the given details.
-      tags:
-        - contributors
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/contributor"
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/contributor"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The contributor with the given id was not found."
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "email"
-                    detail: "The value must be a valid email."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-    patch:
-      summary: Partially update an existing contributor.
-      description: >
-        Partially updates an existing contributor with the given details.
-      tags:
-        - contributors
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/contributor"
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/contributor"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The contributor with the given id was not found."
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "email"
-                    detail: "The value must be a valid email."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-    delete:
-      summary: Delete an existing contributor.
-      description: >
-        Deletes an existing contributor with the given id.
-      tags:
-        - contributors
-      responses:
-        204:
-          description: No Content
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The contributor with the given id was not found."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -390,7 +90,7 @@ paths:
       tags:
         - countries
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -494,7 +194,7 @@ paths:
   /v1/sectors/:
     get:
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -543,7 +243,7 @@ paths:
   /v1/product-types/:
     get:
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -592,7 +292,7 @@ paths:
   /v1/location-types/:
     get:
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -671,7 +371,7 @@ paths:
   /v1/parent-companies/:
     get:
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -740,41 +440,6 @@ paths:
     get:
       summary: Get list of production locations exposed by the OS Hub platform.
       parameters:
-        - $ref: "#/components/parameters/limit"
-        - name: search_after[value]
-          in: query
-          description: >
-            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
-            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
-
-            - `name`, `address`: Text (string).
-
-
-            Must be used in concert with `search_after[id]`
-          required: false
-          schema:
-            oneOf:
-              - type: string
-                example: "Production location name"
-                description: Text value for the `name` field.
-              - type: string
-                example: "Production location address"
-                description: Text value for the `address` field.
-        - name: search_after[id]
-          in: query
-          description: Cursor for the pagination. Uses os_id of the previous element. Must be used in concert with `search_after[value]`.
-          required: false
-          schema:
-            type: string
-            example: CN2223250D1DTN7
-        - name: from
-          in: query
-          description: Number from which to start showing the results for the pagination.
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            description: The `from` and `size` parameters return results one page at a time.
         - name: query
           in: query
           description: Filter using the query string (searches across multiple fields).
@@ -847,6 +512,34 @@ paths:
             type: string
             default: none for all queries, `asc` for `sort_by` and `search_after[value]` | `search_after[id]`.
             enum: [asc, desc]
+        - $ref: "#/components/parameters/size"
+        - $ref: "#/components/parameters/from"
+        - name: search_after[value]
+          in: query
+          description: >
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
+            - `name`, `address`: Text (string).
+
+
+            Must be used in concert with `search_after[id]`
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                example: "Production location name"
+                description: Text value for the `name` field.
+              - type: string
+                example: "Production location address"
+                description: Text value for the `address` field.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses os_id of the previous element. Must be used in concert with `search_after[value]`.
+          required: false
+          schema:
+            type: string
+            example: CN2223250D1DTN7
       description: >
         Returns an array of production locations, including the name, id,
         and other properties, where the id is the unique identifier of
@@ -1020,7 +713,7 @@ paths:
       description: |
         Creates a new moderation event to contribute to an existing
         production location with the given details.
-        
+
         You can use the GET `/v1/moderation-events/{moderation_id}/`
         endpoint to track the status of the moderation event created
         by this action.
@@ -1265,7 +958,7 @@ paths:
     get:
       summary: Get list of moderation events exposed by the OS Hub platform.
       parameters:
-        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/size"
         - name: search_after[value]
           in: query
           description: >
@@ -1894,7 +1587,17 @@ components:
         type: string
         default: asc
         enum: [asc, desc]
-    limit:
+    from:
+      name: from
+      in: query
+      description: Number from which to start showing the results for the pagination.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+        description: The `from` and `size` parameters return results one page at a time.
+    size:
       name: size
       in: query
       description: The maximum number of entries to return.

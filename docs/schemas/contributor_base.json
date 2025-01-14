@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "This schema represents basic params of an organization or contributor.",
+  "properties": {
+    "contributor_id": {
+      "type": "string",
+      "description": "The unique identifier of the contributor."
+    },
+    "contributor_type": {
+      "type": "string",
+      "description": "The type of the contributor."
+    }
+  },
+  "required": ["contributor_id", "contributor_type"]
+}

@@ -6,9 +6,8 @@
         "$ref": "../schemas/error.json"
       },
       "example": {
-          "detail": "Request was throttled. Expected available in 41 seconds."
+        "detail": "Request was throttled. Expected available in 41 seconds."
       }
     }
   }
 }
-  
