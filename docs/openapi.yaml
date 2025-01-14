@@ -598,6 +598,7 @@ paths:
         by this action.
       tags:
         - production-locations
+        - beta
       requestBody:
         required: true
         content:
@@ -719,6 +720,7 @@ paths:
         by this action.
       tags:
         - production-locations
+        - beta
       requestBody:
         required: true
         content:
@@ -780,225 +782,10 @@ paths:
                 detail: "An unexpected error occurred while processing the request."
         503:
           $ref: "#/components/responses/data_upload_maintenance_error"
-    delete:
-      summary: Delete an existing location.
-      description: >
-        Deletes an existing location with the given id.
-      tags:
-        - production-locations
-      responses:
-        204:
-          description: No Content
-          content:
-            application/json:
-              schema:
-                example: null
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The location with the given id was not found."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-  /v1/production-locations/{os_id}/contributions/:
-    parameters:
-      - name: os_id
-        in: path
-        description: The unique identifier of the location.
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get list of contributions history to a location.
-      description: >
-        Returns an array of contributions to a location with name and id and other properties, where id is the unique identifier of the contribution.
-      tags:
-        - production-locations
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/location_contribution"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The location with the given id was not found."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-  /v1/production-locations/{os_id}/claims/:
-    parameters:
-      - name: os_id
-        in: path
-        description: The unique identifier of the location.
-        required: true
-        schema:
-          type: string
-    get:
-      summary: Get list of location claims.
-      description: >
-        Returns an array of claims to a location with name and id and other properties, where id is the unique identifier of the claim.
-      tags:
-        - production-locations
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/claim"
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The location with the given id was not found."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
-    post:
-      summary: Claim a location.
-      description: >
-        Claims a location with the given id.
-      tags:
-        - production-locations
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/claim_base"
-      responses:
-        202:
-          description: Accepted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: "pending"
-                    enum: ["pending", "approved", "rejected"]
-        401:
-          $ref: "#/components/responses/unauthorized"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The location with the given id was not found."
-        422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "job_title"
-                    detail: "The job title is required."
-        429:
-          $ref: "#/components/responses/throttled"
-        500:
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "An unexpected error occurred while processing the request."
   /v1/moderation-events/:
     get:
       summary: Get list of moderation events exposed by the OS Hub platform.
       parameters:
-        - $ref: "#/components/parameters/size"
-        - name: search_after[value]
-          in: query
-          description: >
-            description: |
-            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
-            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
-
-            - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
-
-            - `contributor_id`: Numeric id (integer).
-
-            - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
-
-
-            Must be used in concert with `search_after[id]`.
-          required: false
-          schema:
-            oneOf:
-              - type: string
-                format: date-time
-                example: "2024-11-19T07:52:12.641297Z"
-                description: ISO 8601 (YYYY-MM-DDTHH:mm:ss.ssssssZ) time format for fields like `created_at`, `status_change_date`, or `updated_at`.
-              - type: string
-                example: "John Doe"
-                description: Text value for fields like `contributor_name`, `name`, `address`, `source`, `country`, or `status`.
-        - name: search_after[id]
-          in: query
-          description: Cursor for the pagination. Uses moderation_id of the previous element. Must be used in concert with `search_after[value]`
-          required: false
-          schema:
-            type: string
-            example: 1f35a90f-70a0-4c3e-8e06-2ed8e1fc6810
-        - name: from
-          in: query
-          description: Number from which to start showing the results for the pagination.
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            description: The `from` and `size` parameters return results one page at a time.
         - name: contributor_id
           in: query
           description: Filter using contributor id.
@@ -1103,12 +890,46 @@ paths:
             type: string
             default: none for all queries, `desc` for `sort_by` and `search_after[value]` | `search_after[id]`.
             enum: [asc, desc]
+        - $ref: "#/components/parameters/size"
+        - $ref: "#/components/parameters/from"
+        - name: search_after[value]
+          in: query
+          description: >
+            Cursor for pagination. Corresponds to the value of the field specified in the `sort_by` parameter
+            from the last item of the previous page. The expected type and format depend on the `sort_by` field:
+
+            - `created_at`, `status_change_date`, `updated_at`: ISO 8601 date and time (date-time).
+
+            - `contributor_id`: Numeric id (integer).
+
+            - `contributor_name`, `name`, `address`, `source`, `country`, `status`: Text (string).
+
+
+            Must be used in concert with `search_after[id]`.
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                format: date-time
+                example: "2024-11-19T07:52:12.641297Z"
+                description: ISO 8601 (YYYY-MM-DDTHH:mm:ss.ssssssZ) time format for fields like `created_at`, `status_change_date`, or `updated_at`.
+              - type: string
+                example: "John Doe"
+                description: Text value for fields like `contributor_name`, `name`, `address`, `source`, `country`, or `status`.
+        - name: search_after[id]
+          in: query
+          description: Cursor for the pagination. Uses moderation_id of the previous element. Must be used in concert with `search_after[value]`
+          required: false
+          schema:
+            type: string
+            example: 1f35a90f-70a0-4c3e-8e06-2ed8e1fc6810
       description: >
         Returns an array of moderation events. Moderation event data for
         the search becomes available 1 minute after the moderation event
         is created.
       tags:
         - moderation-events
+        - beta
       responses:
         200:
           description: OK
@@ -1203,6 +1024,7 @@ paths:
         minute after the moderation event is created.
       tags:
         - moderation-events
+        - beta
       responses:
         200:
           description: OK
@@ -1268,6 +1090,7 @@ paths:
         performed.
       tags:
         - moderation-events
+        - beta
       responses:
         200:
           description: OK
@@ -1346,6 +1169,7 @@ paths:
     post:
       tags:
         - moderation-events
+        - beta
       summary: >
         Creates a new production location based on the moderation
         event.
@@ -1439,6 +1263,7 @@ paths:
             type: string
       tags:
         - moderation-events
+        - beta
       summary: >
         Add a new contribution to the existing production location.
       description: |
