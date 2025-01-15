@@ -7,7 +7,7 @@
       "type": "number",
       "description": "The unique identifier of the contributor."
     },
-    "type": {
+    "contributor_type": {
       "type": "string",
       "description": "The type of the contributor."
     }

@@ -30,7 +30,30 @@ paths:
   /v1/contributors/:
     get:
       parameters:
-        - $ref: "#/components/parameters/size"
+        - name: name
+          in: query
+          description: Filter using the name of the contributor.
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: contributor_id
+          in: query
+          description: Filter using the unique identifier of the contributor.
+          required: false
+          schema:
+            type: array
+            items:
+              type: number
+        - name: contributor_type
+          in: query
+          description: Filter using the type of the contributor.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
         - name: search_after
           in: query
           description: Cursor for the pagination, needs to be value from the field used in `sort_by` param.
@@ -45,6 +68,8 @@ paths:
             type: string
             enum: [contributor_id]
         - $ref: "#/components/parameters/order_by"
+        - $ref: "#/components/parameters/size"
+        - $ref: "#/components/parameters/from"
       summary: Get list of contributors to the OS Hub platform.
       description: >
         Returns an array of contributors with name and id, where id is the unique identifier of the contributor.
