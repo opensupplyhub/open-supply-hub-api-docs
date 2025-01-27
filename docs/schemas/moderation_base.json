@@ -41,8 +41,7 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "example": ["Apparel", "Textile"]
+          }
         },
         "raw_json": {
           "type": "object",
@@ -61,9 +60,7 @@
             },
             "country": {
               "type": "string",
-              "pattern": "^[A-Z]{2}$",
-              "description": "Alpha-2 country code",
-              "example": "US"
+              "description": "The ISO 3166-1 alpha-3 code of the country."
             },
             "product_type": {
               "type": "array",
