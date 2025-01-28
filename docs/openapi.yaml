@@ -520,6 +520,20 @@ paths:
             items:
               type: string
               minLength: 2
+        - name: aggregation
+          in: query
+          description: Add Geohex grid aggregation to the response.
+          required: false
+          schema:
+            type: string
+            enum: [geohex]
+        - name: precision
+          in: query
+          description: The precision of the Geohex grid.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
         - name: sort_by
           in: query
           description: The field to sort the results by.
@@ -589,6 +603,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/location"
+                  aggregation_data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/aggregation"
         400:
           description: Bad Request
           content:
@@ -1408,6 +1426,8 @@ components:
       $ref: "schemas/location_contribution.json"
     location:
       $ref: "schemas/location.json"
+    aggregation:
+      $ref: "schemas/aggregation.json"
     location_new:
       $ref: "schemas/location_new.json"
     location_update:
