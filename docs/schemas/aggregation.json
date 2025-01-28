@@ -1,0 +1,15 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "type": "object",
+ "description": "This schema represents an aggregation.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The key of the aggregation."
+    },
+    "doc_count": {
+      "type": "integer",
+      "description": "The number of documents in the aggregation."
+    }
+  }
+}
