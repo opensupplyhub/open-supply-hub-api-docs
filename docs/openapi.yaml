@@ -1428,14 +1428,14 @@ components:
       $ref: "schemas/location_contribution.json"
     location:
       $ref: "schemas/location.json"
-    aggregation:
-      $ref: "schemas/aggregation.json"
     location_new:
       $ref: "schemas/location_new.json"
     location_update:
       $ref: "schemas/location_update.json"
     location_source:
       $ref: "schemas/location_source.json"
+    aggregation:
+      $ref: "schemas/aggregation.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     error:
