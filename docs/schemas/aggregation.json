@@ -11,5 +11,6 @@
       "type": "integer",
       "description": "The number of documents in the aggregation."
     }
-  }
+  },
+  "required": ["key", "doc_count"]
 }
