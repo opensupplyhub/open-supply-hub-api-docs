@@ -53,6 +53,11 @@
       "enum": ["API", "SLC"],
       "description": "Source type of production location."
     },
+    "action_type": {
+      "type": "string",
+      "enum": ["NEW_LOCATION", "MATCHED", "REJECTED"],
+      "description": "Type of moderation action."
+    },
     "status": {
       "type": "string",
       "enum": ["PENDING", "APPROVED", "REJECTED"],
