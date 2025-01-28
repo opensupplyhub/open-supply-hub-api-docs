@@ -607,6 +607,9 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/aggregation"
+                required:
+                  - count
+                  - data
         400:
           description: Bad Request
           content:
