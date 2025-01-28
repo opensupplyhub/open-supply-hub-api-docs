@@ -520,20 +520,6 @@ paths:
             items:
               type: string
               minLength: 2
-        - name: aggregation
-          in: query
-          description: Add Geohex grid aggregation to the response.
-          required: false
-          schema:
-            type: string
-            enum: [geohex]
-        - name: precision
-          in: query
-          description: The precision of the Geohex grid.
-          required: false
-          schema:
-            type: integer
-            minimum: 1
         - name: sort_by
           in: query
           description: The field to sort the results by.
@@ -542,8 +528,7 @@ paths:
             type: string
             default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
             enum: [name, address]
-        - order_by:
-          name: order_by
+        - name: order_by
           in: query
           description: The order to sort the results by.
           required: false
@@ -551,6 +536,21 @@ paths:
             type: string
             default: none for all queries, `asc` for `sort_by` and `search_after[value]` | `search_after[id]`.
             enum: [asc, desc]
+        - name: aggregation
+          in: query
+          description: Add Geohex grid aggregation to the response.
+          required: false
+          schema:
+            type: string
+            default: none
+            enum: [geohex]
+        - name: precision
+          in: query
+          description: The precision of the Geohex grid.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
         - $ref: "#/components/parameters/size"
         - $ref: "#/components/parameters/from"
         - name: search_after[value]
