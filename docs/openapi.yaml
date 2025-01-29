@@ -528,8 +528,7 @@ paths:
             type: string
             default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
             enum: [name, address]
-        - order_by:
-          name: order_by
+        - name: order_by
           in: query
           description: The order to sort the results by.
           required: false
@@ -537,6 +536,21 @@ paths:
             type: string
             default: none for all queries, `asc` for `sort_by` and `search_after[value]` | `search_after[id]`.
             enum: [asc, desc]
+        - name: aggregation
+          in: query
+          description: Add Geohex grid aggregation to the response.
+          required: false
+          schema:
+            type: string
+            enum: [geohex_grid]
+        - name: geohex_grid_precision
+          in: query
+          description: "The precision of the Geohex grid (range: 0 to 15)."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 15
         - $ref: "#/components/parameters/size"
         - $ref: "#/components/parameters/from"
         - name: search_after[value]
@@ -589,6 +603,16 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/location"
+                  aggregations:
+                    type: object
+                    properties:
+                      geohex_grid:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/aggregation"
+                required:
+                  - count
+                  - data
         400:
           description: Bad Request
           content:
@@ -1414,6 +1438,8 @@ components:
       $ref: "schemas/location_update.json"
     location_source:
       $ref: "schemas/location_source.json"
+    aggregation:
+      $ref: "schemas/aggregation.json"
     moderation_event:
       $ref: "schemas/moderation_event.json"
     error:
