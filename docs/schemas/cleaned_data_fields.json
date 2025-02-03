@@ -70,8 +70,12 @@
         "type": "string"
       },
       "example": ["ParentCompanyName"]
+    },
+    "country": {
+      "type": "string",
+      "description": "The ISO 3166-1 alpha-2 code of the country."
     }
   },
-  "required": ["processing_type", "product_type", "number_of_workers", "facility_type", "parent_company"]
+  "required": ["country"]
 }
 

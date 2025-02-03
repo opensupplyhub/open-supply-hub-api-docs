@@ -31,11 +31,8 @@
           "type": "string",
           "description": "Returns location address."
         },
-        "country": {
-          "$ref": "country.json"
-        },
         "fields": {
-          "$ref": "fields.json"
+          "$ref": "cleaned_data_fields.json"
         },
         "sector": {
           "type": "array",
@@ -44,81 +41,14 @@
           }
         },
         "raw_json": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "sector": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "address": {
-              "type": "string"
-            },
-            "country": {
-              "type": "string",
-              "description": "The ISO 3166-1 alpha-3 code of the country."
-            },
-            "product_type": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "facility_type": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "parent_company": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "processing_type": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "number_of_workers": {
-              "type": "object",
-              "properties": {
-                "max": {
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "min": {
-                  "type": "integer",
-                  "minimum": 0
-                }
-              },
-              "required": ["max", "min"]
-            }
-          },
-          "required": [
-            "name",
-            "sector",
-            "address",
-            "country",
-            "product_type",
-            "facility_type",
-            "parent_company",
-            "processing_type",
-            "number_of_workers"
-          ]
+          "$ref": "raw_json"
         },
         "clean_name": {
           "type": "string"
         },
         "country_code": {
           "type": "string",
-          "description": "The ISO 3166-1 alpha-3 code of the country."
+          "description": "The ISO 3166-1 alpha-2 code of the country."
         },
         "clean_address": {
           "type": "string"
