@@ -41,7 +41,7 @@
           }
         },
         "raw_json": {
-          "$ref": "raw_json"
+          "$ref": "cleaned_data_raw_json.json"
         },
         "clean_name": {
           "type": "string"
@@ -52,8 +52,31 @@
         },
         "clean_address": {
           "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
-      }
+      },
+      "required": [
+        "name",
+        "clean_name", 
+        "address", 
+        "clean_address", 
+        "country_code", 
+        "sector", 
+        "raw_json", 
+        "fields",
+        "errors"
+      ]
     }
-  }
+  },
+  "required": [
+    "moderation_id",
+    "moderation_status", 
+    "created_at", 
+    "cleaned_data"
+  ]
 }
