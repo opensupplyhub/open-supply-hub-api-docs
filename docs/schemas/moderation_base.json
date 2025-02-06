@@ -19,6 +19,64 @@
       "type": "string",
       "format": "date-time",
       "description": "The date and time when the moderation event was created."
+    },
+    "cleaned_data": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Returns location name."
+        },
+        "address": {
+          "type": "string",
+          "description": "Returns location address."
+        },
+        "fields": {
+          "$ref": "cleaned_data_fields.json"
+        },
+        "sector": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "raw_json": {
+          "$ref": "cleaned_data_raw_json.json"
+        },
+        "clean_name": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The ISO 3166-1 alpha-2 code of the country."
+        },
+        "clean_address": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "clean_name", 
+        "address", 
+        "clean_address", 
+        "country_code", 
+        "sector", 
+        "raw_json", 
+        "fields",
+        "errors"
+      ]
     }
-  }
+  },
+  "required": [
+    "moderation_id",
+    "moderation_status", 
+    "created_at", 
+    "cleaned_data"
+  ]
 }
