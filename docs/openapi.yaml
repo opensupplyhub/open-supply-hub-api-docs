@@ -538,14 +538,16 @@ paths:
             enum: [asc, desc]
         - name: aggregation
           in: query
-          description: Add Geohex grid aggregation to the response.
+          description: Add geohex grid aggregation to the response.
           required: false
           schema:
             type: string
             enum: [geohex_grid]
         - name: geohex_grid_precision
           in: query
-          description: "The precision of the Geohex grid (range: 0 to 15)."
+          description: >
+            The precision of the geohex grid (range: 0 to 15). 
+            When the `aggregation` parameter is provided, the default value is assumed to be 5 if this parameter is omitted.
           required: false
           schema:
             type: integer
