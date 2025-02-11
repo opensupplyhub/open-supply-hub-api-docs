@@ -685,10 +685,16 @@ paths:
               example:
                 detail: "The request body is invalid."
                 errors:
-                  - field: "name"
-                    detail: "The value must be a non-empty string."
-                  - field: "country"
-                    detail: "The value must be a valid country code or name."
+                  - field: "location_type"
+                    detail: "Field location_type must be a string or a list of strings."
+                  - field: "number_of_workers"
+                    errors:
+                      - field: "max"
+                        detail: "The max field is required!"
+                  - field: "coordinates"
+                    errors:
+                      - field: "lat"
+                        detail: "Both latitude and longitude must be provided."
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -815,10 +821,16 @@ paths:
               example:
                 detail: "The request body is invalid."
                 errors:
-                  - field: "name"
-                    detail: "The value must be a non-empty string."
-                  - field: "country"
-                    detail: "The value must be a valid country code or name."
+                  - field: "location_type"
+                    detail: "Field location_type must be a string or a list of strings."
+                  - field: "number_of_workers"
+                    errors:
+                      - field: "max"
+                        detail: "The max field is required!"
+                  - field: "coordinates"
+                    errors:
+                      - field: "lat"
+                        detail: "Both latitude and longitude must be provided."
         429:
           $ref: "#/components/responses/throttled"
         500:

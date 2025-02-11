@@ -14,6 +14,8 @@
         "type": "object",
         "oneOf": [
           {
+            "type": "object",
+            "description": "A simple error with a field and a detail message.",
             "properties": {
               "field": {
                 "type": "string",
@@ -21,11 +23,14 @@
               },
               "detail": {
                 "type": "string",
-                "description": "A specific message describing the error related to a field or fields."
+                "description": "A specific message describing the error."
               }
-            }
+            },
+            "required": ["field", "detail"]
           },
           {
+            "description": "Non-field error.",
+            "type": "object",
             "properties": {
               "field": {
                 "const": "non_field_errors",
@@ -36,6 +41,35 @@
                 "description": "A specific message describing the error related to fields or the overall data object."
               }
             }
+          },
+          {
+            "type": "object",
+            "description": "A nested error object that contains an array of simple errors.",
+            "properties": {
+              "field": {
+                "type": "string",
+                "description": "The field that the error is associated with."
+              },
+              "errors": {
+                "type": "array",
+                "description": "An array of nested errors.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "description": "The field that the nested error is associated with."
+                    },
+                    "detail": {
+                      "type": "string",
+                      "description": "A specific message describing the nested error."
+                    }
+                  },
+                  "required": ["field", "detail"]
+                }
+              }
+            },
+            "required": ["field", "errors"]
           }
         ]
       }
