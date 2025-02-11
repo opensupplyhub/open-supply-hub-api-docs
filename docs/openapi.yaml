@@ -677,24 +677,7 @@ paths:
         403:
           $ref: "#/components/responses/unconfirmed_user"
         422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "location_type"
-                    detail: "Field location_type must be a string or a list of strings."
-                  - field: "number_of_workers"
-                    errors:
-                      - field: "max"
-                        detail: "The max field is required!"
-                  - field: "coordinates"
-                    errors:
-                      - field: "lat"
-                        detail: "Both latitude and longitude must be provided."
+          $ref: "#/components/responses/unprocessable_entity"
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -813,24 +796,7 @@ paths:
               example:
                 detail: "The location with the given id was not found."
         422:
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "The request body is invalid."
-                errors:
-                  - field: "location_type"
-                    detail: "Field location_type must be a string or a list of strings."
-                  - field: "number_of_workers"
-                    errors:
-                      - field: "max"
-                        detail: "The max field is required!"
-                  - field: "coordinates"
-                    errors:
-                      - field: "lat"
-                        detail: "Both latitude and longitude must be provided."
+          $ref: "#/components/responses/unprocessable_entity"
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1465,6 +1431,8 @@ components:
       $ref: "responses/throttled.json"
     data_upload_maintenance_error:
       $ref: "responses/data_upload_maintenance_error.json"
+    unprocessable_entity:
+       $ref: "responses/unprocessable_entity.json"
   parameters:
     order_by:
       name: order_by
