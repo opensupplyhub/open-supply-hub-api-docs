@@ -58,6 +58,10 @@
       "enum": ["NEW_LOCATION", "MATCHED", "REJECTED"],
       "description": "Type of moderation action."
     },
+    "action_perform_by_id": {
+      "type": "number",
+      "description": "Linked user id who performed the action."
+    },
     "status": {
       "type": "string",
       "enum": ["PENDING", "APPROVED", "REJECTED"],
