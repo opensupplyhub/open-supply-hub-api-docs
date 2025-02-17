@@ -1,0 +1,39 @@
+{
+  "description": "Unprocessable Entity",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/error.json"
+      },
+      "examples": {
+        "simple field": {
+          "value": {
+            "detail": "The request body is invalid.",
+            "errors": [
+                {
+                    "field": "name",
+                    "detail": "Field name must be a string, not a number."
+                }
+            ]
+          }
+        },
+        "nested fields": {
+          "value": {
+            "detail": "The request body is invalid.",
+            "errors": [
+                {
+                    "field": "number_of_workers",
+                    "errors": [
+                        {
+                            "field": "max",
+                            "detail": "The max field is required!"
+                        }
+                    ]
+                }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
