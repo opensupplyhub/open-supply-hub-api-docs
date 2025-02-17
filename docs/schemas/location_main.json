@@ -62,8 +62,7 @@
         "min": {
           "type": "number",
           "description": "The minimum number.",
-          "minimum": 1,
-          "exclusiveMaximum": { "$data": "1/max" }
+          "minimum": 1
         },
         "max": {
           "type": "number",
