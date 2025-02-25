@@ -53,17 +53,7 @@
       ]
     },
     "parent_company": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+      "type": "string"
     },
     "processing_type": {
       "oneOf": [

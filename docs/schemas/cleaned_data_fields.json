@@ -65,17 +65,7 @@
       "required": ["raw_values", "processed_values"]
     },
     "parent_company": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+      "type": "string"
     },
     "country": {
       "type": "string",
