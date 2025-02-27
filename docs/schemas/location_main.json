@@ -61,12 +61,12 @@
       "properties": {
         "min": {
           "type": "number",
-          "description": "The minimum number.",
+          "description": "The minimum number. Must be less than or equal to 'max'.",
           "minimum": 1
         },
         "max": {
           "type": "number",
-          "description": "The maximum number.",
+          "description": "The maximum number. Must be greater than or equal to 'min'.",
           "minimum": 1
         }
       },
