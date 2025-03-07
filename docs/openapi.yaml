@@ -1149,11 +1149,28 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                status:
-                  type: string
-                  enum: [PENDING, APPROVED, REJECTED]
-                  description: Moderation status of production location.
+              oneOf:
+                - properties:
+                    status:
+                      type: string
+                      enum: [PENDING, APPROVED]
+                - properties:
+                    status:
+                      type: string
+                      enum: [REJECTED]
+                    action_reason_text_cleaned:
+                      type: string
+                      description: >
+                        The cleaned version of the action reason text.
+                      minLength: 30
+                    action_reason_text_raw:
+                      type: string
+                      description: >
+                        The raw (html formatted) version of the action reason text.
+                      minLength: 30
+                  required:
+                    - action_reason_text_cleaned
+                    - action_reason_text_raw
       description: >
         Changes the moderation event. Moderation event data is updated
         in the search results 1 minute after the update action is
