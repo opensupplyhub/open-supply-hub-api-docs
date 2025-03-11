@@ -1154,6 +1154,8 @@ paths:
                     status:
                       type: string
                       enum: [PENDING, APPROVED]
+                  required:
+                    - status
                 - properties:
                     status:
                       type: string
@@ -1169,6 +1171,7 @@ paths:
                         The raw (html formatted) version of the action reason text.
                       minLength: 30
                   required:
+                    - status
                     - action_reason_text_cleaned
                     - action_reason_text_raw
       description: >
