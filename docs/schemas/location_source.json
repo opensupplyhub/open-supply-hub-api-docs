@@ -81,6 +81,11 @@
               "description": "The processing type that defines the activities occurring at this production location from a more granular perspective. To provide more than one processing type value, you can use a comma (,) or a vertical bar (|) as delimiters between values."
             }
           ]
+        },
+        "parent_company": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "The name of the parent company of the location."
         }
       }
     },
