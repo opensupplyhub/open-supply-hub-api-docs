@@ -92,6 +92,25 @@
       },
       "required": ["lat", "lng"],
       "additionalProperties": false
+    },
+    "additional_identifiers": {
+      "type": "object",
+      "description": "The additional identifiers (DUNS, RBA Online ID, and LEI) to map search results across other platforms ",
+      "properties": {
+        "rba_id": {
+          "type": "string",
+          "description": "The RBA Online ID"
+        },
+        "duns_id": {
+          "type": "string",
+          "description": "The DUNS ID."
+        },
+        "lei_id": {
+          "type": "string",
+          "description": "The LEI ID"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "required": ["name", "address", "country"]

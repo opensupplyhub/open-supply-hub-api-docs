@@ -84,6 +84,20 @@
         "max",
         "min"
       ]
+    },
+    "additional_identifiers": {
+      "type": "object",
+      "properties": {
+        "rba_id": {
+          "type": "string"
+        },
+        "lei_id": {
+          "type": "string"
+        },
+        "duns_id": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": [
