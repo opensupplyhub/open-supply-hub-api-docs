@@ -1090,6 +1090,8 @@ paths:
                         detail: "Start date cannot be later than the end date."
         401:
           $ref: "#/components/responses/unauthorized"
+        403:
+          $ref: "#/components/responses/forbidden"
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1138,6 +1140,8 @@ paths:
                     detail: "Invalid UUID format."
         401:
           $ref: "#/components/responses/unauthorized"
+        403:
+          $ref: "#/components/responses/forbidden"
         404:
           description: Not Found
           content:
@@ -1518,7 +1522,9 @@ components:
     data_upload_maintenance_error:
       $ref: "responses/data_upload_maintenance_error.json"
     unprocessable_entity:
-       $ref: "responses/unprocessable_entity.json"
+      $ref: "responses/unprocessable_entity.json"
+    forbidden:
+      $ref: "responses/forbidden.json"
   parameters:
     order_by:
       name: order_by
