@@ -95,7 +95,7 @@
     },
     "additional_identifiers": {
       "type": "object",
-      "description": "The additional identifiers (DUNS, RBA Online ID, and LEI) to map search results across other platforms ",
+      "description": "The additional identifiers (DUNS, RBA Online ID, and LEI) of the location.",
       "properties": {
         "duns_id": {
           "type": "string",
