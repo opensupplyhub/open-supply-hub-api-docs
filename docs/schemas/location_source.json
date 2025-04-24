@@ -86,27 +86,11 @@
           "type": "string",
           "maxLength": 200,
           "description": "The name of the parent company of the location."
-        },
-        "duns_id": {
-          "type": "string",
-          "maxLength": 9,
-          "minLength": 9,
-          "pattern": "^[0-9]{9}$",
-          "description": "The DUNS ID of the location."
-        },
-        "lei_id": {
-          "type": "string",
-          "maxLength": 20,              
-          "minLength": 20,
-          "pattern": "^[A-Z0-9]{18}[0-9]{2}$",
-          "description": "The LEI ID of the location."
-        },
-        "rba_id": {
-          "type": "string",
-          "maxLength": 255,
-          "description": "The RBA ID of the location."
         }
       }
+    },
+    {
+      "$ref": "additional_identifiers.json"
     },
     {
       "$ref": "location_main.json"
