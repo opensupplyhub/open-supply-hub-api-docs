@@ -1091,13 +1091,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Only the moderator can perform this action."
+          $ref: "#/components/responses/only_moderator"
         429:
           $ref: "#/components/responses/throttled"
         500:
@@ -1147,13 +1141,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "You do not have permission to perform this action."
+          $ref: "#/components/responses/action_forbidden"
         404:
           description: Not Found
           content:
@@ -1258,13 +1246,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Only the moderator can perform this action."
+          $ref: "#/components/responses/only_moderator"
         404:
           description: Not Found
           content:
@@ -1338,13 +1320,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Only the moderator can perform this action."
+          $ref: "#/components/responses/only_moderator"
         404:
           description: Not Found
           content:
@@ -1440,13 +1416,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              example:
-                detail: "Only the moderator can perform this action."
+          $ref: "#/components/responses/only_moderator"
         404:
           description: Not Found
           content:
@@ -1535,6 +1505,10 @@ components:
       $ref: "responses/data_upload_maintenance_error.json"
     unprocessable_entity:
       $ref: "responses/unprocessable_entity.json"
+    only_moderator:
+      $ref: "responses/only_moderator.json"
+    action_forbidden:
+      $ref: "responses/action_forbidden.json"
   parameters:
     order_by:
       name: order_by
