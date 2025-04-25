@@ -1,0 +1,14 @@
+{
+  "description": "Forbidden",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/error.json"
+      },
+      "example": {
+        "detail": "You do not have permission to perform this action."
+      }
+    }
+  }
+}
+
