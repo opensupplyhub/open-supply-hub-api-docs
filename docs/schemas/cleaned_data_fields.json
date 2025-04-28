@@ -2,76 +2,83 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "description": "This schema represents fields object.",
-  "properties": {
-    "processing_type": {
-      "type": "object",
+  "allOf": [
+    {
       "properties": {
-        "raw_values": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        "processing_type": {
+          "type": "object",
+          "properties": {
+            "raw_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": ["Packing", "Warehousing / Distribution"]
+            },
+            "processed_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": ["Warehousing / Distribution", "Packing"]
+            }
           },
-          "example": ["Packing", "Warehousing / Distribution"]
+          "required": ["raw_values", "processed_values"]
         },
-        "processed_values": {
+        "product_type": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "example": ["Warehousing / Distribution", "Packing"]
+          "example": ["Shirts", "Pants"]
+        },
+        "number_of_workers": {
+          "type": "object",
+          "properties": {
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "min": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": ["max", "min"]
+        },
+        "facility_type": {
+          "type": "object",
+          "properties": {
+            "raw_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": ["Warehousing / Distribution"]
+            },
+            "processed_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": ["Warehousing / Distribution"]
+            }
+          },
+          "required": ["raw_values", "processed_values"]
+        },
+        "parent_company": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "description": "The ISO 3166-1 alpha-2 code of the country."
         }
       },
-      "required": ["raw_values", "processed_values"]
+      "required": ["country"]
     },
-    "product_type": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "example": ["Shirts", "Pants"]
-    },
-    "number_of_workers": {
-      "type": "object",
-      "properties": {
-        "max": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "min": {
-          "type": "integer",
-          "minimum": 1
-        }
-      },
-      "required": ["max", "min"]
-    },
-    "facility_type": {
-      "type": "object",
-      "properties": {
-        "raw_values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "example": ["Warehousing / Distribution"]
-        },
-        "processed_values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "example": ["Warehousing / Distribution"]
-        }
-      },
-      "required": ["raw_values", "processed_values"]
-    },
-    "parent_company": {
-      "type": "string"
-    },
-    "country": {
-      "type": "string",
-      "description": "The ISO 3166-1 alpha-2 code of the country."
+    {
+      "$ref": "additional_identifiers.json"
     }
-  },
-  "required": ["country"]
+  ]
 }
 
