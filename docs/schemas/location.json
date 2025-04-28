@@ -26,6 +26,9 @@
           "enum": ["claimed", "unclaimed", "pending"]
         }
       }
+    },
+    {
+      "$ref": "additional_identifiers.json"
     }
   ]
 }
