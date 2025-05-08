@@ -94,6 +94,9 @@
     },
     {
       "$ref": "location_main.json"
+    },
+    {
+      "$ref": "parent_company_os_id.json"
     }
   ]
 }

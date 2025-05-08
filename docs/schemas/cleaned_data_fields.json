@@ -78,6 +78,9 @@
     },
     {
       "$ref": "additional_identifiers.json"
+    },
+    {
+      "$ref": "parent_company_os_id.json"
     }
   ]
 }
