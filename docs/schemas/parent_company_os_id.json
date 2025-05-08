@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents parent company os id object.",
+    "properties": {
+        "parent_company_os_id": {
+            "pattern": "[A-Z]{2}[0-9]{7}[A-Z0-9]{6}",
+            "description": "The OS ID of the parent company of the location.",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "maxItems": 20,
+                    "description": "The OS ID of the parent company of the location.",
+                    "example": ["ID2024331V7D4T9"],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "string",
+                    "description": "The OS ID of the parent company of the location. To provide more than one OS ID value, you can use a comma (,) or a vertical bar (|) as delimiters between values.",
+                    "example": "ID2024331V7D4T9"
+                }
+            ]
+        }
+    }
+}
