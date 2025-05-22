@@ -745,24 +745,7 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              examples:
-                throttled_request:
-                  summary: Throttled request
-                  value:
-                    detail: "Request was throttled. Expected available in 41 seconds."
-                duplicate_request:
-                  summary: Duplicate request
-                  value:
-                    detail: "Duplicate request submitted, please try again later."
-                too_large_request:
-                  summary: Too large request
-                  value:
-                    detail: "Request data too large. Maximum size is 1MB."
+          $ref: "#/components/responses/data_duplicate"
         500:
           description: Internal Server Error
           content:
@@ -881,24 +864,7 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-              examples:
-                throttled_request:
-                  summary: Throttled request
-                  value:
-                    detail: "Request was throttled. Expected available in 41 seconds."
-                duplicate_request:
-                  summary: Duplicate request
-                  value:
-                    detail: "Duplicate request submitted, please try again later."
-                too_large_request:
-                  summary: Too large request
-                  value:
-                    detail: "Request data too large. Maximum size is 1MB."
+          $ref: "#/components/responses/data_duplicate"
         500:
           description: Internal Server Error
           content:
@@ -1543,6 +1509,8 @@ components:
       $ref: "responses/only_moderator.json"
     action_forbidden:
       $ref: "responses/action_forbidden.json"
+    data_duplicate:
+      $ref: "responses/data_duplicate.json"
   parameters:
     order_by:
       name: order_by
