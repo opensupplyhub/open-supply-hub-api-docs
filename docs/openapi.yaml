@@ -745,7 +745,7 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          $ref: "#/components/responses/throttled"
+          $ref: "#/components/responses/data_duplicate"
         500:
           description: Internal Server Error
           content:
@@ -864,7 +864,7 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          $ref: "#/components/responses/throttled"
+          $ref: "#/components/responses/data_duplicate"
         500:
           description: Internal Server Error
           content:
@@ -1509,6 +1509,8 @@ components:
       $ref: "responses/only_moderator.json"
     action_forbidden:
       $ref: "responses/action_forbidden.json"
+    data_duplicate:
+      $ref: "responses/data_duplicate.json"
   parameters:
     order_by:
       name: order_by
