@@ -1,28 +1,28 @@
 {
     "description": "Too Many Requests",
     "content": {
-      "application/json": {
-        "schema": {
-          "$ref": "../schemas/error.json"
-        },
-        "examples": {
-          "throttled request": {
-            "value": {
-              "detail": "Request was throttled. Expected available in 41 seconds."
+        "application/json": {
+            "schema": {
+                "$ref": "../schemas/error.json"
+            },
+            "examples": {
+                "throttled request": {
+                    "value": {
+                        "detail": "Request was throttled. Expected available in 41 seconds."
+                    }
+                },
+                "duplicate request": {
+                    "value": {
+                        "detail": "Duplicate request submitted, please try again later."
+                    }
+                },
+                "too large request": {
+                    "value": {
+                        "detail": "Request data too large. Maximum size is 1MB."
+                    }
+                }
             }
-          },
-          "duplicate request": {
-            "value": {
-              "detail": "Duplicate request submitted, please try again later."
-            }
-          },
-          "too large request": {
-            "value": {
-              "detail": "Request data too large. Maximum size is 1MB."
-            }
-          }
         }
-      }
     }
-  }
-  
+}
+
