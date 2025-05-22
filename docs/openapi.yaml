@@ -745,7 +745,24 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          $ref: "#/components/responses/throttled"
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              examples:
+                throttled_request:
+                  summary: Throttled request
+                  value:
+                    detail: "Request was throttled. Expected available in 41 seconds."
+                duplicate_request:
+                  summary: Duplicate request
+                  value:
+                    detail: "Duplicate request submitted, please try again later."
+                too_large_request:
+                  summary: Too large request
+                  value:
+                    detail: "Request data too large. Maximum size is 1MB."
         500:
           description: Internal Server Error
           content:
@@ -864,7 +881,24 @@ paths:
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
-          $ref: "#/components/responses/throttled"
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              examples:
+                throttled_request:
+                  summary: Throttled request
+                  value:
+                    detail: "Request was throttled. Expected available in 41 seconds."
+                duplicate_request:
+                  summary: Duplicate request
+                  value:
+                    detail: "Duplicate request submitted, please try again later."
+                too_large_request:
+                  summary: Too large request
+                  value:
+                    detail: "Request data too large. Maximum size is 1MB."
         500:
           description: Internal Server Error
           content:
