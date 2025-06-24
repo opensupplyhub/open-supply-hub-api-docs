@@ -467,7 +467,7 @@ paths:
       parameters:
         - name: query
           in: query
-          description: Filter using the query string (searches across multiple fields).
+          description: Filter using the query string (searches across multiple fields). When the query string contains more than 12 words or exceeds 50 characters, reordering of search terms is tolerated, but fuzzy search is disabled.
           required: false
           schema:
             type: string
@@ -481,7 +481,7 @@ paths:
             type: string
         - name: name
           in: query
-          description: Filter using the name of the location.
+          description: Filter using the name of the location. When the name contains more than 12 words or exceeds 180 characters, reordering of search terms is tolerated, but fuzzy search is disabled.
           required: false
           schema:
             type: string
@@ -489,7 +489,7 @@ paths:
             maxLength: 255
         - name: local_name
           in: query
-          description: Filter using the local name of the location.
+          description: Filter using the local name of the location. When the local name contains more than 12 words or exceeds 180 characters, reordering of search terms is tolerated, but fuzzy search is disabled.
           required: false
           schema:
             type: string
@@ -497,7 +497,7 @@ paths:
             maxLength: 255
         - name: description
           in: query
-          description: Filter using the description of the location.
+          description: Filter using the description of the location. When the description contains more than 12 words or exceeds 180 characters, reordering of search terms is tolerated, but fuzzy search is disabled.
           required: false
           schema:
             type: string
@@ -505,7 +505,7 @@ paths:
             maxLength: 255
         - name: address
           in: query
-          description: Filter using the address of the location.
+          description: Filter using the address of the location. When the address contains more than 12 words or exceeds 180 characters, reordering of search terms is tolerated, but fuzzy search is disabled.
           required: false
           schema:
             type: string
