@@ -527,7 +527,7 @@ paths:
           schema:
             type: string
             default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
-            enum: [name, address]
+            enum: [name, address, claim_status, claimed_at]
         - name: order_by
           in: query
           description: The order to sort the results by.
@@ -645,6 +645,30 @@ paths:
           schema:
             type: string
             example: CN2223250D1DTN7
+        - name: claim_status
+          in: query
+          description: Filter using claim status of production location.
+          required: false
+          schema:
+            type: string
+            default: unclaimed
+            enum: [claimed, unclaimed, pending]
+        - name: claimed_at_gt
+          in: query
+          description: Set starting date to filter by production location claim status update timestamp.
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: 2023-01-01T00:00:00Z
+        - name: claimed_at_lt
+          in: query
+          description: Set end date to filter by production location claim status update timestamp.
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: 2023-12-31T23:59:59Z
       description: >
         Returns an array of production locations, including the name, id,
         and other properties, where the id is the unique identifier of
