@@ -650,9 +650,10 @@ paths:
           description: Filter using claim status of production location.
           required: false
           schema:
-            type: string
-            default: unclaimed
-            enum: [claimed, unclaimed, pending]
+            type: array
+            items:
+              type: string
+              enum: [claimed, unclaimed, pending]
         - name: claimed_at_gt
           in: query
           description: Set starting date to filter by production location claim status update timestamp.
