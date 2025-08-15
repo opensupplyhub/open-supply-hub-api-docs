@@ -28,6 +28,14 @@
         "claimed_at": {
           "type": "string",
           "description": "Represents the date of the claim update"
+        },
+        "geocoded_location_type": {
+          "type": "string",
+          "description": "Type of geocoded result (e.g., ROOFTOP, APPROXIMATE, RANGE_INTERPOLATED, GEOMETRIC_CENTER)."
+        },
+        "geocoded_address": {
+          "type": "string",
+          "description": "Normalized address string returned by geocoding."
         }
       }
     },
