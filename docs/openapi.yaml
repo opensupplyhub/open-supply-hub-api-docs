@@ -745,6 +745,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/location_source"
+              required: ["name", "address", "country"]
       responses:
         202:
           description: Accepted
@@ -887,7 +888,7 @@ paths:
               example:
                 detail: "The location with the given id was not found."
         422:
-          $ref: "#/components/responses/unprocessable_entity"
+          $ref: "#/components/responses/unprocessable_entity_multifield"
         429:
           $ref: "#/components/responses/data_duplicate"
         500:
@@ -1530,6 +1531,8 @@ components:
       $ref: "responses/data_upload_maintenance_error.json"
     unprocessable_entity:
       $ref: "responses/unprocessable_entity.json"
+    unprocessable_entity_multifield:
+      $ref: "responses/unprocessable_entity_multifield.json"
     only_moderator:
       $ref: "responses/only_moderator.json"
     action_forbidden:

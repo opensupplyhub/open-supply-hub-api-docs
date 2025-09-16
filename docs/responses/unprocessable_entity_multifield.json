@@ -1,0 +1,52 @@
+{
+    "description": "Unprocessable Entity with multiple fields",
+    "content": {
+        "application/json": {
+            "schema": {
+                "$ref": "../schemas/error.json"
+            },
+            "examples": {
+                "simple field": {
+                    "$ref": "unprocessable_entity.json#/content/application~1json/examples/simple%20field"
+                },
+                "nested fields": {
+                    "$ref": "unprocessable_entity.json#/content/application~1json/examples/nested%20fields"
+                },
+                "only_coordinates": {
+                    "value": {
+                        "detail": "The request body is invalid.",
+                        "errors": [
+                            {
+                                "field": "name",
+                                "detail": "Field name is required when coordinates are provided."
+                            },
+                            {
+                                "field": "address",
+                                "detail": "Field address is required when coordinates are provided."
+                            },
+                            {
+                                "field": "country",
+                                "detail": "Field country is required when coordinates are provided."
+                            }
+                        ]
+                    }
+                },
+                "missing_core_fields": {
+                    "value": {
+                        "detail": "The request body is invalid.",
+                        "errors": [
+                            {
+                                "field": "address",
+                                "detail": "Field address is required when name is provided."
+                            },
+                            {
+                                "field": "country",
+                                "detail": "Field country is required when name is provided."
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

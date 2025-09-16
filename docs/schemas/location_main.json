@@ -93,6 +93,5 @@
       "required": ["lat", "lng"],
       "additionalProperties": false
     }
-  },
-  "required": ["name", "address", "country"]
+  }
 }

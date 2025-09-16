@@ -34,5 +34,6 @@
     {
       "$ref": "additional_identifiers.json"
     }
-  ]
+  ],
+  "required" : ["name", "address", "country"]
 }
