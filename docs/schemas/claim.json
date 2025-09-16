@@ -15,5 +15,6 @@
     {
       "$ref": "location_base.json"
     }
-  ]
+  ],
+  "required": ["name", "address", "country"]
 }
