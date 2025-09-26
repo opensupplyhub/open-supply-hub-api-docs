@@ -810,6 +810,7 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/location"
                   - $ref: "#/components/schemas/additional_claim_fields"
+                  - $ref: "#/components/schemas/additional_partner_fields"
         400:
           description: Bad Request
           content:
@@ -1524,6 +1525,8 @@ components:
       $ref: "schemas/error.json"
     additional_claim_fields:
       $ref: "schemas/additional_claim_fields.json"
+    additional_partner_fields:
+      $ref: "schemas/additional_partner_fields.json"
   responses:
     unauthorized:
       $ref: "responses/unauthorized.json"

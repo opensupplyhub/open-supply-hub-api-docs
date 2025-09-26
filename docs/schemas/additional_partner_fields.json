@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents additional partner fields object.",
+    "properties": {
+        "estimated_emissions_activity": {
+            "type": "number",
+            "description": "Estimated emmisions activity."
+        },
+        "estimated_annual_energy_consumption": {
+            "type": "array",
+            "description": "Estimated annual energy consumption entries.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "Energy source name (e.g., Electricity, Coal, Biomass)."
+                    },
+                    "amount": {
+                        "type": "number",
+                        "description": "Energy consumption amount."
+                    }
+                },
+                "required": ["source", "amount"],
+                "additionalProperties": false
+            }
+        }
+    }
+}
