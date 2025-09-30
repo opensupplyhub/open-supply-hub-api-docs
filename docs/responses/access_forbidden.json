@@ -1,0 +1,28 @@
+{
+  "description": "Forbidden",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/error.json"
+      },
+      "examples": {
+        "not confirmed user": {
+          "value": {
+            "detail": "User must be registered and have confirmed their email to access."
+          }
+        },
+        "invalid partner field": {
+          "value": {
+            "detail": "The request body is invalid.",
+            "errors": [
+              {
+                "field": "custom_partner_field",
+                "detail": "You do not have permission to contribute to this field."
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

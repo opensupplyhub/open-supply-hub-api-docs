@@ -767,7 +767,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          $ref: "#/components/responses/unconfirmed_user"
+          $ref: "#/components/responses/access_forbidden"
         422:
           $ref: "#/components/responses/unprocessable_entity"
         429:
@@ -878,7 +878,7 @@ paths:
         401:
           $ref: "#/components/responses/unauthorized"
         403:
-          $ref: "#/components/responses/unconfirmed_user"
+          $ref: "#/components/responses/access_forbidden"
         404:
           description: Not Found
           content:
@@ -1523,8 +1523,8 @@ components:
   responses:
     unauthorized:
       $ref: "responses/unauthorized.json"
-    unconfirmed_user:
-      $ref: "responses/unconfirmed_user.json"
+    access_forbidden:
+      $ref: "responses/access_forbidden.json"
     throttled:
       $ref: "responses/throttled.json"
     data_upload_maintenance_error:
