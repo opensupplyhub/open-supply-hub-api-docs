@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "This schema represents additional claim fields object.",
+    "properties": {
+        "opened_at": {
+            "type": "string",
+            "format": "date",
+            "description": "The date when the location was opened (YYYY-MM-DD)."
+        },
+        "closed_at": {
+            "type": "string",
+            "format": "date",
+            "description": "The date when the location was closed (YYYY-MM-DD)."
+        },
+        "estimated_annual_throughput": {
+            "type": "number",
+            "description": "Estimated annual throughput."
+        },
+        "actual_annual_energy_consumption": {
+            "type": "array",
+            "description": "Actual annual energy consumption entries.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "Energy source name (e.g., Electricity, Coal, Biomass)."
+                    },
+                    "amount": {
+                        "type": "number",
+                        "description": "Energy consumption amount."
+                    }
+                },
+                "required": ["source", "amount"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

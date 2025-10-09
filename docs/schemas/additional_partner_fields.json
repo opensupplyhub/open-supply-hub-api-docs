@@ -1,0 +1,59 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "description": "Dynamic additional partner fields configured at runtime.",
+    "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z_]*$": {
+            "description": "Dynamic additional partner field value.",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Text field value",
+                    "example": "ISO 14001"
+                },
+                {
+                    "type": "number",
+                    "format": "float",
+                    "description": "Numeric field value (float)",
+                    "example": 85.5
+                },
+                {
+                    "type": "array",
+                    "description": "Array field value",
+                    "example": [
+                        {
+                            "amount": 500,
+                            "source": "Electricity"
+                        },
+                        {
+                            "amount": 700,
+                            "source": "Coal"
+                        },
+                        {
+                            "amount": 900,
+                            "source": "Biomass"
+                        }
+                    ],
+                    "items": {
+                        "oneOf": [
+                            {"type": "string"},
+                            {"type": "number", "format": "float"},
+                            {"type": "boolean"},
+                            {"type": "object", "additionalProperties": true}
+                        ]
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "Complex object field value",
+                    "additionalProperties": true,
+                    "example": {
+                        "amount": 17,
+                        "source": "CO2"
+                    }
+                }
+            ]
+        }
+    },
+    "additionalProperties": false
+}
