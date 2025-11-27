@@ -95,6 +95,9 @@
       ]
     },
     {
+      "$ref": "isic_4_fields.json"
+    },
+    {
       "$ref": "additional_identifiers.json"
     },
     {
