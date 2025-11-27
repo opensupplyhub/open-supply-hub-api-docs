@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "This schema represents fields object.",
+  "properties": {
+    "isic_4": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 15,
+      "description": "ISIC Rev.4 classifications related to the production location. Each item may include any of: class, group, section, division.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "class": {
+            "type": "string",
+            "minLength": 1,
+            "description": "ISIC class value."
+          },
+          "group": {
+            "type": "string",
+            "minLength": 1,
+            "description": "ISIC group value."
+          },
+          "section": {
+            "type": "string",
+            "minLength": 1,
+            "description": "ISIC section value."
+          },
+          "division": {
+            "type": "string",
+            "minLength": 1,
+            "description": "ISIC division value."
+          }
+        }
+      }
+    }
+  }
+}

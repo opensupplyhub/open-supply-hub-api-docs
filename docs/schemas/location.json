@@ -41,6 +41,9 @@
     },
     {
       "$ref": "additional_identifiers.json"
+    },
+    {
+      "$ref": "isic_4_fields.json"
     }
   ],
   "required" : ["name", "address", "country"]

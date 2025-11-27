@@ -93,6 +93,9 @@
       "$ref": "additional_identifiers.json"
     },
     {
+      "$ref": "isic_4_fields.json"
+    },
+    {
       "$ref": "location_main.json"
     },
     {
