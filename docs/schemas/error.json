@@ -40,11 +40,12 @@
                 "type": "string",
                 "description": "A specific message describing the error related to fields or the overall data object."
               }
-            }
+            },
+            "required": ["field", "detail"]
           },
           {
             "type": "object",
-            "description": "A nested error object that contains an array of simple errors.",
+            "description": "A nested error object that contains an array of errors. Supports multiple levels of nesting for complex structures like arrays and nested objects.",
             "properties": {
               "field": {
                 "type": "string",
@@ -52,9 +53,13 @@
               },
               "errors": {
                 "type": "array",
-                "description": "An array of nested errors.",
+                "description": "An array of nested errors. Each error can be either a simple error with field and detail, or another nested error with field and errors.",
                 "items": {
                   "type": "object",
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "A simple nested error with a field and detail.",
                   "properties": {
                     "field": {
                       "type": "string",
@@ -66,6 +71,37 @@
                     }
                   },
                   "required": ["field", "detail"]
+                    },
+                    {
+                      "type": "object",
+                      "description": "A deeply nested error that contains another level of errors. Applicable for invalid root fields with array of objects.",
+                      "properties": {
+                        "field": {
+                            "type": "integer",
+                            "description": "The array index."
+                        },
+                        "errors": {
+                          "type": "array",
+                          "description": "Another level of nested errors.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                  "type": "string",
+                                  "description": "The field name."
+                              },
+                              "detail": {
+                                "type": "string",
+                                "description": "A specific message describing the deeply nested error."
+                              }
+                            },
+                            "required": ["field", "detail"]
+                          }
+                        }
+                      },
+                      "required": ["field", "errors"]
+                    }
+                  ]
                 }
               }
             },

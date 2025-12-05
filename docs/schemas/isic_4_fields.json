@@ -31,7 +31,9 @@
             "minLength": 1,
             "description": "ISIC division value."
           }
-        }
+        },
+        "additionalProperties": false,
+        "minProperties": 1
       }
     }
   }

@@ -12,6 +12,9 @@
                 "nested fields": {
                     "$ref": "unprocessable_entity.json#/content/application~1json/examples/nested%20fields"
                 },
+                "nested array of objects": {
+                    "$ref": "unprocessable_entity.json#/content/application~1json/examples/nested%20fields%20with%20array%20of%20objects"
+                },
                 "only_coordinates": {
                     "value": {
                         "detail": "The request body is invalid.",

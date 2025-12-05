@@ -10,10 +10,10 @@
           "value": {
             "detail": "The request body is invalid.",
             "errors": [
-                {
-                    "field": "name",
-                    "detail": "Field name must be a string, not a number."
-                }
+              {
+                "field": "name",
+                "detail": "Field name must be a string, not a number."
+              }
             ]
           }
         },
@@ -21,15 +21,40 @@
           "value": {
             "detail": "The request body is invalid.",
             "errors": [
-                {
-                    "field": "number_of_workers",
+              {
+                "field": "number_of_workers",
+                "errors": [
+                  {
+                    "field": "max",
+                    "detail": "The max field is required!"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "nested array of objects": {
+          "value": {
+            "detail": "The request body is invalid.",
+            "errors": [
+              {
+                "field": "isic_4",
+                "errors": [
+                  {
+                    "field": 0,
                     "errors": [
-                        {
-                            "field": "max",
-                            "detail": "The max field is required!"
-                        }
+                      {
+                        "field": "section",
+                        "detail": "Field section must be a non-empty string."
+                      },
+                      {
+                        "field": "division",
+                        "detail": "Field division must be a non-empty string."
+                      }
                     ]
-                }
+                  }
+                ]
+              }
             ]
           }
         }
