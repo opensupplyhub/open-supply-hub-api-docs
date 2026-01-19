@@ -14,79 +14,13 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": ["string", "null"]
-          },
-          "value": {
-            "type": "object",
-            "properties": {
-              "raw_values": {
-                "type": "object",
-                "properties": {
-                  "living_wage_link_national": {
-                    "type": "string"
-                  },
-                  "living_wage_link_national_text": {
-                    "type": "string"
-                  },
-                  "minimum_wage_link_english": {
-                    "type": "string"
-                  },
-                  "minimum_wage_link_english_text": {
-                    "type": "string"
-                  },
-                  "minimum_wage_link_national": {
-                    "type": "string"
-                  },
-                  "minimum_wage_link_national_text": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              }
-            },
-            "required": ["raw_values"],
-            "additionalProperties": false
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "field_name": {
-            "type": "string",
-            "const": "wage_indicator"
-          },
-          "contributor": {
-            "type": "object",
-            "properties": {
-              "id": { "type": "number" },
-              "name": { "type": "string" },
-              "admin_id": { "type": "number" },
-              "is_verified": { "type": "boolean" },
-              "contrib_type": { "type": "string" }
-            },
-            "required": ["id", "name", "admin_id", "is_verified", "contrib_type"],
-            "additionalProperties": false
-          },
-          "is_verified": {
-            "type": "boolean"
-          },
-          "value_count": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "facility_list_item_id": {
-            "type": "integer"
-          },
-          "should_display_association": {
-            "type": "boolean"
-          }
+          "living_wage_link_national": { "type": "string" },
+          "living_wage_link_national_text": { "type": "string" },
+          "minimum_wage_link_english": { "type": "string" },
+          "minimum_wage_link_english_text": { "type": "string" },
+          "minimum_wage_link_national": { "type": "string" },
+          "minimum_wage_link_national_text": { "type": "string" }
         },
-        "required": ["value", "created_at", "updated_at", "field_name", "contributor", "is_verified", "value_count", "facility_list_item_id", "should_display_association"],
         "additionalProperties": false
       }
     },
@@ -96,65 +30,9 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": ["string", "null"]
-          },
-          "value": {
-            "type": "object",
-            "properties": {
-              "raw_values": {
-                "type": "object",
-                "properties": {
-                  "county_id": {
-                    "type": "string"
-                  }
-                },
-                "required": ["county_id"],
-                "additionalProperties": false
-              }
-            },
-            "required": ["raw_values"],
-            "additionalProperties": false
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "field_name": {
-            "type": "string",
-            "const": "mit_living_wage"
-          },
-          "contributor": {
-            "type": "object",
-            "properties": {
-              "id": { "type": "number" },
-              "name": { "type": "string" },
-              "admin_id": { "type": "number" },
-              "is_verified": { "type": "boolean" },
-              "contrib_type": { "type": "string" }
-            },
-            "required": ["id", "name", "admin_id", "is_verified", "contrib_type"],
-            "additionalProperties": false
-          },
-          "is_verified": {
-            "type": "boolean"
-          },
-          "value_count": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "facility_list_item_id": {
-            "type": "integer"
-          },
-          "should_display_association": {
-            "type": "boolean"
-          }
+          "county_id": { "type": "string" }
         },
-        "required": ["value", "created_at", "updated_at", "field_name", "contributor", "is_verified", "value_count", "facility_list_item_id", "should_display_association"],
+        "required": ["county_id"],
         "additionalProperties": false
       }
     },
