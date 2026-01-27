@@ -4,32 +4,26 @@
     "description": "Dynamic additional partner fields configured at runtime.",
     "properties": {
         "wage_indicator": {
-            "type": "array",
+            "type": "object",
             "description": "WageIndicator links related to minimum and living wage information for the location’s country.",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "living_wage_link_national": { "type": "string" },
-                    "living_wage_link_national_text": { "type": "string" },
-                    "minimum_wage_link_english": { "type": "string" },
-                    "minimum_wage_link_english_text": { "type": "string" },
-                    "minimum_wage_link_national": { "type": "string" },
-                    "minimum_wage_link_national_text": { "type": "string" }
-                },
-                "additionalProperties": false
-            }
+            "properties": {
+                "living_wage_link_national": { "type": "string" },
+                "living_wage_link_national_text": { "type": "string" },
+                "minimum_wage_link_english": { "type": "string" },
+                "minimum_wage_link_english_text": { "type": "string" },
+                "minimum_wage_link_national": { "type": "string" },
+                "minimum_wage_link_national_text": { "type": "string" }
+            },
+            "additionalProperties": false
         },
         "mit_living_wage": {
-            "type": "array",
+            "type": "object",
             "description": "MIT Living Wage data associated with the location.",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "county_id": { "type": "string" }
-                },
-                "required": ["county_id"],
-                "additionalProperties": false
-            }
+            "properties": {
+                "county_id": { "type": "string" }
+            },
+            "required": ["county_id"],
+            "additionalProperties": false
         }
     },
     "patternProperties": {
