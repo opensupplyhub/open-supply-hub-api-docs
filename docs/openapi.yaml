@@ -695,7 +695,6 @@ paths:
                     items:
                       allOf:
                         - $ref: "#/components/schemas/location"
-                        - $ref: "#/components/schemas/additional_partner_fields"
                   aggregations:
                     type: object
                     properties:
