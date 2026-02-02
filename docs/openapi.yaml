@@ -693,8 +693,7 @@ paths:
                   data:
                     type: array
                     items:
-                      allOf:
-                        - $ref: "#/components/schemas/location"
+                      $ref: "#/components/schemas/location"
                   aggregations:
                     type: object
                     properties:
