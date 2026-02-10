@@ -25,51 +25,7 @@
             "required": ["county_id"],
             "additionalProperties": false
         },
-        "amfori_statuses": {
-            "type": "object",
-            "title": "Amfori Compliance Status",
-            "properties": {
-                "bepi_audit": {
-                    "type": "object",
-                    "properties": {
-                        "expiration_date": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "submission_date": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    }
-                },
-                "bsci_audit": {
-                    "type": "object",
-                    "properties": {
-                        "expiration_date": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "submission_date": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    }
-                },
-                "environmental_risk_assessment": {
-                    "type": "object",
-                    "properties": {
-                        "completion_date": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "expiration_date": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    }
-                }
-            }
-        }
+        "amfori_statuses": { "$ref": "./amfori_statuses.json" }
     },
     "patternProperties": {
         "^[a-zA-Z_][a-zA-Z_]*$": {
