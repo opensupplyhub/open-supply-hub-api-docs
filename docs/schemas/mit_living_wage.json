@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "MIT Living Wage",
+    "description": "MIT Living Wage data associated with the location.",
+    "properties": {
+        "county_id": { "type": "string" }
+    },
+    "required": ["county_id"],
+    "additionalProperties": false
+}

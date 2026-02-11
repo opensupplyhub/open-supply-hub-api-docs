@@ -3,28 +3,8 @@
     "type": "object",
     "description": "Dynamic additional partner fields configured at runtime.",
     "properties": {
-        "wage_indicator": {
-            "type": "object",
-            "description": "WageIndicator links related to minimum and living wage information for the location’s country.",
-            "properties": {
-                "living_wage_link_national": { "type": "string" },
-                "living_wage_link_national_text": { "type": "string" },
-                "minimum_wage_link_english": { "type": "string" },
-                "minimum_wage_link_english_text": { "type": "string" },
-                "minimum_wage_link_national": { "type": "string" },
-                "minimum_wage_link_national_text": { "type": "string" }
-            },
-            "additionalProperties": false
-        },
-        "mit_living_wage": {
-            "type": "object",
-            "description": "MIT Living Wage data associated with the location.",
-            "properties": {
-                "county_id": { "type": "string" }
-            },
-            "required": ["county_id"],
-            "additionalProperties": false
-        },
+        "wage_indicator": { "$ref": "./wage_indicator.json" },
+        "mit_living_wage": { "$ref": "./mit_living_wage.json" },
         "amfori_statuses": { "$ref": "./amfori_statuses.json" }
     },
     "patternProperties": {
