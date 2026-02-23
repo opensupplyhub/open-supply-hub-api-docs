@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Amfori Compliance Status",
+  "properties": {
+    "bepi_audit": {
+      "type": "object",
+      "properties": {
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "bsci_audit": {
+      "type": "object",
+      "properties": {
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "submission_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "environmental_risk_assessment": {
+      "type": "object",
+      "properties": {
+        "completion_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
