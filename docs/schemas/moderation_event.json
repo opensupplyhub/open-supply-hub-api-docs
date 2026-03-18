@@ -74,6 +74,13 @@
     "claim_id": {
       "type": "number",
       "description": "Linked claim id for this production location."
+    },
+    "backfilled_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of field names that were backfilled from existing production location data when the API user did not provide them in a PATCH request. Helps moderators distinguish backfilled data from data provided by the API user."
     }
   },
   "required": [
