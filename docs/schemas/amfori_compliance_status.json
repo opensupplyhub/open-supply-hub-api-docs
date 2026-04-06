@@ -1,0 +1,51 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Amfori Compliance Status",
+    "description": "Amfori BSCI, BEPI, and environmental risk assessment dates for the location.",
+    "properties": {
+        "bepi_audit": {
+            "type": "object",
+            "properties": {
+                "expiration_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "submission_date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            },
+            "additionalProperties": false
+        },
+        "bsci_audit": {
+            "type": "object",
+            "properties": {
+                "expiration_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "submission_date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            },
+            "additionalProperties": false
+        },
+        "environmental_risk_assessment": {
+            "type": "object",
+            "properties": {
+                "completion_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "expiration_date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

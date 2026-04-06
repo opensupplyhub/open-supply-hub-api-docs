@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "RSC Grievance Mechanism",
+    "description": "RSC grievance mechanism data for the location.",
+    "required": ["status"],
+    "properties": {
+        "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "The current operational status.",
+            "enum": ["Active", "Inactive"]
+        },
+        "active_since": {
+            "type": "string",
+            "title": "Active Since",
+            "format": "date",
+            "description": "The date the grievance mechanism started being active at this production location."
+        },
+        "end_date": {
+            "type": "string",
+            "title": "End Date",
+            "format": "date",
+            "description": "The date the grievance mechanism stopped being active at this production location."
+        },
+        "attributes": {
+            "type": "string",
+            "title": "Attributes",
+            "description": "Description and information about the mechanism."
+        }
+    },
+    "additionalProperties": false
+}

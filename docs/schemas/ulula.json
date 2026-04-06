@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Ulula Grievance Mechanism",
+    "description": "Ulula grievance mechanism data for the location.",
+    "required": ["status"],
+    "properties": {
+        "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "The current operational status.",
+            "enum": ["active", "inactive"]
+        },
+        "end_date": {
+            "type": "string",
+            "title": "End Date",
+            "format": "date",
+            "description": "The date the grievance mechanism stopped operating."
+        },
+        "start_date": {
+            "type": "string",
+            "title": "Established Date",
+            "format": "date",
+            "description": "The date the grievance mechanism was established."
+        }
+    },
+    "additionalProperties": false
+}

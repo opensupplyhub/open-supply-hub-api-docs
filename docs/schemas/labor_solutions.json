@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Labor Solutions Grievance Mechanism",
+    "description": "Labor Solutions WOVO Connect grievance mechanism data for the location.",
+    "required": ["wovo_active"],
+    "properties": {
+        "wovo_active": {
+            "type": "string",
+            "title": "Status",
+            "description": "The current operational status of the WOVO Connect grievance mechanism.",
+            "enum": ["active", "inactive"]
+        },
+        "wovo_established_date": {
+            "type": "string",
+            "title": "Established Date",
+            "format": "date",
+            "description": "The date the WOVO Connect grievance mechanism was established."
+        },
+        "attributes": {
+            "type": "string",
+            "title": "Attributes",
+            "default": "Coming Soon"
+        }
+    },
+    "additionalProperties": false
+}

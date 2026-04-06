@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Accord Inspections and Remediation Program",
+    "description": "International Accord inspections and remediation program data for the location.",
+    "properties": {
+        "rsc_presence": {
+            "type": "string",
+            "title": "Accord/RSC Presence",
+            "enum": ["Yes", "No"]
+        },
+        "first_inspection_date": {
+            "type": "string",
+            "title": "First Inspection Date",
+            "format": "date"
+        }
+    },
+    "additionalProperties": false
+}

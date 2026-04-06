@@ -10,6 +10,5 @@
         "minimum_wage_link_english_text": { "type": "string" },
         "minimum_wage_link_national": { "type": "string" },
         "minimum_wage_link_national_text": { "type": "string" }
-    },
-    "additionalProperties": true
+    }
 }
