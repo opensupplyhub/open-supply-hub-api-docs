@@ -4,11 +4,11 @@
     "title": "WageIndicator",
     "description": "WageIndicator links related to minimum and living wage information for the location’s country.",
     "properties": {
-        "living_wage_link_national": { "type": "string" },
+        "living_wage_link_national": { "type": "string", "format": "uri" },
         "living_wage_link_national_text": { "type": "string" },
-        "minimum_wage_link_english": { "type": "string" },
+        "minimum_wage_link_english": { "type": "string", "format": "uri" },
         "minimum_wage_link_english_text": { "type": "string" },
-        "minimum_wage_link_national": { "type": "string" },
+        "minimum_wage_link_national": { "type": "string", "format": "uri" },
         "minimum_wage_link_national_text": { "type": "string" }
     }
 }

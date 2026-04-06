@@ -4,7 +4,7 @@
     "title": "MIT Living Wage",
     "description": "MIT Living Wage data associated with the location.",
     "properties": {
-        "county_id": { "type": "string" }
+        "county_id": { "type": "string", "format": "uri-reference" }
     },
     "required": ["county_id"],
     "additionalProperties": false
