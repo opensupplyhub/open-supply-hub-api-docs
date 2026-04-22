@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WRAP Certification",
+  "type": "object",
+  "properties": {
+    "certification_status": {
+      "type": "string",
+      "description": "The current certification status.",
+      "title": "Status",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Issue Date",
+      "description": "The date the certification was issued."
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Expiration Date",
+      "description": "The date the certification expires."
+    }
+  },
+  "required": [
+    "certification_status"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "Worldly Assessments Data Update",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "fem_assessment": {
+      "type": "object",
+      "title": "Higg Facility Environmental Module (Higg FEM)",
+      "properties": {
+        "last_date": {
+          "type": "string",
+          "title": "Last Date",
+          "format": "date-time"
+        },
+        "reporting_year": {
+          "type": "integer",
+          "title": "Reporting Year",
+          "minimum": 1970
+        },
+        "verification_status": {
+          "enum": [
+            "verified",
+            "unverified",
+            "pending"
+          ],
+          "type": "string",
+          "title": "Status"
+        }
+      }
+    }
+  }
+}

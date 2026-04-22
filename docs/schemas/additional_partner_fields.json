@@ -3,9 +3,25 @@
     "type": "object",
     "description": "Dynamic additional partner fields configured at runtime.",
     "properties": {
-        "wage_indicator": { "$ref": "./wage_indicator.json" },
+        "accord_inspections_and_remediation_program": { "$ref": "./accord_inspections_and_remediation_program.json" },
+        "amfori_compliance_status": { "$ref": "./amfori_compliance_status.json" },
+        "estimated_emissions": {
+            "type": "integer",
+            "description": "Estimated emissions based on Emissions Models from Climate TRACE"
+        },
+        "estimated_annual_activity": {
+          "type": "integer",
+          "description": "Estimated annual activity based on Activity Models from Climate TRACE"
+        },
+        "labor_solutions_grievance_mechanism": { "$ref": "./labor_solutions.json" },
         "mit_living_wage": { "$ref": "./mit_living_wage.json" },
-        "amfori_statuses": { "$ref": "./amfori_statuses.json" }
+        "rsc_grievance_mechanism": { "$ref": "./rsc_grievance_mechanism.json" },
+        "slcp_assessment": { "$ref": "./slcp.json" },
+        "ulula_grievance_mechanism": { "$ref": "./ulula.json" },
+        "wage_indicator": { "$ref": "./wage_indicator.json" },
+        "wrap_certification": { "$ref": "./wrap.json" },
+        "worldly_assessment_data": { "$ref": "./worldly.json" },
+        "climate_trace_emissions": { "$ref": "./climate_trace_emissions.json" }
     },
     "patternProperties": {
         "^[a-zA-Z_][a-zA-Z_]*$": {
@@ -41,10 +57,10 @@
                     ],
                     "items": {
                         "oneOf": [
-                            {"type": "string"},
-                            {"type": "number", "format": "float"},
-                            {"type": "boolean"},
-                            {"type": "object", "additionalProperties": true}
+                            { "type": "string" },
+                            { "type": "number", "format": "float" },
+                            { "type": "boolean" },
+                            { "type": "object", "additionalProperties": true }
                         ]
                     }
                 },

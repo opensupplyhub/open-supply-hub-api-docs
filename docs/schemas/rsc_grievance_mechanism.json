@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "title": "RSC Grievance Mechanism",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "Active",
+        "Inactive"
+      ],
+      "type": "string",
+      "title": "Status",
+      "description": "The current operational status."
+    },
+    "thematic_coverage": {
+      "type": "string",
+      "title": "Thematic Coverage",
+      "default": "Multi-issue"
+    },
+    "mechanism_type_ownership": {
+      "type": "string",
+      "title": "Mechanism Type / Ownership",
+      "default": "Multi-stakeholder led"
+    },
+    "access_modality": {
+      "type": "string",
+      "title": "Access / Modality",
+      "default": "Hotline; Email; In-person"
+    },
+    "coverage": {
+      "type": "string",
+      "title": "Coverage",
+      "default": "All workers (factory-level)"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "Climate TRACE Estimated Emissions",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "estimated_emissions": {
+      "type": "integer",
+      "title": "Estimated Emissions (t CO₂e-100)",
+      "description": "Total CO₂e using 100-year GWP, measured in metric tons (t CO₂e-100)"
+    },
+    "estimated_annual_throughput": {
+      "type": "integer",
+      "title": "Estimated Annual Throughput (kg/yr)",
+      "description": "Estimated annual production throughput in tonnes per year. Populated when the facility provides feasible throughput data or when throughput can be calculated from fuel consumption. Left blank when neither throughput nor fuel consumption data is provided."
+    },
+    "emissions_model": {
+      "type": "string",
+      "title": "Emissions Model",
+      "enum": [
+        "Facility Reported",
+        "Partially Reported",
+        "Partially Modeled",
+        "Fully Modeled"
+      ],
+      "description": "Methodology used by Climate TRACE to calculate emissions, indicating the hierarchy of data quality from best (Facility Reported) to lowest (Fully Modeled)."
+    }
+  },
+  "required": [
+    "estimated_emissions",
+    "emissions_model"
+  ]
+}

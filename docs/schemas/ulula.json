@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "title": "Ulula Grievance Mechanism",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "type": "string",
+      "title": "Status",
+      "description": "The current operational status."
+    },
+    "start_date": {
+      "type": "string",
+      "title": "Active since",
+      "format": "date",
+      "description": "The date the grievance mechanism was established."
+    },
+    "end_date": {
+      "type": "string",
+      "title": "End Date",
+      "format": "date",
+      "description": "The date the grievance mechanism stopped operating."
+    },
+    "thematic_coverage": {
+      "type": "string",
+      "title": "Thematic Coverage",
+      "default": "Multi-issue"
+    },
+    "mechanism_type_ownership": {
+      "type": "string",
+      "title": "Mechanism Type / Ownership",
+      "default": "Ownership differs by facility"
+    },
+    "access_modality": {
+      "type": "string",
+      "title": "Access / Modality",
+      "default": "Hotline; Digital platform (app/web)"
+    },
+    "coverage": {
+      "type": "string",
+      "title": "Coverage",
+      "default": "Access differs by facility"
+    }
+  }
+}

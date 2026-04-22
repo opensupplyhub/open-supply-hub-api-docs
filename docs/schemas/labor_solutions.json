@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "title": "Labor Solutions Grievance Mechanism",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [
+    "wovo_active"
+  ],
+  "properties": {
+    "wovo_active": {
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "type": "string",
+      "title": "Status",
+      "description": "The current operational status of the WOVO Connect grievance mechanism."
+    },
+    "wovo_active_date": {
+      "type": "string",
+      "title": "Active Since",
+      "format": "date",
+      "description": "The date the WOVO Connect grievance mechanism was established."
+    },
+    "thematic_coverage": {
+      "type": "string",
+      "title": "Thematic Coverage",
+      "default": "Multi-issue"
+    },
+    "mechanism_type_ownership": {
+      "type": "string",
+      "title": "Mechanism Type / Ownership",
+      "default": "Brand-led"
+    },
+    "access_modality": {
+      "type": "string",
+      "title": "Access / Modality",
+      "default": "Digital platform (app/web)"
+    },
+    "coverage": {
+      "type": "string",
+      "title": "Coverage",
+      "default": "All workers (factory-level)"
+    }
+  }
+}

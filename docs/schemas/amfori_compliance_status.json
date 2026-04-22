@@ -1,30 +1,34 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "title": "Amfori Compliance Status",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
-    "bepi_audit": {
-      "type": "object",
-      "properties": {
-        "expiration_date": {
-          "type": "string",
-          "format": "date"
-        },
-        "submission_date": {
-          "type": "string",
-          "format": "date"
-        }
-      }
-    },
     "bsci_audit": {
       "type": "object",
       "properties": {
         "expiration_date": {
           "type": "string",
+          "title": "Expiration Date",
           "format": "date"
         },
         "submission_date": {
           "type": "string",
+          "title": "Submission Date",
+          "format": "date"
+        }
+      }
+    },
+    "bepi_audit": {
+      "type": "object",
+      "properties": {
+        "expiration_date": {
+          "type": "string",
+          "title": "Expiration Date",
+          "format": "date"
+        },
+        "submission_date": {
+          "type": "string",
+          "title": "Submission Date",
           "format": "date"
         }
       }
@@ -34,10 +38,12 @@
       "properties": {
         "completion_date": {
           "type": "string",
+          "title": "Completion Date",
           "format": "date"
         },
         "expiration_date": {
           "type": "string",
+          "title": "Expiration Date",
           "format": "date"
         }
       }
