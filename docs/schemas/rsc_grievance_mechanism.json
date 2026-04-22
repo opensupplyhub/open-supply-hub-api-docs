@@ -1,33 +1,39 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "RSC Grievance Mechanism",
-    "description": "RSC grievance mechanism data for the location.",
-    "required": ["status"],
-    "properties": {
-        "status": {
-            "type": "string",
-            "title": "Status",
-            "description": "The current operational status.",
-            "enum": ["Active", "Inactive"]
-        },
-        "active_since": {
-            "type": "string",
-            "title": "Active Since",
-            "format": "date",
-            "description": "The date the grievance mechanism started being active at this production location."
-        },
-        "end_date": {
-            "type": "string",
-            "title": "End Date",
-            "format": "date",
-            "description": "The date the grievance mechanism stopped being active at this production location."
-        },
-        "attributes": {
-            "type": "string",
-            "title": "Attributes",
-            "description": "Description and information about the mechanism."
-        }
+  "type": "object",
+  "title": "RSC Grievance Mechanism",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "Active",
+        "Inactive"
+      ],
+      "type": "string",
+      "title": "Status",
+      "description": "The current operational status."
     },
-    "additionalProperties": false
+    "thematic_coverage": {
+      "type": "string",
+      "title": "Thematic Coverage",
+      "default": "Multi-issue"
+    },
+    "mechanism_type_ownership": {
+      "type": "string",
+      "title": "Mechanism Type / Ownership",
+      "default": "Multi-stakeholder led"
+    },
+    "access_modality": {
+      "type": "string",
+      "title": "Access / Modality",
+      "default": "Hotline; Email; In-person"
+    },
+    "coverage": {
+      "type": "string",
+      "title": "Coverage",
+      "default": "All workers (factory-level)"
+    }
+  }
 }

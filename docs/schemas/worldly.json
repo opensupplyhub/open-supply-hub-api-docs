@@ -1,61 +1,32 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "Worldly Assessments Data",
-    "description": "Worldly (Higg FDM/FEM) assessment data for the location.",
-    "properties": {
-        "fdm_assessment": {
-            "type": "object",
-            "title": "FDM Assessment",
-            "properties": {
-                "assessment_url": {
-                    "type": "string",
-                    "title": "Assessment URL",
-                    "format": "uri"
-                },
-                "reporting_year": {
-                    "type": "integer",
-                    "title": "Reporting year"
-                },
-                "verification_status": {
-                    "type": "string",
-                    "title": "Verification status",
-                    "enum": ["verified", "unverified", "pending"]
-                },
-                "last_date": {
-                    "type": "string",
-                    "title": "Last date",
-                    "format": "date-time"
-                }
-            },
-            "additionalProperties": false
+  "type": "object",
+  "title": "Worldly Assessments Data Update",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "fem_assessment": {
+      "type": "object",
+      "title": "Higg Facility Environmental Module (Higg FEM)",
+      "properties": {
+        "last_date": {
+          "type": "string",
+          "title": "Last Date",
+          "format": "date-time"
         },
-        "fem_assessment": {
-            "type": "object",
-            "title": "HIGG FEM Assessment",
-            "properties": {
-                "assessment_url": {
-                    "type": "string",
-                    "title": "Assessment URL",
-                    "format": "uri"
-                },
-                "reporting_year": {
-                    "type": "integer",
-                    "title": "Reporting year"
-                },
-                "verification_status": {
-                    "type": "string",
-                    "title": "Verification status",
-                    "enum": ["verified", "unverified", "pending"]
-                },
-                "last_date": {
-                    "type": "string",
-                    "title": "Last date",
-                    "format": "date-time"
-                }
-            },
-            "additionalProperties": false
+        "reporting_year": {
+          "type": "integer",
+          "title": "Reporting Year",
+          "minimum": 1970
+        },
+        "verification_status": {
+          "enum": [
+            "verified",
+            "unverified",
+            "pending"
+          ],
+          "type": "string",
+          "title": "Status"
         }
-    },
-    "additionalProperties": false
+      }
+    }
+  }
 }

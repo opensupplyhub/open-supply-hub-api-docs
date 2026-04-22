@@ -1,27 +1,31 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "WRAP Certification",
-    "description": "WRAP certification status and dates for the location.",
-    "properties": {
-        "certification_status": {
-            "type": "string",
-            "title": "Status",
-            "description": "The current certification status.",
-            "enum": ["active", "inactive"]
-        },
-        "start_date": {
-            "type": "string",
-            "format": "date",
-            "title": "Issue Date",
-            "description": "The date the certification was issued."
-        },
-        "expiration_date": {
-            "type": "string",
-            "format": "date",
-            "title": "Expiration Date",
-            "description": "The date the certification expires."
-        }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WRAP Certification",
+  "type": "object",
+  "properties": {
+    "certification_status": {
+      "type": "string",
+      "description": "The current certification status.",
+      "title": "Status",
+      "enum": [
+        "active",
+        "inactive"
+      ]
     },
-    "additionalProperties": false
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Issue Date",
+      "description": "The date the certification was issued."
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Expiration Date",
+      "description": "The date the certification expires."
+    }
+  },
+  "required": [
+    "certification_status"
+  ]
 }

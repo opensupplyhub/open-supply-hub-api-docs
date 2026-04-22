@@ -1,31 +1,45 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "SLCP Assessment",
-    "description": "SLCP CAF assessment summary for the location.",
-    "properties": {
-        "most_recent_assessment_status": {
-            "type": "string",
-            "title": "Assessment Status",
-            "description": "The verification status of the most recent CAF assessment.",
-            "enum": ["VRF", "VRC", "ASI", "ASC"]
-        },
-        "most_recent_assessment_date": {
-            "type": "string",
-            "title": "Assessment Date",
-            "format": "date",
-            "description": "The date of the most recent CAF assessment."
-        },
-        "assessment_platform": {
-            "type": "string",
-            "title": "Assessment Platform",
-            "description": "The platform used to conduct the CAF assessment."
-        },
-        "verifier_body": {
-            "type": "string",
-            "title": "Verifier Body",
-            "description": "The organization that verified the CAF assessment."
-        }
+  "type": "object",
+  "title": "SLCP Assessment",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "most_recent_assessment_status": {
+      "enum": [
+        "Assessment Initiated",
+        "Assessment Completed",
+        "Assessment Deleted",
+        "Verification in Progress",
+        "Verification Quality Check",
+        "Verification Being Edited",
+        "Verification Completed",
+        "Verification Disputed",
+        "Verification Finalized",
+        "Verification Invalidated"
+      ],
+      "type": "string",
+      "title": "Assessment Status",
+      "description": "The verification status of the most recent CAF assessment."
     },
-    "additionalProperties": false
+    "most_recent_assessment_date": {
+      "type": "string",
+      "title": "Assessment Date",
+      "format": "date",
+      "description": "The date of the most recent CAF assessment."
+    },
+    "assessment_platform": {
+      "type": "string",
+      "title": "Assessment Platform",
+      "description": "The platform used to conduct the CAF assessment."
+    },
+    "verifier_body": {
+      "type": "string",
+      "title": "Verifier Body",
+      "description": "The organization that verified the CAF assessment."
+    },
+    "slcp_facility_id": {
+      "type": "string",
+      "title": "SLCP Facility ID",
+      "description": "The unique facility identifier assigned by SLCP (e.g., FA1000010)."
+    }
+  }
 }

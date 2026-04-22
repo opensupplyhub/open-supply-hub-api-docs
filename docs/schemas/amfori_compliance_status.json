@@ -1,51 +1,52 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "Amfori Compliance Status",
-    "description": "Amfori BSCI, BEPI, and environmental risk assessment dates for the location.",
-    "properties": {
-        "bepi_audit": {
-            "type": "object",
-            "properties": {
-                "expiration_date": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "submission_date": {
-                    "type": "string",
-                    "format": "date"
-                }
-            },
-            "additionalProperties": false
+  "type": "object",
+  "title": "Amfori Compliance Status",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "bsci_audit": {
+      "type": "object",
+      "properties": {
+        "expiration_date": {
+          "type": "string",
+          "title": "Expiration Date",
+          "format": "date"
         },
-        "bsci_audit": {
-            "type": "object",
-            "properties": {
-                "expiration_date": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "submission_date": {
-                    "type": "string",
-                    "format": "date"
-                }
-            },
-            "additionalProperties": false
-        },
-        "environmental_risk_assessment": {
-            "type": "object",
-            "properties": {
-                "completion_date": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "expiration_date": {
-                    "type": "string",
-                    "format": "date"
-                }
-            },
-            "additionalProperties": false
+        "submission_date": {
+          "type": "string",
+          "title": "Submission Date",
+          "format": "date"
         }
+      }
     },
-    "additionalProperties": false
+    "bepi_audit": {
+      "type": "object",
+      "properties": {
+        "expiration_date": {
+          "type": "string",
+          "title": "Expiration Date",
+          "format": "date"
+        },
+        "submission_date": {
+          "type": "string",
+          "title": "Submission Date",
+          "format": "date"
+        }
+      }
+    },
+    "environmental_risk_assessment": {
+      "type": "object",
+      "properties": {
+        "completion_date": {
+          "type": "string",
+          "title": "Completion Date",
+          "format": "date"
+        },
+        "expiration_date": {
+          "type": "string",
+          "title": "Expiration Date",
+          "format": "date"
+        }
+      }
+    }
+  }
 }
