@@ -36,6 +36,10 @@
         "geocoded_address": {
           "type": "string",
           "description": "Normalized address string returned by geocoding."
+        },
+        "is_closed": {
+          "type": "boolean",
+          "description": "Indicates whether the production location is marked as closed. A location can be closed and later reopened, so use this flag rather than the closure dates to determine current status. Omitted when the closure status has never been recorded."
         }
       }
     },
