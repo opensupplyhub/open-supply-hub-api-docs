@@ -18,7 +18,11 @@
     },
     "os_id": {
       "type": "string",
-      "description": "The unique identifier for a location."
+      "description": "The unique identifier for a location. Serves os_id_snapshot (the OS ID recorded at approval) when set, falling back to the live facility reference only when the snapshot is unset — so the originally-approved OS ID survives a facility deletion or merge. When neither exists, the field is null (PATCH) or omitted (GET)."
+    },
+    "os_id_snapshot": {
+      "type": "string",
+      "description": "The OS ID recorded at approval time. Preserved (never cleared), so it survives facility deletion or merge. When unset, the field is null (PATCH) or omitted (GET)."
     },
     "cleaned_data": {
       "type": "object",
