@@ -520,14 +520,45 @@ paths:
             items:
               type: string
               minLength: 2
+        - name: contributor_id
+          in: query
+          description: >
+            Filter to locations with data from the given contributor(s).
+            Repeatable. Only publicly-visible contributors are matched
+            (active, public, non-anonymized sources with active matches) —
+            a location whose only matching contributor is not publicly
+            visible is not returned. When combined with `contributor_type`,
+            each filter is matched independently against the location's
+            contributors: the id and the type are not required to belong
+            to the same contributor.
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: contributor_type
+          in: query
+          description: >
+            Filter to locations with data from contributors of the given
+            type(s) (e.g., Brand / Retailer). Repeatable. Matches only
+            publicly-visible contributors; see `contributor_id` for the
+            combined-filter semantics.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
         - name: sort_by
           in: query
-          description: The field to sort the results by.
+          description: >
+            The field to sort the results by. Sorting ascending by
+            `number_of_contributors` places locations with zero
+            publicly-visible contributors first.
           required: false
           schema:
             type: string
             default: none (best match) for all queries; `name` when use `search_after[value]` and `search_after[id]`.
-            enum: [name, address, claim_status, claimed_at]
+            enum: [name, address, claim_status, claimed_at, number_of_contributors]
         - name: order_by
           in: query
           description: The order to sort the results by.
