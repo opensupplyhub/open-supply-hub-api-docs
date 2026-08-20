@@ -40,6 +40,50 @@
         "is_closed": {
           "type": "boolean",
           "description": "Indicates whether the production location is marked as closed. A location can be closed and later reopened, so use this flag rather than the closure dates to determine current status. Omitted when the closure status has never been recorded."
+        },
+        "contributors": {
+          "type": "array",
+          "description": "The publicly-visible contributors of data for this production location: only contributors whose sources are active, public, and not anonymized, with active matches, appear here. Omitted when the location has no publicly-visible contributors. Note this is a flat array: when filtering by both `contributor_id` and `contributor_type`, a location matches if any element matches each filter — the id and the type are not required to belong to the same contributor. Contribution changes that do not modify the production location itself may not be reflected until the next full index rebuild.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "The unique identifier of the contributor."
+              },
+              "type": {
+                "type": "string",
+                "description": "The contributor type (e.g., Brand / Retailer, Multi-Stakeholder Initiative)."
+              }
+            }
+          }
+        },
+        "number_of_contributors": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The count of distinct publicly-visible contributors for this production location, consistent with the length of `contributors`. Always present (zero is returned, not omitted). Sorting ascending by this field places zero-contributor locations first.",
+          "example": 3
+        },
+        "lists": {
+          "type": "array",
+          "description": "The publicly-visible facility lists through which data for this production location was contributed. Omitted when there are none (for example, when all contributions were made via the API rather than list uploads).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "The unique identifier of the facility list."
+              },
+              "contributor_id": {
+                "type": "integer",
+                "description": "The unique identifier of the contributor who uploaded the list."
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the facility list."
+              }
+            }
+          }
         }
       }
     },
